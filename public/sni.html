@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>44Day — SNI Host Finder</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Matrix canvases on sides -->
+  <canvas id="matrix-left" class="matrix matrix-left"></canvas>
+  <canvas id="matrix-right" class="matrix matrix-right"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-scanlines"></div>
+
+  <!-- ============ WELCOME / SPLASH ============ -->
+  <section id="splash" class="splash">
+    <div class="splash-bg-text" aria-hidden="true">
+      <span>44DAY // SNI HOST FINDER // SECURE NETWORK TOOLKIT</span>
+      <span>44DAY // SNI HOST FINDER // SECURE NETWORK TOOLKIT</span>
+      <span>44DAY // SNI HOST FINDER // SECURE NETWORK TOOLKIT</span>
+      <span>44DAY // SNI HOST FINDER // SECURE NETWORK TOOLKIT</span>
+    </div>
+
+    <div class="splash-content">
+      <div class="splash-logo">
+        <svg viewBox="0 0 64 64" width="72" height="72">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#00f0ff"/>
+              <stop offset="100%" stop-color="#b14cff"/>
+            </linearGradient>
+          </defs>
+          <path d="M8 32 L32 8 L56 32 L32 56 Z" fill="none" stroke="url(#lg)" stroke-width="2"/>
+          <circle cx="32" cy="32" r="6" fill="url(#lg)"/>
+          <path d="M32 14 V20 M32 44 V50 M14 32 H20 M44 32 H50" stroke="url(#lg)" stroke-width="2"/>
+        </svg>
+      </div>
+      <h1 class="splash-title">44Day</h1>
+      <div class="splash-divider"></div>
+      <p class="splash-sub" data-i18n="splash.sub">SNI Host Finder</p>
+      <p class="splash-typed"><span id="typed-text"></span><span class="caret">_</span></p>
+
+      <a class="tg-invite" href="https://t.me/baku_root" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        <span data-i18n="splash.tg">Подписаться на Telegram</span>
+        <span class="tg-handle">@baku_root</span>
+      </a>
+
+      <button id="enter-btn" class="enter-btn" data-i18n="splash.enter">[ НАЧАТЬ ]</button>
+    </div>
+  </section>
+
+  <!-- ============ MAIN APP ============ -->
+  <div id="app" class="app hidden">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-mini">
+          <svg viewBox="0 0 64 64" width="32" height="32">
+            <path d="M8 32 L32 8 L56 32 L32 56 Z" fill="none" stroke="#00f0ff" stroke-width="3"/>
+            <circle cx="32" cy="32" r="5" fill="#b14cff"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">44<span class="accent">Day</span></div>
+          <div class="brand-sub">v3.4351 · SNI HOST FINDER</div>
+        </div>
+      </div>
+
+      <div class="topbar-center">
+        <div class="status-pill">
+          <span class="dot dot-online"></span>
+          <span data-i18n="status.online">ONLINE</span>
+        </div>
+        <div class="clock">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="clock"></span>
+        </div>
+        <div class="status-pill">
+          <span class="dot dot-purple"></span>
+          <span data-i18n="status.session">SESSION</span>
+          <span id="session-id" class="mono"></span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="theme-switch" title="Тема оформления">
+          <button class="theme-btn active" data-theme="dark" title="Dark mode" aria-label="Dark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <button class="theme-btn" data-theme="light" title="Light mode" aria-label="Light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </button>
+        </div>
+        <div class="lang-switch">
+          <button class="lang-btn" data-lang="az"><img src="https://flagcdn.com/w40/az.png" alt="AZ"/><span>AZ</span></button>
+          <button class="lang-btn active" data-lang="ru"><img src="https://flagcdn.com/w40/ru.png" alt="RU"/><span>RU</span></button>
+          <button class="lang-btn" data-lang="en"><img src="https://flagcdn.com/w40/gb.png" alt="EN"/><span>EN</span></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- TABS -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="search">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span data-i18n="tabs.search">Поиск</span>
+      </button>
+      <button class="tab" data-tab="test">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span data-i18n="tabs.test">Тест хостов</span>
+      </button>
+      <button class="tab" data-tab="deep">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>
+        <span data-i18n="tabs.deep">Deep Probe</span>
+      </button>
+      <button class="tab" data-tab="howto">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span data-i18n="tabs.howto">Инструкция</span>
+      </button>
+      <button class="tab" data-tab="about">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span data-i18n="tabs.about">О проекте</span>
+      </button>
+    </nav>
+
+    <!-- ============ TAB: SEARCH ============ -->
+    <section class="tab-panel active" id="panel-search">
+      <div class="panel-head">
+        <h2 data-i18n="search.title">Поиск SNI поддоменов</h2>
+        <p data-i18n="search.desc">Расширенный поиск по 9 источникам: CT (crt.sh, CertSpotter), AlienVault OTX, HackerTarget, RapidDNS, Anubis, URLScan, Wayback Machine + DNS брутфорс.</p>
+      </div>
+
+      <form id="search-form" class="bar">
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input id="domain" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" required/>
+        </div>
+        <button id="search-btn" type="submit" class="btn-primary">
+          <span class="btn-text" data-i18n="search.button">ПОИСК</span>
+          <span class="btn-spinner"></span>
+        </button>
+      </form>
+
+      <div class="chips">
+        <span class="chips-label" data-i18n="search.examples">Примеры:</span>
+        <button class="chip" data-domain="zoom.us">zoom.us</button>
+        <button class="chip" data-domain="discord.com">discord.com</button>
+        <button class="chip" data-domain="cloudflare.com">cloudflare.com</button>
+        <button class="chip" data-domain="github.com">github.com</button>
+      </div>
+
+      <!-- Terminal animation -->
+      <div id="terminal" class="terminal hidden">
+        <div class="term-head">
+          <span class="term-dot red"></span>
+          <span class="term-dot yellow"></span>
+          <span class="term-dot green"></span>
+          <span class="term-title">/bin/44day — search</span>
+        </div>
+        <div id="term-body" class="term-body"></div>
+      </div>
+
+      <div id="search-results" class="results-card hidden">
+        <div class="results-head">
+          <div>
+            <h3 id="res-domain" class="mono"></h3>
+            <p id="res-meta" class="muted"></p>
+          </div>
+          <div class="results-actions">
+            <input id="filter-search" type="text" placeholder="filter..."/>
+            <button id="select-all" class="btn-ghost" data-i18n="actions.selectAll">Выбрать все</button>
+            <button id="send-to-test" class="btn-cyan" data-i18n="actions.sendTest">Отправить в тест →</button>
+            <button id="copy-search" class="btn-ghost" data-i18n="actions.copy">Копировать</button>
+            <button id="download-search" class="btn-ghost" data-i18n="actions.download">Скачать</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="check-all"/></th>
+                <th>#</th>
+                <th data-i18n="th.subdomain">Поддомен</th>
+              </tr>
+            </thead>
+            <tbody id="search-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TAB: TEST ============ -->
+    <section class="tab-panel" id="panel-test">
+      <div class="panel-head">
+        <h2 data-i18n="test.title">Тестирование хостов</h2>
+        <p data-i18n="test.desc">Проверка HTTP-статуса, WebSocket Upgrade, SNI/TLS и определение Cloudflare.</p>
+      </div>
+
+      <div class="test-grid">
+        <div class="test-controls">
+          <label class="field">
+            <span data-i18n="test.hosts">Хосты (по одному в строке):</span>
+            <textarea id="test-hosts" rows="8" placeholder="cloudflare.com
+discord.com
+zoom.us"></textarea>
+          </label>
+
+          <div class="checks">
+            <label><input type="checkbox" id="t-http" checked/> HTTP / HTTPS</label>
+            <label><input type="checkbox" id="t-ws" checked/> WebSocket</label>
+            <label><input type="checkbox" id="t-sni" checked/> SNI / TLS</label>
+          </div>
+
+          <label class="field-row">
+            <span data-i18n="test.concurrency">Параллельно:</span>
+            <input id="concurrency" type="number" value="12" min="1" max="25"/>
+          </label>
+
+          <button id="test-btn" class="btn-primary block">
+            <span class="btn-text" data-i18n="test.start">ЗАПУСТИТЬ ТЕСТ</span>
+            <span class="btn-spinner"></span>
+          </button>
+          <div class="progress hidden" id="test-progress">
+            <div class="progress-bar"><div id="progress-fill"></div></div>
+            <span id="progress-text"></span>
+          </div>
+        </div>
+
+        <div class="test-terminal">
+          <div class="term-head">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">/bin/44day — host_test</span>
+            <div class="term-tabs">
+              <button class="term-tab active" data-stream="all">ALL</button>
+              <button class="term-tab" data-stream="http">HTTP</button>
+              <button class="term-tab" data-stream="ws">WS</button>
+              <button class="term-tab" data-stream="sni">SNI</button>
+            </div>
+          </div>
+          <div class="term-cols">
+            <div class="term-col" data-col="http">
+              <div class="term-col-head"><span class="col-dot http"></span>HTTP / HTTPS</div>
+              <div id="term-http" class="term-body"></div>
+            </div>
+            <div class="term-col" data-col="ws">
+              <div class="term-col-head"><span class="col-dot ws"></span>WebSocket</div>
+              <div id="term-ws" class="term-body"></div>
+            </div>
+            <div class="term-col" data-col="sni">
+              <div class="term-col-head"><span class="col-dot sni"></span>SNI / TLS</div>
+              <div id="term-sni" class="term-body"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 10 working hosts -->
+      <div id="top10" class="top10 hidden">
+        <div class="top10-head">
+          <div>
+            <div class="top10-title" data-i18n="top10.title">ТОП-10 РАБОЧИХ ХОСТОВ</div>
+            <div class="top10-sub" data-i18n="top10.sub">Отсортированы по рейтингу байпаса. Порядок ввода — слева направо.</div>
+          </div>
+          <button id="copy-top10" class="btn-cyan" data-i18n="actions.copyTop">Скопировать все ТОП-10</button>
+        </div>
+        <div id="top10-list" class="top10-list"></div>
+      </div>
+
+      <div id="test-results" class="results-card hidden">
+        <div class="results-head">
+          <div>
+            <h3 data-i18n="test.results">Результаты теста</h3>
+            <p id="test-meta" class="muted"></p>
+          </div>
+          <div class="results-actions">
+            <select id="test-filter">
+              <option value="all" data-i18n="filter.all">Все</option>
+              <option value="cf" data-i18n="filter.cf">Cloudflare</option>
+              <option value="ws" data-i18n="filter.ws">WebSocket OK</option>
+              <option value="200" data-i18n="filter.200">200 OK</option>
+              <option value="301" data-i18n="filter.3xx">3xx Redirect</option>
+              <option value="working" data-i18n="filter.working">Рабочие SNI</option>
+            </select>
+            <select id="export-format">
+              <option value="json">JSON</option>
+              <option value="txt">TXT (хосты)</option>
+              <option value="payloads">Payloads (.txt)</option>
+              <option value="hat">HA Tunnel (.hat)</option>
+              <option value="ehi">HTTP Injector (.ehi)</option>
+            </select>
+            <button id="export-test" class="btn-ghost" data-i18n="actions.export">Экспорт</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="test-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th data-i18n="th.host">Хост</th>
+                <th data-i18n="th.score">Score</th>
+                <th>HTTP</th>
+                <th>WS</th>
+                <th>SNI</th>
+                <th>CDN</th>
+                <th data-i18n="th.actions">Действия</th>
+              </tr>
+            </thead>
+            <tbody id="test-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TAB: DEEP ============ -->
+    <section class="tab-panel" id="panel-deep">
+      <div class="panel-head">
+        <h2 data-i18n="deep.title">Deep Probe / Глубокий анализ</h2>
+        <p data-i18n="deep.desc">9 тестов: DNS · TCP Ping · TLS · HTTP/2 · SNI Routing · Domain Fronting · Replay · ASN/GeoIP · ECH</p>
+      </div>
+
+      <form id="deep-form" class="bar">
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input id="deep-input" type="text" placeholder="cdn.example.com" autocomplete="off" spellcheck="false" required/>
+        </div>
+        <button id="deep-btn" type="submit" class="btn-primary">
+          <span class="btn-text" data-i18n="deep.run">СКАНИРОВАТЬ</span>
+          <span class="btn-spinner"></span>
+        </button>
+      </form>
+
+      <div class="chips">
+        <span class="chips-label" data-i18n="search.examples">Примеры:</span>
+        <button class="chip" data-deep="www.cloudflare.com">www.cloudflare.com</button>
+        <button class="chip" data-deep="discord.com">discord.com</button>
+        <button class="chip" data-deep="m.facebook.com">m.facebook.com</button>
+        <button class="chip" data-deep="cdn.discordapp.com">cdn.discordapp.com</button>
+      </div>
+
+      <div id="deep-panel" class="deep-panel hidden">
+        <div id="deep-loading" class="deep-loading hidden">
+          <div class="deep-spinner"></div>
+          <div class="deep-loading-text" data-i18n="deep.loading">Сканирую хост по 9 параметрам...</div>
+          <div class="deep-loading-sub">DNS · TLS · HTTP/2 · SNI Routing · Domain Fronting · Replay · Ping · ASN · ECH</div>
+        </div>
+        <div id="deep-content" class="deep-content hidden"></div>
+      </div>
+    </section>
+
+    <!-- ============ TAB: HOWTO ============ -->
+    <section class="tab-panel" id="panel-howto">
+      <div class="panel-head">
+        <h2 data-i18n="howto.title">Инструкция: бесплатный интернет через SNI</h2>
+        <p data-i18n="howto.desc">Краткий гид по использованию SNI-хостов в популярных приложениях.</p>
+      </div>
+
+      <div class="howto-main">
+        <div class="howto-card big">
+          <div class="howto-head"><span class="howto-num">01</span><h3 data-i18n="howto.step1">Найди поддомены</h3></div>
+          <p data-i18n="howto.step1d">Во вкладке <strong>«Поиск»</strong> введи домен оператора или популярного сервиса. Программа опросит <strong>9 источников</strong> (CT-логи, AlienVault, RapidDNS, Anubis, URLScan, Wayback, CertSpotter + DNS брутфорс) и соберёт максимум поддоменов.</p>
+          <p class="muted" data-i18n="howto.step1tip">💡 Совет: пробуй <code>azercell.az</code>, <code>bakcell.com</code>, <code>nar.az</code>, <code>m.facebook.com</code>, <code>cloudflare.com</code>, <code>discord.com</code>, <code>zoom.us</code>.</p>
+        </div>
+        <div class="howto-card big">
+          <div class="howto-head"><span class="howto-num">02</span><h3 data-i18n="howto.step2">Протестируй хосты</h3></div>
+          <p data-i18n="howto.step2d">Отметь нужные → <strong>«Отправить в тест»</strong>. Программа проверит каждый хост по <strong>HTTP/HTTPS, WebSocket, SNI/TLS</strong> и оценит <strong>Score 0–100</strong>.</p>
+          <ul class="howto-list">
+            <li data-i18n="howto.s2a"><strong>Score ≥ 80 (зелёный):</strong> почти точно работает</li>
+            <li data-i18n="howto.s2b"><strong>Score 60–79 (cyan):</strong> высокий шанс, попадает в ТОП-10</li>
+            <li data-i18n="howto.s2c"><strong>Score &lt; 40:</strong> не пробуй</li>
+          </ul>
+        </div>
+        <div class="howto-card big">
+          <div class="howto-head"><span class="howto-num">03</span><h3 data-i18n="howto.step3">Углубись в Deep Probe</h3></div>
+          <p data-i18n="howto.step3d">Нажми <strong>DEEP</strong> на любом хосте → откроется вкладка с <strong>9 проверками</strong>: TLS 1.3, HTTP/2, SNI Routing, Domain Fronting, Replay, ASN, ECH, IPv6, SAN. Хосты с <strong>SNI ROUTING + DOMAIN FRONTING</strong> — золото для bypass.</p>
+          <p class="muted" data-i18n="howto.step3tip">💡 В разделе SAN ты увидишь <strong>все домены на одном сертификате</strong> — это готовые альтернативные SNI на том же IP.</p>
+        </div>
+        <div class="howto-card big">
+          <div class="howto-head"><span class="howto-num">04</span><h3 data-i18n="howto.step4">Получи готовый Payload</h3></div>
+          <p data-i18n="howto.step4d">У зелёных строк есть кнопка <strong>PAYLOAD</strong> — открывает окно с готовыми настройками для:</p>
+          <ul class="howto-list">
+            <li><strong>HTTP Injector</strong> · <strong>HA Tunnel</strong> · <strong>HTTP Custom</strong> · <strong>DarkTunnel</strong> · <strong>TLS Tunnel</strong></li>
+          </ul>
+          <p data-i18n="howto.step4d2">Каждое поле копируется отдельной кнопкой. Кнопка <strong>«СКОПИРОВАТЬ ВСЁ»</strong> копирует только нужные значения (SNI, Port, Mode, Payload) — без лишнего текста.</p>
+        </div>
+        <div class="howto-card big">
+          <div class="howto-head"><span class="howto-num">05</span><h3 data-i18n="howto.step5">Настрой приложение</h3></div>
+          <p data-i18n="howto.step5d">Открой нужное приложение → новая конфигурация → вставь скопированные значения:</p>
+          <ul class="howto-list">
+            <li data-i18n="howto.s1"><strong>Mode / Connection Type:</strong> SSL/TLS (SNI)</li>
+            <li data-i18n="howto.s2"><strong>SNI Host / SNI:</strong> поддомен из теста</li>
+            <li data-i18n="howto.s3"><strong>Payload:</strong> готовая строка из окна Payload</li>
+            <li data-i18n="howto.s4"><strong>Proxy / Server:</strong> ВАШ SSH или V2Ray-сервер (нужно поднять отдельно — например на VPS за $3/мес)</li>
+            <li data-i18n="howto.s5"><strong>Port:</strong> 443 (HTTPS) или 22 (SSH)</li>
+          </ul>
+        </div>
+        <div class="howto-card big">
+          <div class="howto-head"><span class="howto-num">06</span><h3 data-i18n="howto.step6">Подключись и тестируй</h3></div>
+          <p data-i18n="howto.step6d">Жми <strong>Connect</strong>. Если коннекта нет за 15 секунд — попробуй <strong>следующий хост из ТОП-10</strong> (он отсортирован по убыванию шансов). Используй <strong>Экспорт → Payloads (.txt)</strong> чтобы получить готовые конфиги для всех рабочих хостов сразу.</p>
+        </div>
+        <div class="howto-card big">
+          <div class="howto-head"><span class="howto-num">07</span><h3 data-i18n="howto.step7">Что нужно знать</h3></div>
+          <ul class="howto-list">
+            <li data-i18n="howto.note1">Программа <strong>не может на 100% гарантировать</strong> что хост работает у твоего оператора — тестировать нужно вживую</li>
+            <li data-i18n="howto.note2">Чем больше Score и подтверждений (SNI Routing, Domain Fronting) — тем выше шанс</li>
+            <li data-i18n="howto.note3">Хосты на <strong>Cloudflare / Google / AWS</strong> чаще всего в whitelist операторов</li>
+            <li data-i18n="howto.note4">Нужен <strong>свой SSH/V2Ray сервер</strong> — без него туннель не построится</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="warn-card">
+        <strong data-i18n="howto.warnTitle">Важно:</strong>
+        <span data-i18n="howto.warnText">Используйте только в тех сетях, где это разрешено условиями вашего провайдера. Автор не несёт ответственности.</span>
+      </div>
+    </section>
+
+    <!-- ============ TAB: ABOUT ============ -->
+    <section class="tab-panel" id="panel-about">
+      <div class="panel-head">
+        <h2 data-i18n="about.title">О проекте</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3 data-i18n="about.what">Что это</h3>
+          <p data-i18n="about.whatText">Инструмент для поиска SNI-хостов и их анализа, чтобы использовать с туннелями (HTTP Injector, HA Tunnel, DarkTunnel, HTTP Custom, TLS Tunnel).</p>
+        </div>
+        <div class="about-card">
+          <h3 data-i18n="about.sources">Источники данных (9)</h3>
+          <ul>
+            <li>crt.sh — Certificate Transparency</li>
+            <li>CertSpotter — CT logs (доп.)</li>
+            <li>AlienVault OTX — passive DNS</li>
+            <li>HackerTarget — host search</li>
+            <li>RapidDNS — subdomain DB</li>
+            <li>AnubisDB (jonlu.ca)</li>
+            <li>URLScan.io — public scans</li>
+            <li>Wayback Machine — историч. URL</li>
+            <li>DNS Brute force — 130+ префиксов</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h3 data-i18n="about.tg">Телеграм</h3>
+          <a class="tg-link" href="https://t.me/baku_root" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+            @baku_root
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-left">
+        <span class="copyright">© 2026 <strong>44Day Team</strong> · <span data-i18n="footer.rights">все права защищены</span></span>
+        <a href="https://t.me/baku_root" target="_blank" rel="noopener" class="tg-foot" title="Telegram">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          @baku_root
+        </a>
+      </div>
+      <div class="footer-right mono">
+        <span>v3.4351</span>
+        <span class="sep">·</span>
+        <span data-i18n="footer.uptime">UPTIME</span>: <span id="uptime">00:00:00</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Payload modal -->
+  <div id="payload-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" data-i18n="payload.title">PAYLOAD ДЛЯ ТУННЕЛЬНЫХ ПРИЛОЖЕНИЙ</div>
+          <div class="modal-sub mono" id="modal-host"></div>
+        </div>
+        <button class="modal-close" data-close="1">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="payload-tabs">
+          <button class="ptab active" data-app="hi">HTTP Injector</button>
+          <button class="ptab" data-app="ha">HA Tunnel</button>
+          <button class="ptab" data-app="hc">HTTP Custom</button>
+          <button class="ptab" data-app="dt">DarkTunnel</button>
+          <button class="ptab" data-app="tls">TLS Tunnel</button>
+        </div>
+        <div class="payload-grid">
+          <div class="pf"><label>SNI / SNI Host</label><div class="pf-row"><code id="pf-sni"></code><button class="btn-ghost mini" data-copy="pf-sni">copy</button></div></div>
+          <div class="pf"><label>Mode / Connection</label><div class="pf-row"><code id="pf-mode">SSL/TLS</code><button class="btn-ghost mini" data-copy="pf-mode">copy</button></div></div>
+          <div class="pf"><label>Port</label><div class="pf-row"><code id="pf-port">443</code><button class="btn-ghost mini" data-copy="pf-port">copy</button></div></div>
+          <div class="pf full"><label>Payload</label><div class="pf-row"><code id="pf-payload"></code><button class="btn-ghost mini" data-copy="pf-payload">copy</button></div></div>
+          <div class="pf full"><label data-i18n="payload.notes">Комментарий</label><div id="pf-note" class="pf-note"></div></div>
+        </div>
+        <button id="copy-all-payload" class="btn-primary block" data-i18n="payload.copyAll">СКОПИРОВАТЬ ВСЁ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="matrix.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KERNEL PANIC — 404</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="hub.css" />
+  <style>
+    body { background: #0a0e0a; color: #7ee787; }
+    .kp-wrap {
+      max-width: 780px;
+      margin: 6vh auto;
+      padding: 28px 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      background: #000;
+      border: 1px solid #1f3a1f;
+      border-radius: 6px;
+      box-shadow: 0 0 0 1px #0f1f0f, 0 0 80px rgba(0, 255, 102, 0.08) inset;
+    }
+    .kp-title {
+      color: #ff4d4d;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+    .kp-sub { color: #9ca29c; margin-bottom: 18px; }
+    .kp-block { margin: 14px 0; }
+    .kp-block .lbl { color: #58a6ff; display: inline-block; width: 110px; }
+    .kp-dim { color: #5c6b5c; }
+    .kp-stack { color: #d0d7d0; white-space: pre; font-size: 12px; }
+    .kp-stack .fn { color: #f0883e; }
+    .kp-stack .err { color: #ff6e6e; }
+    .kp-actions { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .kp-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 12px;
+      color: #000;
+      background: #4ade80;
+      border: 0;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .kp-btn.ghost { background: transparent; color: #7ee787; border: 1px solid #1f3a1f; }
+    .kp-btn:hover { filter: brightness(1.1); }
+    .kp-cursor {
+      display: inline-block; width: 8px; height: 14px;
+      background: #7ee787; vertical-align: -2px;
+      animation: kpb 1s steps(2) infinite;
+    }
+    @keyframes kpb { 50% { opacity: 0; } }
+    .kp-glitch {
+      color: #ff4d4d;
+      animation: gl 3s infinite;
+    }
+    @keyframes gl {
+      0%,90%,100% { text-shadow: none; }
+      92% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
+      94% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; }
+      96% { text-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="kp-wrap">
+    <div class="kp-title glitch">[ <span class="kp-glitch">KERNEL PANIC</span> ] — not syncing</div>
+    <div class="kp-sub">fatal exception in thread <code>request_handler</code>: <span style="color:#ff6e6e">HTTP_404_NOT_FOUND</span></div>
+
+    <div class="kp-block">
+      <div><span class="lbl">Exception:</span> <span class="kp-glitch">PathNotFoundException</span></div>
+      <div><span class="lbl">Message:</span> <code id="kp-path">route does not exist</code></div>
+      <div><span class="lbl">Timestamp:</span> <code id="kp-ts"></code></div>
+      <div><span class="lbl">PID:</span> <code>44</code> &nbsp; <span class="lbl">TID:</span> <code>day</code></div>
+    </div>
+
+    <div class="kp-block kp-dim">--- Call stack ---</div>
+    <div class="kp-stack">
+  at <span class="fn">router.dispatch</span> (server.js:<span class="err">1083</span>)
+  at <span class="fn">Layer.handle</span> (express/lib/router/layer.js:95)
+  at <span class="fn">next</span> (express/lib/router/route.js:137)
+  at <span class="fn">Route.dispatch</span> (express/lib/router/route.js:112)
+  at <span class="fn">???</span> (<span class="err">the universe</span>:0)
+    </div>
+
+    <div class="kp-block kp-dim" style="margin-top:18px">
+      &gt; try hitting <code>ls</code>, <code>/</code>, or backtick (<code>`</code>) for a shell<span class="kp-cursor"></span>
+    </div>
+
+    <div class="kp-actions">
+      <a href="/" class="kp-btn">← home</a>
+      <a href="/section/android" class="kp-btn ghost">/section/android</a>
+      <a href="https://t.me/baku_root" target="_blank" class="kp-btn ghost">@baku_root</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('kp-path').textContent = location.pathname;
+    document.getElementById('kp-ts').textContent = new Date().toISOString();
+  </script>
+  <script src="sudo.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Icons Test — 44Day</title>
+  <link rel="stylesheet" href="icons.css">
+  <style>
+    body { background: #0a0e0d; color: #d8e0d4; font-family: monospace; padding: 30px; }
+    h1 { color: #5cd4ff; }
+    h2 { color: #a78bfa; margin-top: 28px; border-bottom: 1px solid #2a3a35; padding-bottom: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+    .cell {
+      background: #0f1714; border: 1px solid #234038; border-radius: 8px;
+      padding: 14px; text-align: center; font-size: 11px; color: #98a89c;
+    }
+    .icon { font-size: 56px; line-height: 1; margin-bottom: 8px; }
+    .name { word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1>🛡️ Icon Sprite Test</h1>
+  <p>Если иконки нарезаны криво или подписи не соответствуют — скажи, какие именно (можно так: «row 3, col 5 не та» или «лучше чтоб lock-2 назывался padlock»).</p>
+  <div id="grid"></div>
+
+  <script>
+  fetch('/icons-manifest.json').then(r => r.json()).then(manifest => {
+    const grid = document.getElementById('grid');
+    const ROW_LABELS = ['Ряд 1: щиты, замки, ключ, шляпа, капюшон, крючок, лупа, дракон, компас',
+      'Ряд 2: галки, крест, варн, чекбоксы, молния, ракета, искры, звёзды',
+      'Ряд 3: коробка, папки, документы, скрипты, робот, windows, linux, шестерня, глобус, антенна',
+      'Ряд 4: чат, спутник, дискета, диск, геймпад',
+      'Ряд 5: глаз, стрелки, корзина, edit, плюс/минус, таймер',
+      'Ряд 6: песочные, будильник, лампа, почта, рупор, колокол, мишень, трофей, монеты, карта, подарок',
+      'Ряд 7: конфетти, огонь, 100, профиль, группа, ноутбук, сеть, здание'];
+    // Group by row by parsing manifest order
+    const entries = Object.entries(manifest);
+    const rows = {};
+    fetch('/data/sprite-boxes.json').catch(() => null).then(() => {
+      // simpler: just render all in flat grid in manifest order
+      grid.innerHTML = entries.map(([name, b]) => `
+        <div class="cell">
+          <div class="icon icon-${name}"></div>
+          <div class="name">${name}</div>
+        </div>`).join('');
+    });
+  });
+  </script>
+</body>
+</html>

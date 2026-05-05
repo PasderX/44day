@@ -1,0 +1,750 @@
+{
+  "items": [
+    {
+      "id": "and-http-injector",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "HTTP Injector",
+      "icon": "🛰️",
+      "tags": [
+        "injector",
+        "ssh",
+        "ssl",
+        "vpn",
+        "payload"
+      ],
+      "description": "Профессиональный туннель-клиент: SSH/Proxy/V2Ray/SSL/SNI. Обход блокировок и фильтров провайдера через payload.",
+      "description_az": "Peşəkar tunel-klient: SSH/Proxy/V2Ray/SSL/SNI. Provayder blok və filtrlərini payload vasitəsilə dəf edir.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.evozi.injector",
+      "modUrl": "",
+      "rating": 4.5,
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "and-ha-tunnel",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "HA Tunnel Plus",
+      "icon": "🛰️",
+      "tags": [
+        "tunnel",
+        "ssh",
+        "ssl",
+        "free-internet"
+      ],
+      "description": "Популярный туннель для бесплатного интернета через SSH/SSL. Конфиги формата .hat.",
+      "description_az": "Pulsuz internet üçün məşhur SSH/SSL tunel. .hat formatlı konfiqlər ilə işləyir.",
+      "downloadUrl": "https://play.google.com/store/search?q=HA+Tunnel+Plus&c=apps",
+      "modUrl": "",
+      "rating": 4.4,
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "and-dark-tunnel",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "Dark Tunnel",
+      "icon": "🛰️",
+      "tags": [
+        "tunnel",
+        "v2ray",
+        "ssh"
+      ],
+      "description": "Продвинутый туннель с поддержкой V2Ray, SSH, SSL/TLS. Конфиги .dt.",
+      "description_az": "V2Ray, SSH, SSL/TLS dəstəkləyən qabaqcıl tunel. .dt formatlı konfiqlər.",
+      "downloadUrl": "https://play.google.com/store/search?q=Dark+Tunnel&c=apps",
+      "modUrl": "",
+      "rating": 4.3,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "and-socksip",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "SocksIP Tunnel",
+      "icon": "🛰️",
+      "tags": [
+        "tunnel",
+        "socks",
+        "ssh"
+      ],
+      "description": "SOCKS-туннель с поддержкой SSH и кастомных payload-ов. Популярен в Латинской Америке.",
+      "description_az": "SSH və xüsusi payload dəstəkləyən SOCKS tunel. Latın Amerikasında məşhurdur.",
+      "downloadUrl": "https://play.google.com/store/search?q=SocksIP+Tunnel&c=apps",
+      "modUrl": "",
+      "rating": 4.2,
+      "downloads": 2,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 2
+      }
+    },
+    {
+      "id": "and-npv-tunnel",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "NPV Tunnel",
+      "icon": "🛰️",
+      "tags": [
+        "tunnel",
+        "ssh",
+        "v2ray"
+      ],
+      "description": "Лёгкий туннель с поддержкой SSH/V2Ray и SNI bug. Конфиги .npv.",
+      "description_az": "SSH/V2Ray və SNI bug dəstəkləyən yüngül tunel. .npv formatlı konfiqlər.",
+      "downloadUrl": "https://play.google.com/store/search?q=NPV+Tunnel&c=apps",
+      "modUrl": "",
+      "rating": 4.1,
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "and-netmod-syna",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "NetMod Syna",
+      "icon": "🛰️",
+      "tags": [
+        "tunnel",
+        "v2ray",
+        "ssh",
+        "ssl"
+      ],
+      "description": "Универсальный туннель с поддержкой нескольких протоколов и payload-инжекцией.",
+      "description_az": "Bir neçə protokol və payload injection dəstəkləyən universal tunel.",
+      "downloadUrl": "https://play.google.com/store/search?q=NetMod+Syna&c=apps",
+      "modUrl": "",
+      "rating": 4.2,
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "and-anytun",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "AnyTun VPN",
+      "icon": "🛰️",
+      "tags": [
+        "tunnel",
+        "vpn"
+      ],
+      "description": "Гибкий туннель-клиент с поддержкой OpenVPN/SSH/SSL. Импорт конфигов друзей.",
+      "description_az": "OpenVPN/SSH/SSL dəstəkləyən çevik tunel-klient. Dostların konfiqlərini idxal edir.",
+      "downloadUrl": "https://play.google.com/store/search?q=AnyTun+VPN&c=apps",
+      "modUrl": "",
+      "rating": 4,
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "and-eproxy",
+      "category": "android",
+      "subcategory": "tunnels",
+      "name": "eProxy",
+      "icon": "🛰️",
+      "tags": [
+        "tunnel",
+        "proxy",
+        "v2ray"
+      ],
+      "description": "Простой и быстрый прокси-туннель с поддержкой V2Ray и кастомных хостов.",
+      "description_az": "V2Ray və xüsusi host dəstəkləyən sadə və sürətli proxy tunel.",
+      "downloadUrl": "https://play.google.com/store/search?q=eProxy&c=apps",
+      "modUrl": "",
+      "rating": 4.1,
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "and-v2rayng",
+      "category": "android",
+      "subcategory": "vpn",
+      "name": "v2rayNG",
+      "icon": "🔒",
+      "tags": [
+        "v2ray",
+        "vless",
+        "vmess",
+        "trojan",
+        "shadowsocks"
+      ],
+      "description": "Лучший V2Ray-клиент для Android. Поддержка VLESS, VMess, Trojan, Shadowsocks. Open-source.",
+      "description_az": "Android üçün ən yaxşı V2Ray klienti. VLESS, VMess, Trojan, Shadowsocks dəstəyi. Open-source.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.v2ray.ang",
+      "modUrl": "https://github.com/2dust/v2rayNG/releases",
+      "rating": 4.6,
+      "downloads": 2,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 2
+      }
+    },
+    {
+      "id": "and-wireguard",
+      "category": "android",
+      "subcategory": "vpn",
+      "name": "WireGuard",
+      "icon": "🔒",
+      "tags": [
+        "wireguard",
+        "vpn",
+        "opensource"
+      ],
+      "description": "Официальный клиент WireGuard — современный, быстрый и безопасный VPN-протокол.",
+      "description_az": "Rəsmi WireGuard klienti — müasir, sürətli və təhlükəsiz VPN protokolu.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.wireguard.android",
+      "modUrl": "",
+      "rating": 4.7,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "and-openvpn",
+      "category": "android",
+      "subcategory": "vpn",
+      "name": "OpenVPN for Android",
+      "icon": "🔒",
+      "tags": [
+        "openvpn",
+        "vpn",
+        "opensource"
+      ],
+      "description": "Open-source клиент OpenVPN. Импорт .ovpn конфигов, поддержка всех опций сервера.",
+      "description_az": "Open-source OpenVPN klienti. .ovpn konfiqlərini idxal edir, bütün server opsiyalarını dəstəkləyir.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=de.blinkt.openvpn",
+      "modUrl": "",
+      "rating": 4.4,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "and-cloudflare-warp",
+      "category": "android",
+      "subcategory": "vpn",
+      "name": "Cloudflare 1.1.1.1 + WARP",
+      "icon": "🔒",
+      "tags": [
+        "warp",
+        "dns",
+        "free",
+        "vpn"
+      ],
+      "description": "Бесплатный VPN от Cloudflare — ускоряет интернет и шифрует трафик. Стабильно работает в Азербайджане.",
+      "description_az": "Cloudflare-dən pulsuz VPN — interneti sürətləndirir və trafiki şifrələyir. Azərbaycanda stabil işləyir.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone",
+      "modUrl": "",
+      "rating": 4.5,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "and-termux",
+      "category": "android",
+      "subcategory": "dev",
+      "name": "Termux",
+      "icon": "⌨",
+      "tags": [
+        "terminal",
+        "linux",
+        "shell",
+        "opensource"
+      ],
+      "description": "Полноценный Linux-терминал на Android. Bash, Python, Node, SSH, Nmap — всё работает без root.",
+      "description_az": "Android üçün tam Linux terminalı. Bash, Python, Node, SSH, Nmap — root olmadan işləyir.",
+      "downloadUrl": "https://f-droid.org/en/packages/com.termux/",
+      "modUrl": "https://github.com/termux/termux-app/releases",
+      "rating": 4.7,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "and-acode",
+      "category": "android",
+      "subcategory": "dev",
+      "name": "Acode",
+      "icon": "⌨",
+      "tags": [
+        "editor",
+        "code",
+        "ide"
+      ],
+      "description": "Мощный редактор кода для Android: подсветка 100+ языков, FTP, Git, плагины.",
+      "description_az": "Android üçün güclü kod redaktoru: 100+ dil üçün syntax, FTP, Git, plaginlər.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.foxdebug.acode",
+      "modUrl": "",
+      "rating": 4.5,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "and-zanti",
+      "category": "android",
+      "subcategory": "hacking",
+      "name": "zANTI",
+      "icon": "💀",
+      "tags": [
+        "pentest",
+        "mitm",
+        "scanner"
+      ],
+      "description": "Pentest-инструмент для аудита Wi-Fi сетей: MITM, сканер, перехват сессий. Только для своих сетей.",
+      "description_az": "Wi-Fi şəbəkə auditi üçün pentest aləti: MITM, skaner, sessiya tutma. Yalnız öz şəbəkələrinizdə.",
+      "downloadUrl": "https://www.zimperium.com/zanti-mobile-penetration-testing/",
+      "modUrl": "",
+      "rating": 4,
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "and-nethunter",
+      "category": "android",
+      "subcategory": "hacking",
+      "name": "Kali NetHunter",
+      "icon": "💀",
+      "tags": [
+        "kali",
+        "pentest",
+        "wireless"
+      ],
+      "description": "Kali Linux на Android: полный набор pentest-инструментов, USB HID атаки, поддержка Wi-Fi инжекции.",
+      "description_az": "Android üzərində Kali Linux: tam pentest alət dəsti, USB HID hücumları, Wi-Fi injection dəstəyi.",
+      "downloadUrl": "https://www.kali.org/get-kali/#kali-mobile",
+      "modUrl": "",
+      "rating": 4.6,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "and-spotify-premium",
+      "category": "android",
+      "subcategory": "mods",
+      "name": "Spotify Premium",
+      "version": "8.9.42",
+      "size": "78 MB",
+      "icon": "🎵",
+      "tags": [
+        "music",
+        "premium",
+        "mod"
+      ],
+      "description": "Музыкальный стриминг с разблокированными Premium функциями: без рекламы, скачивание, любой пропуск треков.",
+      "description_az": "Premium funksiyalar açıq Spotify: reklamsız, yükləmə, məhdudiyyətsiz keçid.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.spotify.music",
+      "modUrl": "",
+      "rating": 4.8,
+      "downloads": 15402,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "and-yt-revanced",
+      "category": "android",
+      "subcategory": "mods",
+      "name": "YouTube ReVanced",
+      "version": "19.16.39",
+      "size": "120 MB",
+      "icon": "▶",
+      "tags": [
+        "video",
+        "adblock",
+        "patched"
+      ],
+      "description": "YouTube без рекламы, фоновое воспроизведение, SponsorBlock, скачивание видео.",
+      "description_az": "Reklamsız YouTube, arxa fonda oxuma, SponsorBlock, video yükləmə.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.google.android.youtube",
+      "modUrl": "https://revanced.app/",
+      "rating": 4.9,
+      "downloads": 28900,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "and-telegram-mod",
+      "category": "android",
+      "subcategory": "mods",
+      "name": "Telegram Premium Mod",
+      "version": "10.10.2",
+      "size": "65 MB",
+      "icon": "✈",
+      "tags": [
+        "messenger",
+        "premium"
+      ],
+      "description": "Telegram со всеми Premium функциями разблокированными.",
+      "description_az": "Bütün Premium funksiyaları açıq olan Telegram.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=org.telegram.messenger",
+      "modUrl": "",
+      "rating": 4.7,
+      "downloads": 9201,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "win-idm",
+      "category": "windows",
+      "name": "IDM 6.42 Build 18",
+      "version": "6.42.18",
+      "size": "10 MB",
+      "icon": "⬇",
+      "tags": [
+        "downloader",
+        "patch"
+      ],
+      "description": "Internet Download Manager с патчем — ускорение загрузок до 5x, без триала.",
+      "description_az": "Yamalı Internet Download Manager — yükləməni 5 dəfə sürətləndirir, trial yoxdur.",
+      "downloadUrl": "https://www.internetdownloadmanager.com/download.html",
+      "modUrl": "",
+      "rating": 4.6,
+      "downloads": 12300,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "win-office",
+      "category": "windows",
+      "name": "Office 2021 Pro Plus",
+      "version": "16.0.14332",
+      "size": "3.5 GB",
+      "icon": "📊",
+      "tags": [
+        "office",
+        "kms"
+      ],
+      "description": "Microsoft Office 2021 Pro Plus с KMS активацией.",
+      "description_az": "KMS aktivasiyalı Microsoft Office 2021 Pro Plus.",
+      "downloadUrl": "https://www.microsoft.com/microsoft-365",
+      "modUrl": "",
+      "rating": 4.8,
+      "downloads": 18601,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "scr-autoclick",
+      "category": "scripts",
+      "name": "Auto-Click Bot (Python)",
+      "version": "2.1",
+      "size": "12 KB",
+      "icon": "🐍",
+      "tags": [
+        "python",
+        "automation"
+      ],
+      "description": "Автокликер на Python с конфигом задержек и горячими клавишами.",
+      "description_az": "Python-da auto-clicker: gecikmə konfiqi və qaynar düymələrlə.",
+      "downloadUrl": "https://github.com/topics/autoclicker",
+      "modUrl": "",
+      "rating": 4.5,
+      "downloads": 3402,
+      "createdAt": "2026-04-29T09:00:00.000Z",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "scr-tg-sender",
+      "category": "scripts",
+      "name": "Telegram Mass Sender",
+      "version": "1.4",
+      "size": "45 KB",
+      "icon": "📨",
+      "tags": [
+        "telegram",
+        "bot",
+        "node"
+      ],
+      "description": "Bash + Node.js скрипт для массовой рассылки в Telegram через Bot API.",
+      "description_az": "Bot API vasitəsilə Telegram-da kütləvi göndəriş üçün Bash + Node.js skripti.",
+      "downloadUrl": "https://github.com/topics/telegram-bot",
+      "modUrl": "",
+      "rating": 4.3,
+      "downloads": 2101,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "prg-wireguard-pc",
+      "category": "programs",
+      "subcategory": "vpn",
+      "name": "WireGuard",
+      "version": "0.5.3",
+      "size": "8 MB",
+      "icon": "🔒",
+      "tags": [
+        "vpn",
+        "free",
+        "opensource"
+      ],
+      "description": "Лёгкий и быстрый VPN-клиент. Open-source, бесплатный.",
+      "description_az": "Yüngül və sürətli VPN klienti. Open-source, pulsuz.",
+      "downloadUrl": "https://www.wireguard.com/install/",
+      "modUrl": "",
+      "rating": 4.9,
+      "downloads": 41201,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "prg-v2rayn",
+      "category": "programs",
+      "subcategory": "vpn",
+      "name": "v2rayN",
+      "icon": "🔒",
+      "tags": [
+        "v2ray",
+        "vless",
+        "vmess",
+        "trojan"
+      ],
+      "description": "Windows GUI клиент для V2Ray/Xray. Поддержка VLESS, VMess, Trojan, Shadowsocks.",
+      "description_az": "V2Ray/Xray üçün Windows GUI klienti. VLESS, VMess, Trojan, Shadowsocks dəstəyi.",
+      "downloadUrl": "https://github.com/2dust/v2rayN/releases",
+      "modUrl": "",
+      "rating": 4.7,
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "prg-obs",
+      "category": "programs",
+      "subcategory": "media",
+      "name": "OBS Studio",
+      "version": "30.1.2",
+      "size": "120 MB",
+      "icon": "📹",
+      "tags": [
+        "streaming",
+        "free",
+        "opensource"
+      ],
+      "description": "Бесплатное приложение для стриминга и записи экрана. Open-source.",
+      "description_az": "Streaming və ekran yazısı üçün pulsuz proqram. Open-source.",
+      "downloadUrl": "https://obsproject.com/download",
+      "modUrl": "",
+      "rating": 4.9,
+      "downloads": 35601,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "prg-7zip",
+      "category": "programs",
+      "subcategory": "utils",
+      "name": "7-Zip",
+      "version": "23.01",
+      "size": "1.5 MB",
+      "icon": "🗜",
+      "tags": [
+        "archiver",
+        "free"
+      ],
+      "description": "Бесплатный архиватор с поддержкой всех популярных форматов.",
+      "description_az": "Bütün məşhur formatları dəstəkləyən pulsuz arxivator.",
+      "downloadUrl": "https://www.7-zip.org/download.html",
+      "modUrl": "",
+      "rating": 4.8,
+      "downloads": 52301,
+      "createdAt": "2026-04-29T09:00:00.000Z"
+    },
+    {
+      "id": "cfg-az-ehi-1",
+      "category": "configs",
+      "subcategory": "azercell",
+      "name": "Azercell — HTTP Injector (.ehi)",
+      "icon": "📡",
+      "tags": [
+        "azercell",
+        "ehi",
+        "http-injector",
+        "ssh"
+      ],
+      "format": ".ehi",
+      "provider": "Azercell",
+      "status": "working",
+      "description": "Конфиг для HTTP Injector. SSH-туннель через payload на www.facebook.com:443. Работает в 4G.",
+      "description_az": "HTTP Injector üçün konfiq. www.facebook.com:443 payload üzərindən SSH tunel. 4G-də işləyir.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "downloads": 3,
+      "daily": {
+        "2026-05-01": 2,
+        "2026-05-03": 1
+      }
+    },
+    {
+      "id": "cfg-az-hat-1",
+      "category": "configs",
+      "subcategory": "azercell",
+      "name": "Azercell — HA Tunnel Plus (.hat)",
+      "icon": "📡",
+      "tags": [
+        "azercell",
+        "hat",
+        "ha-tunnel"
+      ],
+      "format": ".hat",
+      "provider": "Azercell",
+      "status": "working",
+      "description": "Готовый .hat для Azercell. SNI host: m.facebook.com. Без лимита скорости.",
+      "description_az": "Azercell üçün hazır .hat. SNI host: m.facebook.com. Sürət limiti yoxdur.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "cfg-az-npv-1",
+      "category": "configs",
+      "subcategory": "azercell",
+      "name": "Azercell — NPV Tunnel (.npv)",
+      "icon": "📡",
+      "tags": [
+        "azercell",
+        "npv"
+      ],
+      "format": ".npv",
+      "provider": "Azercell",
+      "status": "dead",
+      "description": "Старый рабочий конфиг через WhatsApp bug-host. Сейчас провайдер прикрыл — оставлен для истории.",
+      "description_az": "WhatsApp bug-host üzərindən köhnə işləyən konfiq. İndi provayder bağlayıb — tarix üçün saxlanılır.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-04-15T00:00:00.000Z"
+    },
+    {
+      "id": "cfg-bk-ehi-1",
+      "category": "configs",
+      "subcategory": "bakcell",
+      "name": "Bakcell — HTTP Injector (.ehi)",
+      "icon": "📡",
+      "tags": [
+        "bakcell",
+        "ehi",
+        "http-injector"
+      ],
+      "format": ".ehi",
+      "provider": "Bakcell",
+      "status": "working",
+      "description": "Конфиг для Bakcell через SNI bug. Стабильно, до 30 Мбит/с.",
+      "description_az": "SNI bug üzərindən Bakcell üçün konfiq. Stabil, 30 Mbit/s-ə qədər.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "cfg-bk-dt-1",
+      "category": "configs",
+      "subcategory": "bakcell",
+      "name": "Bakcell — Dark Tunnel (.dt)",
+      "icon": "📡",
+      "tags": [
+        "bakcell",
+        "dt",
+        "dark-tunnel",
+        "v2ray"
+      ],
+      "format": ".dt",
+      "provider": "Bakcell",
+      "status": "working",
+      "description": "V2Ray VLESS через Dark Tunnel. Включён TLS, payload не нужен.",
+      "description_az": "Dark Tunnel üzərindən V2Ray VLESS. TLS aktiv, payload tələb olunmur.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "cfg-bk-hc-1",
+      "category": "configs",
+      "subcategory": "bakcell",
+      "name": "Bakcell — Universal (.hc)",
+      "icon": "📡",
+      "tags": [
+        "bakcell",
+        "hc"
+      ],
+      "format": ".hc",
+      "provider": "Bakcell",
+      "status": "unknown",
+      "description": "Свежий конфиг — статус ещё не подтверждён. Проверь и сообщи.",
+      "description_az": "Yeni konfiq — status hələ təsdiqlənməyib. Yoxlayın və məlumat verin.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "cfg-nar-ehi-1",
+      "category": "configs",
+      "subcategory": "nar",
+      "name": "Nar — HTTP Injector (.ehi)",
+      "icon": "📡",
+      "tags": [
+        "nar",
+        "ehi",
+        "http-injector"
+      ],
+      "format": ".ehi",
+      "provider": "Nar",
+      "status": "working",
+      "description": "Рабочий .ehi для Nar через front host operator.az. Скорость нормальная.",
+      "description_az": "operator.az front host üzərindən Nar üçün işləyən .ehi. Sürət normaldır.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "cfg-nar-hat-1",
+      "category": "configs",
+      "subcategory": "nar",
+      "name": "Nar — HA Tunnel Plus (.hat)",
+      "icon": "📡",
+      "tags": [
+        "nar",
+        "hat",
+        "ha-tunnel"
+      ],
+      "format": ".hat",
+      "provider": "Nar",
+      "status": "working",
+      "description": "HA Tunnel конфиг для Nar. SNI: cdn.nar.az.",
+      "description_az": "Nar üçün HA Tunnel konfiqi. SNI: cdn.nar.az.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "cfg-nar-npv-1",
+      "category": "configs",
+      "subcategory": "nar",
+      "name": "Nar — NPV Tunnel (.npv)",
+      "icon": "📡",
+      "tags": [
+        "nar",
+        "npv"
+      ],
+      "format": ".npv",
+      "provider": "Nar",
+      "status": "dead",
+      "description": "Старый конфиг — больше не работает. Архив для тестирования.",
+      "description_az": "Köhnə konfiq — artıq işləmir. Test üçün arxiv.",
+      "downloadUrl": "https://t.me/baku_root",
+      "modUrl": "",
+      "createdAt": "2026-04-10T00:00:00.000Z"
+    }
+  ]
+}

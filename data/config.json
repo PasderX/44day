@@ -1,0 +1,88 @@
+{
+  "adminPassword": "44day-admin-2026",
+  "siteName": "44day_",
+  "categories": [
+    {
+      "id": "security",
+      "name": "Кибербезопасность",
+      "name_az": "Kiber təhlükəsizlik",
+      "icon": "🛡️",
+      "color": "#ef4444",
+      "description": "Статьи и гайды по безопасности: VPN, 2FA, анонимность, защита от фишинга",
+      "description_az": "Təhlükəsizlik üzrə məqalə və bələdçilər: VPN, 2FA, anonimlik, fişinqdən qorunma"
+    },
+    {
+      "id": "android",
+      "name": "Android",
+      "name_az": "Android",
+      "icon": "🤖",
+      "color": "#3ddc84",
+      "description": "Туннели, инжекторы, VPN, Premium-моды и хак-инструменты для Android",
+      "description_az": "Tunellər, injector-lar, VPN, Premium-modlar və hack alətləri Android üçün",
+      "subcategories": [
+        { "id": "tunnels",  "name": "Инжекторы",          "name_az": "Injector-lar",        "icon": "🛰" },
+        { "id": "vpn",      "name": "VPN",                  "name_az": "VPN",                 "icon": "🔒" },
+        { "id": "hacking",  "name": "Хакерские инструменты", "name_az": "Hacker alətləri",   "icon": "💀" },
+        { "id": "mods",     "name": "Premium Моды",          "name_az": "Premium Modlar",      "icon": "⭐" },
+        { "id": "dev",      "name": "Терминал / Dev",        "name_az": "Terminal / Dev",      "icon": "⌨" }
+      ]
+    },
+    {
+      "id": "windows",
+      "name": "Windows Cracks",
+      "name_az": "Windows Cracks",
+      "icon": "🪟",
+      "color": "#0078d4",
+      "description": "Активированные программы для Windows: Adobe, Office, IDM и другие",
+      "description_az": "Windows üçün aktivləşdirilmiş proqramlar: Adobe, Office, IDM və başqaları"
+    },
+    {
+      "id": "scripts",
+      "name": "Скрипты",
+      "name_az": "Skriptlər",
+      "icon": "📜",
+      "color": "#f7df1e",
+      "description": "Python, Bash, Node.js скрипты для автоматизации и хакинга",
+      "description_az": "Avtomatlaşdırma və hacking üçün Python, Bash, Node.js skriptləri"
+    },
+    {
+      "id": "programs",
+      "name": "Полезные программы",
+      "name_az": "Faydalı proqramlar",
+      "icon": "⚙️",
+      "color": "#a78bfa",
+      "description": "Бесплатные open-source инструменты: VPN, OBS, утилиты",
+      "description_az": "Pulsuz open-source alətlər: VPN, OBS, utilitlər",
+      "subcategories": [
+        { "id": "vpn",     "name": "VPN & Proxy",  "name_az": "VPN və Proxy", "icon": "🔒" },
+        { "id": "media",   "name": "Media",        "name_az": "Media",        "icon": "🎬" },
+        { "id": "utils",   "name": "Utilities",    "name_az": "Utilitlər",    "icon": "⚙" },
+        { "id": "dev",     "name": "Dev Tools",    "name_az": "Dev Alətləri", "icon": "⌨" }
+      ]
+    },
+    {
+      "id": "configs",
+      "name": "Конфиги для инжекторов",
+      "name_az": "Injector konfiqləri",
+      "icon": "📁",
+      "color": "#fbbf24",
+      "description": "Готовые .ehi / .hat / .npv / .dt / .hc файлы для Azercell, Bakcell, Nar",
+      "description_az": "Azərcell, Bakcell, Nar üçün hazır .ehi / .hat / .npv / .dt / .hc faylları",
+      "subcategories": [
+        { "id": "azercell", "name": "Azercell", "name_az": "Azercell", "icon": "📡" },
+        { "id": "bakcell",  "name": "Bakcell",  "name_az": "Bakcell",  "icon": "📡" },
+        { "id": "nar",      "name": "Nar",      "name_az": "Nar",      "icon": "📡" }
+      ]
+    },
+    {
+      "id": "sni",
+      "name": "Бесплатный интернет",
+      "name_az": "Pulsuz internet",
+      "icon": "🌐",
+      "color": "#5cd4ff",
+      "description": "SNI Host Finder — поиск бесплатных хостов для туннелирования трафика",
+      "description_az": "SNI Host Finder — pulsuz tunel üçün host axtarışı",
+      "external": "/sni"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/" />
+  <title>Security Tools — 44Day Hub</title>
+  <link rel="stylesheet" href="hub.css" />
+  <link rel="stylesheet" href="icons.css" />
+  <link rel="stylesheet" href="tools.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="matrix-left" class="matrix matrix-left"></canvas>
+  <canvas id="matrix-right" class="matrix matrix-right"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-scanlines"></div>
+
+  <header class="topbar">
+    <a href="/" class="brand" style="text-decoration:none;color:inherit">
+      <div class="logo-mini">
+        <svg viewBox="0 0 64 64" width="32" height="32">
+          <path d="M8 32 L32 8 L56 32 L32 56 Z" fill="none" stroke="#5cd4ff" stroke-width="3"/>
+          <circle cx="32" cy="32" r="5" fill="#a78bfa"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">44<span class="accent">Day</span> <span class="brand-tag">TOOLS</span></div>
+        <div class="brand-sub">SECURITY · HASH · ENCODE · DECODE</div>
+      </div>
+    </a>
+    <div class="topbar-right" id="topbar-right">
+      <div class="theme-switch">
+        <button class="theme-btn active" data-theme="dark" title="Dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="theme-btn" data-theme="light" title="Light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="tools-main">
+    <a href="/" class="article-back">← На главную</a>
+    <div class="tools-hero">
+      <div class="icon"><i class="icon icon-shield-check" style="font-size:48px"></i></div>
+      <h1 data-i18n="toolsTitle">Security Tools</h1>
+      <p class="tools-sub" data-i18n="toolsSub">Все вычисления — локально в браузере. Никаких данных на сервер не отправляется.</p>
+    </div>
+
+    <nav class="tools-tabs" id="tools-tabs">
+      <button class="tt-btn active" data-tab="hash">Hash</button>
+      <button class="tt-btn" data-tab="b64">Base64</button>
+      <button class="tt-btn" data-tab="url">URL</button>
+      <button class="tt-btn" data-tab="jwt">JWT</button>
+      <button class="tt-btn" data-tab="pass">Password</button>
+      <button class="tt-btn" data-tab="genpass">Generator</button>
+      <button class="tt-btn" data-tab="qr">QR Code</button>
+      <button class="tt-btn" data-tab="fp">Fingerprint</button>
+    </nav>
+
+    <!-- HASH -->
+    <section class="tool-panel active" data-panel="hash">
+      <h2><i class="icon icon-key"></i> Hash Generator</h2>
+      <p class="tool-help">Введи текст и получи хэш в SHA-1 / SHA-256 / SHA-384 / SHA-512. Локально в браузере (Web Crypto API).</p>
+      <textarea id="hash-input" rows="4" placeholder="Введи текст..."></textarea>
+      <div class="hash-grid">
+        <div class="hash-row"><label>SHA-1</label><code id="h-sha1">—</code><button class="copy-btn" data-copy="h-sha1">copy</button></div>
+        <div class="hash-row"><label>SHA-256</label><code id="h-sha256">—</code><button class="copy-btn" data-copy="h-sha256">copy</button></div>
+        <div class="hash-row"><label>SHA-384</label><code id="h-sha384">—</code><button class="copy-btn" data-copy="h-sha384">copy</button></div>
+        <div class="hash-row"><label>SHA-512</label><code id="h-sha512">—</code><button class="copy-btn" data-copy="h-sha512">copy</button></div>
+      </div>
+    </section>
+
+    <!-- BASE64 -->
+    <section class="tool-panel" data-panel="b64">
+      <h2><i class="icon icon-document"></i> Base64 Encode / Decode</h2>
+      <div class="two-col">
+        <div>
+          <label>Text</label>
+          <textarea id="b64-text" rows="6" placeholder="plain text..."></textarea>
+          <button id="b64-encode" class="tool-btn">Encode →</button>
+        </div>
+        <div>
+          <label>Base64</label>
+          <textarea id="b64-encoded" rows="6" placeholder="Base64..."></textarea>
+          <button id="b64-decode" class="tool-btn">← Decode</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- URL -->
+    <section class="tool-panel" data-panel="url">
+      <h2><i class="icon icon-globe"></i> URL Encode / Decode</h2>
+      <div class="two-col">
+        <div>
+          <label>Text</label>
+          <textarea id="url-text" rows="6" placeholder="привет мир / hello world"></textarea>
+          <button id="url-encode" class="tool-btn">Encode →</button>
+        </div>
+        <div>
+          <label>Encoded</label>
+          <textarea id="url-encoded" rows="6" placeholder="%D0%BF%D1%80%D0%B8..."></textarea>
+          <button id="url-decode" class="tool-btn">← Decode</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- JWT -->
+    <section class="tool-panel" data-panel="jwt">
+      <h2><i class="icon icon-key"></i> JWT Decoder</h2>
+      <p class="tool-help">Декодирует JWT (header + payload). Подпись не проверяется — только парсинг для отладки.</p>
+      <textarea id="jwt-input" rows="4" placeholder="eyJhbGc..."></textarea>
+      <div class="jwt-out">
+        <div><label>Header</label><pre id="jwt-header">—</pre></div>
+        <div><label>Payload</label><pre id="jwt-payload">—</pre></div>
+        <div><label>Signature</label><pre id="jwt-sig">—</pre></div>
+      </div>
+    </section>
+
+    <!-- PASSWORD STRENGTH -->
+    <section class="tool-panel" data-panel="pass">
+      <h2><i class="icon icon-lock-2"></i> Password Strength Tester</h2>
+      <p class="tool-help">Анализ происходит локально. Длина, разнообразие, оценка времени взлома.</p>
+      <input id="pass-input" type="text" placeholder="введи пароль..." autocomplete="off"/>
+      <div class="pass-meter">
+        <div class="pass-bar" id="pass-bar"></div>
+      </div>
+      <div class="pass-stats">
+        <div><span>Длина:</span><strong id="pass-len">0</strong></div>
+        <div><span>Энтропия:</span><strong id="pass-ent">0</strong> bits</div>
+        <div><span>Класс:</span><strong id="pass-class">—</strong></div>
+        <div><span>Взлом:</span><strong id="pass-time">мгновенно</strong></div>
+      </div>
+      <ul class="pass-checks" id="pass-checks"></ul>
+    </section>
+
+    <!-- PASSWORD GENERATOR -->
+    <section class="tool-panel" data-panel="genpass">
+      <h2><i class="icon icon-key"></i> Password Generator</h2>
+      <div class="genpass">
+        <div class="gen-out">
+          <input id="gen-out" readonly value=""/>
+          <button id="gen-copy" class="tool-btn">copy</button>
+          <button id="gen-roll" class="tool-btn">roll</button>
+        </div>
+        <div class="gen-controls">
+          <label>Длина: <input id="gen-len" type="range" min="6" max="64" value="20"/> <span id="gen-len-val">20</span></label>
+          <label><input id="gen-up" type="checkbox" checked/> A-Z</label>
+          <label><input id="gen-low" type="checkbox" checked/> a-z</label>
+          <label><input id="gen-num" type="checkbox" checked/> 0-9</label>
+          <label><input id="gen-sym" type="checkbox" checked/> !@#$%^&*</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- QR -->
+    <section class="tool-panel" data-panel="qr">
+      <h2><i class="icon icon-globe"></i> QR Generator</h2>
+      <p class="tool-help">Генерирует QR-код через сервис api.qrserver.com (картинка). Удобно для wifi/ссылок.</p>
+      <input id="qr-input" type="text" placeholder="текст или URL..."/>
+      <div class="qr-out" id="qr-out"></div>
+    </section>
+
+    <!-- FINGERPRINT -->
+    <section class="tool-panel" data-panel="fp">
+      <h2><i class="icon icon-eye"></i> Browser Fingerprint</h2>
+      <p class="tool-help">То что видит сервер при открытии этой страницы. Локально + один запрос за IP.</p>
+      <table class="fp-table" id="fp-table"></table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <span class="copyright">© 2026 <strong>44Day Team</strong></span>
+      <a href="https://t.me/baku_root" target="_blank" rel="noopener" class="tg-foot">@baku_root</a>
+    </div>
+    <div class="footer-right mono">
+      <span>v1.0</span>
+      <span class="sep">·</span>
+      <a href="/">главная</a>
+    </div>
+  </footer>
+
+  <button id="scroll-top" title="↑">↑</button>
+  <script src="matrix.js"></script>
+  <script src="hub-i18n.js"></script>
+  <script src="cmd.js"></script>
+  <script src="easter.js"></script>
+  <script src="tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+{
+  "items": [
+    {
+      "id": "art-01",
+      "category": "security",
+      "type": "article",
+      "name": "Как защитить свой WiFi от взлома: полный гайд",
+      "name_az": "WiFi-ı hakerlərdən necə qorumaq: tam bələdçi",
+      "icon": "📶",
+      "tags": [
+        "wifi",
+        "роутер",
+        "безопасность"
+      ],
+      "rating": 4.8,
+      "readingTime": "5 мин",
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:01.000Z",
+      "description": "7 простых шагов закрывают 95% способов взлома домашней сети. Меняем пароли, шифрование, отключаем WPS.",
+      "description_az": "7 sadə addım ev şəbəkəsinin sındırılma yollarının 95%-ni bağlayır. Şifrələri dəyişirik, WPS-i söndürürük.",
+      "content": "# Как защитить свой WiFi от взлома\n\nБольшинство домашних роутеров взламываются из-за одних и тех же простых ошибок. Разберём, как закрыть все основные дыры буквально за 10 минут.\n\n## 1. Смени стандартный пароль роутера\n\nЛогин `admin` и пароль `admin` — это первое, что пробует любой взломщик. Зайди в настройки роутера (обычно адрес **192.168.1.1** или **192.168.0.1**) и поставь сложный пароль администратора.\n\n## 2. Используй шифрование WPA3 или WPA2\n\nЗайди в настройки WiFi и проверь тип шифрования.\n\n- **WPA3** — самое современное, выбирай если поддерживается.\n- **WPA2** — приемлемый минимум.\n- **WEP** — устаревшее и небезопасное, ломается за минуты. Никогда не используй.\n\n## 3. Отключи WPS\n\nWPS — функция подключения одной кнопкой. Удобно, но в ней давно известна уязвимость, через которую можно подобрать PIN за несколько часов. Отключи её в настройках роутера.\n\n## 4. Включи файрвол роутера\n\nВ разделе «Безопасность» большинства роутеров есть встроенный файрвол. Убедись, что он включён.\n\n## 5. Обновляй прошивку роутера\n\nПроизводители регулярно закрывают уязвимости через обновления. Зайди в настройки и проверь наличие свежей прошивки. Многие роутеры умеют обновляться автоматически — включи эту опцию.\n\n## 6. Создай гостевую сеть\n\nДля друзей, гостей и чужих устройств создай отдельную **гостевую сеть**. Их трафик будет изолирован, и они не увидят твои домашние устройства (компьютер, NAS, камеры).\n\n## 7. Используй сложный пароль WiFi\n\nМинимум **12 символов**: буквы (большие и маленькие), цифры и знаки. Не используй дату рождения, имя или название улицы — такие пароли подбираются по словарю за минуты.\n\n## Итог\n\nЭти 7 шагов закрывают **95% способов взлома** домашней сети. Сделай их один раз — и можешь забыть о проблеме на годы.",
+      "content_az": "# WiFi-ı hakerlərdən necə qorumaq\n\nƏksər ev routerləri eyni sadə səhvlərə görə sındırılır. 10 dəqiqə ərzində bütün əsas boşluqları necə bağlamağı nəzərdən keçirək.\n\n## 1. Routerin standart şifrəsini dəyiş\n\n`admin` / `admin` — istənilən hakerin ilk yoxladığı şeydir. Routerin parametrlərinə daxil ol (adətən **192.168.1.1** və ya **192.168.0.1**) və mürəkkəb administrator şifrəsi qoy.\n\n## 2. WPA3 və ya WPA2 şifrələmə istifadə et\n\nWiFi parametrlərinə daxil olub şifrələmə növünü yoxla.\n\n- **WPA3** — ən müasiri, dəstəklənirsə seç.\n- **WPA2** — qəbul edilə bilən minimum.\n- **WEP** — köhnəlmiş və təhlükəsizdir, dəqiqələr içində sındırılır. Heç vaxt istifadə etmə.\n\n## 3. WPS-i söndür\n\nWPS — bir düymə ilə qoşulma funksiyasıdır. Rahatdır, amma onda PIN-in bir neçə saata seçilə bildiyi məlum boşluq var. Router parametrlərində söndür.\n\n## 4. Router firewall-ını işə sal\n\nƏksər routerlərin «Təhlükəsizlik» bölməsində daxili firewall var. Yandırılmış olduğuna əmin ol.\n\n## 5. Router proşivkasını yenilə\n\nİstehsalçılar mütəmadi olaraq yenilənmələrlə boşluqları bağlayırlar. Parametrlərə daxil olub yenilənməni yoxla. Çox routerlər avtomatik yenilənə bilər — bu seçimi aktiv et.\n\n## 6. Qonaq şəbəkəsi yarat\n\nDostlar, qonaqlar və yad cihazlar üçün ayrıca **qonaq şəbəkəsi** yarat. Onların trafikı izolyasiya olunacaq və ev cihazlarını (kompüter, NAS, kameralar) görməyəcəklər.\n\n## 7. Mürəkkəb WiFi şifrəsi seç\n\nMinimum **12 simvol**: hərflər (böyük və kiçik), rəqəmlər və işarələr. Doğum tarixi, ad və ya küçə adı istifadə etmə — belə şifrələr lüğətlə dəqiqələr içində seçilir.\n\n## Yekun\n\nBu 7 addım ev şəbəkəsinin **sındırılma yollarının 95%-ni** bağlayır. Bir dəfə et — və illərlə problem yaşamayacaqsan."
+    },
+    {
+      "id": "art-02",
+      "category": "security",
+      "type": "article",
+      "name": "Как узнать, утекли ли твои данные в интернет",
+      "name_az": "Məlumatlarının internetə sızıb-sızmadığını necə yoxlamaq",
+      "icon": "🕵️",
+      "tags": [
+        "утечка",
+        "пароли",
+        "email"
+      ],
+      "rating": 4.9,
+      "readingTime": "4 мин",
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:02.000Z",
+      "description": "Миллиарды аккаунтов утекли за последние годы. Проверь свой email и пароли через 3 проверенных сервиса.",
+      "description_az": "Son illər milyardlarla hesab sızıb. Email və şifrələrini 3 yoxlanılmış xidmətdə yoxla.",
+      "content": "# Утекли ли твои данные?\n\nМиллиарды аккаунтов утекли с разных сайтов за последние годы. Твой email или пароль вполне могут уже быть в руках мошенников. Проверь прямо сейчас.\n\n## Как проверить\n\n### 1. haveibeenpwned.com\n\nЗаходишь на сайт, вводишь свой email. Сервис покажет, в каких известных утечках он засветился — с каких сайтов, в каком году, что именно утекло (пароль, телефон, адрес).\n\n### 2. Firefox Monitor — monitor.mozilla.org\n\nБесплатный сервис от Mozilla. Можно подписаться, и он будет автоматически предупреждать о новых утечках.\n\n### 3. Проверка паролей в браузере\n\n- **Chrome:** Настройки → Безопасность → Проверить пароли\n- **Safari:** Настройки → Пароли → значок треугольника\n- **Firefox:** Настройки → Приватность → Логины и пароли\n\nБраузер сам покажет скомпрометированные пароли из своего хранилища.\n\n## Что делать, если нашёл утечку\n\n- **Немедленно смени пароль** на пострадавшем сайте.\n- Если этот же пароль использовался ещё где-то — **смени везде**.\n- Включи **двухфакторную аутентификацию** (см. статью 04).\n- Установи менеджер паролей. Лучший бесплатный — **Bitwarden** (открытый код, бесплатный навсегда).\n\n## Золотое правило\n\n**Один сайт = один уникальный пароль.** Менеджер паролей запомнит всё за тебя — тебе нужно помнить только мастер-пароль.",
+      "content_az": "# Məlumatların sızıbmı?\n\nSon illər müxtəlif saytlardan milyardlarla hesab sızıb. Email və ya şifrən artıq fırıldaqçıların əlində ola bilər. İndi yoxla.\n\n## Necə yoxlamaq\n\n### 1. haveibeenpwned.com\n\nSayta daxil ol, email-i yaz. Xidmət hansı məlum sızıntılarda göründüyünü göstərəcək — hansı saytdan, hansı ildə, dəqiq nə sızıb (şifrə, telefon, ünvan).\n\n### 2. Firefox Monitor — monitor.mozilla.org\n\nMozilla-nın pulsuz xidmətidir. Abunə olmaq mümkündür və yeni sızıntılar haqqında avtomatik xəbərdarlıq edəcək.\n\n### 3. Brauzerdə şifrələrin yoxlanması\n\n- **Chrome:** Parametrlər → Təhlükəsizlik → Şifrələri yoxla\n- **Safari:** Parametrlər → Şifrələr → üçbucaq nişanı\n- **Firefox:** Parametrlər → Məxfilik → Login və şifrələr\n\nBrauzer öz saxlama yerindən kompromis olunmuş şifrələri göstərəcək.\n\n## Sızıntı tapdınsa nə etməli\n\n- Zərər çəkmiş saytda **dərhal şifrəni dəyiş**.\n- Eyni şifrə başqa yerdə də işlənmişsə — **hər yerdə dəyiş**.\n- **İki amilli identifikasiyanı** aktiv et (04 məqaləyə bax).\n- Şifrə menecerini qur. Ən yaxşı pulsuz olan — **Bitwarden** (açıq mənbə, həmişə pulsuz).\n\n## Qızıl qayda\n\n**Bir sayt = bir unikal şifrə.** Şifrə meneceri hər şeyi sənin əvəzinə yadda saxlayacaq — yalnız master şifrəni xatırlamağın kifayətdir."
+    },
+    {
+      "id": "art-03",
+      "category": "security",
+      "type": "article",
+      "name": "Топ 5 бесплатных VPN с открытым кодом",
+      "name_az": "Açıq mənbəli pulsuz VPN-lərin TOP 5-i",
+      "icon": "🛡️",
+      "tags": [
+        "vpn",
+        "анонимность",
+        "open source"
+      ],
+      "rating": 4.7,
+      "readingTime": "5 мин",
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:03.000Z",
+      "description": "Платить за VPN необязательно. Честные инструменты без скрытых условий и продажи трафика.",
+      "description_az": "VPN üçün pul ödəmək məcburi deyil. Gizli şərtlər və trafik satışı olmayan dürüst alətlər.",
+      "content": "# Топ 5 бесплатных VPN с открытым кодом\n\nПлатить за VPN необязательно. Есть честные инструменты — без скрытых условий и без продажи твоего трафика.\n\n## 1. ProtonVPN — лучший выбор для большинства\n\nШвейцарские серверы, политика нулевых логов, открытый исходный код. Бесплатный тариф **без ограничения скорости**, доступны 3 страны.\n\nСайт: **protonvpn.com**\n\n## 2. Mullvad — максимальная анонимность\n\nПринимает оплату наличными и криптовалютой — анонимно, без email. Платный (~5€/месяц), но один из самых честных VPN на рынке. Независимые аудиты подтвердили отсутствие логов.\n\n## 3. WireGuard — свой VPN-сервер\n\nЭто не сервис, а **протокол**. Быстрее OpenVPN, современное шифрование. Можно поднять свой VPN на VPS за 3–5$ в месяц и получить полный контроль над трафиком.\n\n## 4. OpenVPN — классика\n\nС многолетней историей. Тоже подходит для своего сервера. Чуть медленнее WireGuard, но максимально проверен временем.\n\n## 5. Psiphon — против блокировок\n\nХорошо работает в условиях цензуры. Бесплатный, есть приложения для всех платформ.\n\n## Что НЕ брать\n\n- ❌ Любой бесплатный VPN **без открытого кода** — скорее всего продаёт твой трафик рекламодателям.\n- ❌ **Hola VPN** — использует твоё соединение как узел для других пользователей.\n- ❌ VPN без чёткой политики **no-logs** и независимого аудита.\n\n## Как проверить, что VPN работает\n\nЗайди на **ipleak.net** до подключения — запомни свой IP. Подключи VPN — IP должен поменяться. Заодно проверится утечка DNS.",
+      "content_az": "# Açıq mənbəli pulsuz VPN-lərin TOP 5-i\n\nVPN üçün pul ödəmək məcburi deyil. Gizli şərtlər və trafik satışı olmayan dürüst alətlər var.\n\n## 1. ProtonVPN — əksəriyyət üçün ən yaxşı seçim\n\nİsveçrə serverləri, sıfır loq siyasəti, açıq mənbə kodu. Pulsuz tarif **sürət limiti olmadan**, 3 ölkə əlçatandır.\n\nSayt: **protonvpn.com**\n\n## 2. Mullvad — maksimum anonimlik\n\nNağd və kriptovalyuta ilə ödəniş qəbul edir — anonim, email tələb olunmur. Pulludur (~5€/ay), amma bazardakı ən dürüst VPN-lərdəndir. Müstəqil auditlər loqların olmamasını təsdiqləyib.\n\n## 3. WireGuard — öz VPN serverin\n\nBu xidmət deyil, **protokoldur**. OpenVPN-dən sürətlidir, müasir şifrələmədir. Ayda 3–5$-a VPS üzərində öz VPN-ni qurub trafik üzərində tam nəzarət ala bilərsən.\n\n## 4. OpenVPN — klassika\n\nUzun illərlik tarixi var. Öz serverin üçün də uyğundur. WireGuard-dan azca yavaşdır, amma vaxt sınağından maksimum keçib.\n\n## 5. Psiphon — bloklara qarşı\n\nSenzura şəraitində yaxşı işləyir. Pulsuzdur, bütün platformalar üçün tətbiqlər var.\n\n## NƏ götürmə\n\n- ❌ **Açıq kodu olmayan** istənilən pulsuz VPN — çox güman trafikini reklamçılara satır.\n- ❌ **Hola VPN** — sənin bağlantını digər istifadəçilər üçün düyün kimi istifadə edir.\n- ❌ Aydın **no-logs** siyasəti və müstəqil auditi olmayan VPN.\n\n## VPN-in işlədiyini necə yoxlamaq\n\nQoşulmazdan əvvəl **ipleak.net** saytına daxil ol — IP-ni yadda saxla. VPN-i qoş — IP dəyişməlidir. Eyni zamanda DNS sızıntısı da yoxlanılacaq.",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "art-04",
+      "category": "security",
+      "type": "article",
+      "name": "Двухфакторная аутентификация: что это и как включить везде",
+      "name_az": "İki amilli identifikasiya: bu nədir və hər yerdə necə aktiv etmək",
+      "icon": "🔐",
+      "tags": [
+        "2fa",
+        "защита",
+        "аккаунты"
+      ],
+      "rating": 4.9,
+      "readingTime": "4 мин",
+      "downloads": 3,
+      "createdAt": "2026-05-01T00:00:04.000Z",
+      "description": "2FA блокирует 99% взломов аккаунтов — даже если пароль уже украли. Лучшие приложения и где включать.",
+      "description_az": "2FA hesab sındırmalarının 99%-ni bloklayır — şifrə oğurlanmış olsa belə. Ən yaxşı tətbiqlər və harada aktiv etmək.",
+      "content": "# Двухфакторная аутентификация (2FA)\n\n2FA блокирует **99% взломов аккаунтов** — даже если твой пароль уже украли.\n\n## Как это работает\n\nВход в аккаунт = **пароль + второй фактор**.\n\nВторой фактор — это код из приложения на твоём телефоне, который меняется каждые 30 секунд. Без телефона войти невозможно, даже зная пароль.\n\n## Лучшие приложения для 2FA\n\n- **Aegis** (Android) — бесплатный, открытый код, без облака. **Рекомендуем.**\n- **Raivo OTP** (iOS) — отличный аналог для iPhone, открытый код.\n- **Google Authenticator** — простой и надёжный, но без удобных резервных копий.\n- **Authy** — удобный, есть синхронизация между устройствами (через облако).\n\n## Где включить в первую очередь\n\n- **Google:** myaccount.google.com → Безопасность → Двухэтапная аутентификация\n- **Telegram:** Настройки → Конфиденциальность → Двухэтапная проверка\n- **GitHub:** Settings → Security → Two-factor authentication\n- **Instagram:** Настройки → Безопасность → Двухфакторная аутентификация\n- **Любой банк:** раздел безопасности в личном кабинете или приложении\n\n## Важно\n\n- ⚠️ **SMS-коды хуже, чем приложение.** Сим-карту мошенники могут перевыпустить через социальную инженерию у оператора.\n- ✅ Используй **приложение-аутентификатор** везде, где возможно.\n- 🔑 **Сохрани резервные коды** в надёжном месте (например, в менеджере паролей или на бумаге в сейфе) — они нужны, если потеряешь телефон.",
+      "content_az": "# İki amilli identifikasiya (2FA)\n\n2FA hesab sındırmalarının **99%-ni bloklayır** — şifrən artıq oğurlanmış olsa belə.\n\n## Necə işləyir\n\nHesaba giriş = **şifrə + ikinci amil**.\n\nİkinci amil — telefonundakı tətbiqdə hər 30 saniyədən bir dəyişən koddur. Telefonsuz daxil olmaq mümkün deyil, hətta şifrəni bilsən belə.\n\n## 2FA üçün ən yaxşı tətbiqlər\n\n- **Aegis** (Android) — pulsuz, açıq mənbə, bulutsuz. **Tövsiyə edirik.**\n- **Raivo OTP** (iOS) — iPhone üçün əla analog, açıq mənbə.\n- **Google Authenticator** — sadə və etibarlıdır, amma rahat ehtiyat nüsxəsi yoxdur.\n- **Authy** — rahatdır, cihazlar arası sinxronizasiya var (bulud vasitəsilə).\n\n## İlk növbədə harada aktiv etmək\n\n- **Google:** myaccount.google.com → Təhlükəsizlik → İki mərhələli identifikasiya\n- **Telegram:** Parametrlər → Məxfilik → İki mərhələli yoxlama\n- **GitHub:** Settings → Security → Two-factor authentication\n- **Instagram:** Parametrlər → Təhlükəsizlik → İki amilli identifikasiya\n- **İstənilən bank:** şəxsi kabinetdə və ya tətbiqdə təhlükəsizlik bölməsi\n\n## Vacibdir\n\n- ⚠️ **SMS kodları tətbiqdən pisdir.** SIM kartı fırıldaqçılar operatorda sosial mühəndislik vasitəsilə yenidən buraxa bilərlər.\n- ✅ Mümkün olan hər yerdə **autentifikator tətbiqi** istifadə et.\n- 🔑 **Ehtiyat kodları** etibarlı yerdə saxla (məsələn, şifrə menecerində və ya seyfdəki kağızda) — telefonu itirsən lazım olacaq.",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "art-05",
+      "category": "security",
+      "type": "article",
+      "name": "Как стать анонимным в интернете: реальные шаги",
+      "name_az": "İnternetdə necə anonim olmaq: real addımlar",
+      "icon": "🥷",
+      "tags": [
+        "анонимность",
+        "tor",
+        "приватность"
+      ],
+      "rating": 4.8,
+      "readingTime": "6 мин",
+      "downloads": 2,
+      "createdAt": "2026-05-01T00:00:05.000Z",
+      "description": "Полная анонимность невозможна, но снизить слежку до минимума — реально. Три уровня защиты на выбор.",
+      "description_az": "Tam anonimlik mümkün deyil, amma izlənməni minimuma endirmək mümkündür. Seçim üçün üç müdafiə səviyyəsi.",
+      "content": "# Как стать анонимным в интернете\n\nПолная анонимность невозможна, но снизить слежку до минимума — реально. Три уровня защиты на выбор.\n\n## Уровень 1 — Базовый (для всех)\n\n- **Браузер:** Firefox или Brave вместо Chrome.\n- **Расширения:** uBlock Origin (блокирует рекламу и трекеры), Privacy Badger.\n- **Поисковик:** DuckDuckGo или Brave Search — не следят за запросами.\n- **Email:** ProtonMail или Tutanota — зашифрованная почта.\n- **Мессенджер:** Signal — сквозное шифрование по умолчанию.\n\n## Уровень 2 — Продвинутый\n\n- **DNS:** смени на 1.1.1.1 (Cloudflare) или 9.9.9.9 (Quad9). Твой провайдер не будет видеть, какие сайты ты открываешь.\n- **VPN:** используй из статьи 03.\n- **HTTPS Everywhere:** убедись, что всегда используешь зашифрованное соединение.\n\n## Уровень 3 — Максимальный\n\n- **Tor Browser** — трафик проходит через несколько узлов по всему миру. Медленно, но максимально анонимно.\n- **Tails OS** — операционная система на флешке. Не оставляет никаких следов на компьютере. Используется журналистами и активистами.\n- **Qubes OS** — каждое приложение изолировано в отдельной виртуальной машине.\n\n## Главная ошибка\n\n⚠️ **Не вводи личные данные через анонимный канал.** Если ты зашёл через Tor и залогинился в ВКонтакте — ты уже не анонимен. Анонимность работает, только пока ты её не сломал сам.",
+      "content_az": "# İnternetdə necə anonim olmaq\n\nTam anonimlik mümkün deyil, amma izlənməni minimuma endirmək mümkündür. Seçim üçün üç müdafiə səviyyəsi.\n\n## Səviyyə 1 — Əsas (hər kəs üçün)\n\n- **Brauzer:** Chrome əvəzinə Firefox və ya Brave.\n- **Genişləndirmələr:** uBlock Origin (reklam və trekerləri bloklayır), Privacy Badger.\n- **Axtarış:** DuckDuckGo və ya Brave Search — sorğularınızı izləmir.\n- **Email:** ProtonMail və ya Tutanota — şifrələnmiş poçt.\n- **Messencer:** Signal — defolt olaraq sondan-sona şifrələmə.\n\n## Səviyyə 2 — Qabaqcıl\n\n- **DNS:** 1.1.1.1 (Cloudflare) və ya 9.9.9.9 (Quad9) ilə əvəz et. Provayderin hansı saytlara girdiyini görməyəcək.\n- **VPN:** 03 məqaləsindən birini istifadə et.\n- **HTTPS Everywhere:** həmişə şifrələnmiş bağlantıdan istifadə etdiyinə əmin ol.\n\n## Səviyyə 3 — Maksimum\n\n- **Tor Browser** — trafik dünyanın müxtəlif düyünlərindən keçir. Yavaşdır, amma maksimum anonimdir.\n- **Tails OS** — flash diskdə əməliyyat sistemi. Kompüterdə heç bir iz qoymur. Jurnalistlər və aktivistlər istifadə edir.\n- **Qubes OS** — hər tətbiq ayrıca virtual maşında izolyasiya olunur.\n\n## Əsas səhv\n\n⚠️ **Şəxsi məlumatları anonim kanal vasitəsilə daxil etmə.** Tor ilə daxil olub VKontakte-yə login etsən — artıq anonim deyilsən. Anonimlik yalnız onu özün pozmayanadək işləyir.",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "art-06",
+      "category": "security",
+      "type": "article",
+      "name": "Лучшие инструменты для анализа безопасности своей сети",
+      "name_az": "Öz şəbəkənin təhlükəsizlik analizi üçün ən yaxşı alətlər",
+      "icon": "🔍",
+      "tags": [
+        "nmap",
+        "wireshark",
+        "пентест"
+      ],
+      "rating": 4.6,
+      "readingTime": "5 мин",
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:06.000Z",
+      "description": "Nmap, Wireshark, Shodan — инструменты профессионалов. Все бесплатны и легальны для своей сети.",
+      "description_az": "Nmap, Wireshark, Shodan — peşəkar alətlər. Hamısı pulsuz və öz şəbəkən üçün qanunidir.",
+      "content": "# Инструменты для анализа безопасности сети\n\nЭти инструменты используют профессионалы по безопасности. Все они **бесплатны** и **легальны** для проверки своей собственной сети.\n\n## 1. Nmap — сканер сети\n\nПоказывает все устройства, подключённые к твоей сети, и открытые порты на них.\n\nКоманда для домашней сети:\n```\nnmap -sV 192.168.1.0/24\n```\n\nСкачать: **nmap.org** (Windows, Mac, Linux).\n\n## 2. Wireshark — анализатор трафика\n\nПоказывает все пакеты данных, идущие через твою сеть, в реальном времени. Можно увидеть подозрительную активность от заражённых устройств.\n\nСкачать: **wireshark.org**\n\n## 3. Nikto — сканер уязвимостей сайтов\n\nПроверяет твой собственный сайт на известные уязвимости. Запускается из командной строки. Полезно для тех, у кого есть свой блог или сайт.\n\n## 4. Shodan — поисковик устройств\n\nИщет устройства, торчащие в открытом интернете. Проверь, не светятся ли твои камеры, NAS или роутер в публичном доступе.\n\nСайт: **shodan.io**\n\n## 5. Angry IP Scanner\n\nПростой сканер сети с графическим интерфейсом. Для новичков — удобнее Nmap.\n\nСкачать: **angryip.org**\n\n## ⚠️ Важно\n\nИспользование этих инструментов **на чужих системах без разрешения уголовно наказуемо**. Применяй только к **своей** сети, **своему** сайту, **своим** серверам, либо к учебным площадкам типа HackTheBox.",
+      "content_az": "# Şəbəkə təhlükəsizlik analizi alətləri\n\nBu alətləri təhlükəsizlik üzrə peşəkarlar istifadə edir. Hamısı **pulsuzdur** və öz şəbəkənizi yoxlamaq üçün **qanunidir**.\n\n## 1. Nmap — şəbəkə skaneri\n\nŞəbəkənə qoşulan bütün cihazları və üzərlərindəki açıq portları göstərir.\n\nEv şəbəkəsi üçün əmr:\n```\nnmap -sV 192.168.1.0/24\n```\n\nYüklə: **nmap.org** (Windows, Mac, Linux).\n\n## 2. Wireshark — trafik analizatoru\n\nŞəbəkədən keçən bütün məlumat paketlərini real vaxtda göstərir. Yoluxmuş cihazlardan şübhəli aktivliyi görmək olar.\n\nYüklə: **wireshark.org**\n\n## 3. Nikto — sayt boşluq skaneri\n\nÖz saytını məlum boşluqlara qarşı yoxlayır. Komanda sətrindən işə salınır. Öz blogu və ya saytı olanlar üçün faydalıdır.\n\n## 4. Shodan — cihaz axtarış sistemi\n\nAçıq internetdə görünən cihazları axtarır. Kameralarının, NAS və ya routerin ictimai görünüşdə olub-olmadığını yoxla.\n\nSayt: **shodan.io**\n\n## 5. Angry IP Scanner\n\nQrafik interfeyslə sadə şəbəkə skaneri. Yeni başlayanlar üçün — Nmap-dan rahatdır.\n\nYüklə: **angryip.org**\n\n## ⚠️ Vacibdir\n\nBu alətləri **icazəsiz başqalarının sistemlərində** istifadə etmək **cinayət məsuliyyətinə səbəb olur**. Yalnız **öz** şəbəkənə, **öz** saytına, **öz** serverlərinə və ya HackTheBox kimi tədris meydanlarına qarşı tətbiq et.",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "art-07",
+      "category": "security",
+      "type": "article",
+      "name": "Фишинг: как распознать мошеннический сайт за 5 секунд",
+      "name_az": "Fişinq: fırıldaqçı saytı 5 saniyəyə necə tanımalı",
+      "icon": "🎣",
+      "tags": [
+        "фишинг",
+        "мошенничество",
+        "социнженерия"
+      ],
+      "rating": 4.8,
+      "readingTime": "4 мин",
+      "downloads": 0,
+      "createdAt": "2026-05-01T00:00:07.000Z",
+      "description": "90% взломов начинаются с фишинга. 6 признаков подделки и сервисы для проверки любой ссылки.",
+      "description_az": "Sındırmaların 90%-i fişinqdən başlayır. Saxtakarlığın 6 əlaməti və istənilən linki yoxlayan xidmətlər.",
+      "content": "# Фишинг: распознай за 5 секунд\n\nБольше **90% успешных взломов** начинаются с фишинга — поддельных сайтов и писем. Научись распознавать их мгновенно.\n\n## 6 признаков фишинга\n\n### 1. Поддельный адрес сайта\n\nМошенники регистрируют похожие домены: `g00gle.com`, `sberbank-online.ru`, `paypa1.com`. Всегда внимательно смотри на адресную строку.\n\n### 2. Нет HTTPS\n\nСмотри на замочек слева от адреса. Нет замочка — данные передаются открыто. Вводить пароли на таком сайте **категорически нельзя**.\n\n### 3. Искусственная срочность\n\n«Ваш аккаунт заблокируют через 24 часа!», «Вы выиграли iPhone, заберите сейчас!» — классические уловки. **Реальные компании так не работают.**\n\n### 4. Запрос лишних данных\n\nНи один банк никогда не попросит **CVV карты** по email или SMS. Никто не попросит **пин-код**. Ни один сервис не попросит код 2FA через техподдержку.\n\n### 5. Подозрительный отправитель\n\n`support@gmail.com` — НЕ официальный адрес банка. Реальный домен в email всегда совпадает с доменом сайта компании.\n\n### 6. Плохое качество\n\nРазмытые логотипы, грамматические ошибки, кривой дизайн — признаки поспешно сделанного фейка.\n\n## Как проверить любую ссылку\n\n- **virustotal.com** — вставь URL, 70+ антивирусов проверят его.\n- **urlvoid.com** — репутация домена.\n- Наведи мышь на ссылку в письме — внизу браузера увидишь её реальный адрес.\n\n## Золотое правило\n\n📩 Пришло письмо «от банка»? **Не кликай по ссылке.** Открой браузер и введи адрес банка вручную. Это правило сэкономит тебе все деньги, которые есть на счету.",
+      "content_az": "# Fişinq: 5 saniyəyə tanı\n\nUğurlu sındırmaların **90%-dən çoxu** fişinqdən — saxta sayt və məktublardan başlayır. Onları dərhal tanımağı öyrən.\n\n## Fişinqin 6 əlaməti\n\n### 1. Saxta sayt ünvanı\n\nFırıldaqçılar oxşar domenlər qeydiyyatdan keçirir: `g00gle.com`, `sberbank-online.ru`, `paypa1.com`. Həmişə ünvan sətrinə diqqətlə bax.\n\n### 2. HTTPS yoxdur\n\nÜnvanın solundakı qıfıla bax. Qıfıl yoxdursa — məlumatlar açıq ötürülür. Belə saytda şifrə daxil etmək **qətiyyən olmaz**.\n\n### 3. Süni təcili\n\n«Hesabınız 24 saata bloklanacaq!», «iPhone udmusunuz, indi alın!» — klassik hiylələr. **Əsl şirkətlər belə işləmir.**\n\n### 4. Artıq məlumat tələbi\n\nHeç bir bank email və ya SMS ilə **kart CVV-sini** istəməz. Heç kim **pin-kodu** istəməz. Heç bir xidmət texniki dəstək vasitəsilə 2FA kodunu istəməz.\n\n### 5. Şübhəli göndərən\n\n`support@gmail.com` — bankın rəsmi ünvanı DEYİL. Email-dəki əsl domen həmişə şirkətin saytının domeni ilə üst-üstə düşür.\n\n### 6. Pis keyfiyyət\n\nBulanıq loqolar, qrammatik səhvlər, çarpaz dizayn — tələsik hazırlanmış saxtakarlığın əlamətləridir.\n\n## İstənilən linki necə yoxlamaq\n\n- **virustotal.com** — URL-i daxil et, 70+ antivirus yoxlayacaq.\n- **urlvoid.com** — domenin reputasiyası.\n- Məktubdakı linkin üzərinə mausu apar — brauzerin aşağısında əsl ünvanı görəcəksən.\n\n## Qızıl qayda\n\n📩 «Bankdan» məktub gəldi? **Linkə klikləmə.** Brauzeri aç və bankın ünvanını əllə yaz. Bu qayda hesabındakı bütün pulu xilas edəcək."
+    },
+    {
+      "id": "art-08",
+      "category": "security",
+      "type": "article",
+      "name": "Как читают твои сообщения и как это остановить",
+      "name_az": "Mesajlarını necə oxuyurlar və bunu necə dayandırmaq",
+      "icon": "💬",
+      "tags": [
+        "мессенджеры",
+        "шифрование",
+        "signal"
+      ],
+      "rating": 4.7,
+      "readingTime": "4 мин",
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:08.000Z",
+      "description": "Сравнение Signal, WhatsApp, Telegram, iMessage. У кого реальное шифрование, а у кого — только слова.",
+      "description_az": "Signal, WhatsApp, Telegram, iMessage müqayisəsi. Kimdə əsl şifrələmə var, kimdə yalnız sözlər.",
+      "content": "# Кто читает твои сообщения\n\nНе все мессенджеры одинаково безопасны. Разбираем у кого реальное **сквозное шифрование (E2E)**, а у кого только громкие слова.\n\n## Сравнение мессенджеров\n\n### ✅ Signal — БЕЗОПАСЕН\n\nСквозное шифрование включено **всегда**. Открытый исходный код проверен независимыми экспертами. Нет рекламы, нет сбора данных. **Лучший выбор для приватного общения.**\n\n### ⚠️ WhatsApp — ЧАСТИЧНО\n\nШифрование есть, но принадлежит **Meta (Facebook)**. Сами тексты зашифрованы, но **метаданные собираются**: кому пишешь, когда, как часто, откуда. Этих данных достаточно для построения детального профиля.\n\n### ⚠️ Telegram — ЗАВИСИТ ОТ НАСТРОЕК\n\nОбычные чаты и группы **НЕ зашифрованы** сквозно — Telegram теоретически может их читать. Только **«секретные чаты»** имеют E2E-шифрование. Используй секретные чаты для всего приватного.\n\n### ✅ iMessage — МЕЖДУ APPLE-УСТРОЙСТВАМИ\n\nШифрование есть, но если включён iCloud-бэкап — копии сообщений хранятся на серверах Apple. **Отключи бэкап iMessage** для максимальной защиты.\n\n### ❌ ВКонтакте, SMS — НЕ ЗАЩИЩЕНЫ\n\nНикакого сквозного шифрования. Провайдер, государство и сама платформа имеют доступ к содержимому.\n\n## Рекомендация\n\n- 🔒 **Для приватных разговоров** — Signal.\n- 📢 **Для каналов и новостей** — Telegram (там E2E не нужно).\n- 🏢 **Для рабочего общения** — Signal или Wire.",
+      "content_az": "# Mesajlarını kim oxuyur\n\nBütün messencerlər eyni dərəcədə təhlükəsiz deyil. Kimdə əsl **sondan-sona şifrələmə (E2E)** var, kimdə yalnız səs-küylü sözlər — analiz edirik.\n\n## Messencerlərin müqayisəsi\n\n### ✅ Signal — TƏHLÜKƏSİZ\n\nSondan-sona şifrələmə **həmişə** aktivdir. Açıq mənbə kodu müstəqil ekspertlər tərəfindən yoxlanılıb. Reklam yoxdur, məlumat yığılmır. **Məxfi ünsiyyət üçün ən yaxşı seçim.**\n\n### ⚠️ WhatsApp — QİSMƏN\n\nŞifrələmə var, amma **Meta (Facebook)**-a məxsusdur. Mətnlər şifrələnir, amma **metaməlumatlar yığılır**: kimə yazırsan, nə vaxt, nə qədər tez-tez, haradan. Bu məlumatlar detallı profil qurmaq üçün kifayətdir.\n\n### ⚠️ Telegram — PARAMETRDƏN ASILIDIR\n\nAdi söhbət və qruplarda E2E **YOXDUR** — Telegram nəzəri olaraq onları oxuya bilər. Yalnız **«gizli söhbətlərdə»** E2E var. Bütün məxfi şeylər üçün gizli söhbətlər istifadə et.\n\n### ✅ iMessage — APPLE CİHAZLARI ARASINDA\n\nŞifrələmə var, amma iCloud ehtiyat nüsxəsi açıqdırsa — mesajların kopyaları Apple serverlərində saxlanılır. Maksimum müdafiə üçün **iMessage ehtiyat nüsxəsini söndür**.\n\n### ❌ VKontakte, SMS — QORUMASIZDIR\n\nE2E yoxdur. Provayder, dövlət və platformanın özü məzmuna girişə malikdir.\n\n## Tövsiyə\n\n- 🔒 **Məxfi söhbətlər üçün** — Signal.\n- 📢 **Kanal və xəbərlər üçün** — Telegram (orada E2E lazım deyil).\n- 🏢 **İş ünsiyyəti üçün** — Signal və ya Wire."
+    },
+    {
+      "id": "art-09",
+      "category": "security",
+      "type": "article",
+      "name": "Kali Linux: что это и с чего начать изучение",
+      "name_az": "Kali Linux: bu nədir və öyrənməyə haradan başlamalı",
+      "icon": "🐉",
+      "tags": [
+        "kali",
+        "linux",
+        "пентест",
+        "обучение"
+      ],
+      "rating": 4.7,
+      "readingTime": "5 мин",
+      "downloads": 3,
+      "createdAt": "2026-05-01T00:00:09.000Z",
+      "description": "ОС для специалистов по кибербезопасности с 600+ инструментами. Как установить и где учиться легально.",
+      "description_az": "Kiber təhlükəsizlik mütəxəssisləri üçün 600+ alətli ƏS. Necə qurmalı və qanuni öyrənmək üçün harada.",
+      "content": "# Kali Linux: с чего начать\n\nKali Linux — это операционная система для специалистов по кибербезопасности. Внутри **600+ инструментов** для тестирования и защиты систем.\n\n## Что такое Kali\n\nЭто специальный дистрибутив **Linux** от компании **Offensive Security**. Все инструменты для пентестинга уже предустановлены: Nmap, Metasploit, Wireshark, Burp Suite и сотни других. Используется профессионалами, исследователями безопасности и студентами по всему миру.\n\n## Как начать\n\n### Шаг 1. Скачай с официального сайта\n\nТолько с **kali.org/get-kali/** — нигде больше! Левые сборки могут содержать вредоносный код.\n\n### Шаг 2. Установи в виртуальную машину\n\n- **VirtualBox** (бесплатный) или **VMware Workstation Player**.\n- Безопаснее для новичка — основная система не пострадает в случае ошибок.\n\n### Шаг 3. Или запусти с флешки (Live USB)\n\nРаботает без установки на диск. Скачай ISO, запиши на флешку через **Balena Etcher** или **Rufus**, загрузись с неё через BIOS.\n\n## Где учиться легально\n\n- **OverTheWire.org** — обучающие задания по взлому прямо в браузере, бесплатно.\n- **TryHackMe.com** — курсы с нуля, есть бесплатный план, активное русскоязычное сообщество.\n- **HackTheBox.com** — реальные виртуальные машины для взлома, всё легально.\n- **PentesterLab.com** — уязвимые веб-приложения для практики.\n\n## ⚠️ Важно\n\nKali Linux — это **инструмент**. Применять его к чужим системам без разрешения — **уголовное преступление** (статья УК о неправомерном доступе к компьютерной информации). Все практики только на:\n\n- 💻 своих системах,\n- 🎓 учебных площадках вроде HackTheBox,\n- 📝 системах с письменным разрешением владельца (bug bounty программы).",
+      "content_az": "# Kali Linux: haradan başlamalı\n\nKali Linux — kiber təhlükəsizlik mütəxəssisləri üçün əməliyyat sistemidir. İçərisində sistemləri test və müdafiə etmək üçün **600+ alət** var.\n\n## Kali nədir\n\nBu **Offensive Security** şirkətindən xüsusi **Linux** distributividir. Bütün pentest alətləri əvvəlcədən qurulub: Nmap, Metasploit, Wireshark, Burp Suite və yüzlərlə başqa. Dünya üzrə peşəkarlar, təhlükəsizlik tədqiqatçıları və tələbələr istifadə edir.\n\n## Necə başlamaq\n\n### Addım 1. Rəsmi saytdan yüklə\n\nYalnız **kali.org/get-kali/**-dən — başqa heç yerdən yox! Sol yığmalarda zərərli kod ola bilər.\n\n### Addım 2. Virtual maşına qur\n\n- **VirtualBox** (pulsuz) və ya **VMware Workstation Player**.\n- Yeni başlayanlar üçün təhlükəsizdir — səhv olarsa əsas sistem zərər çəkməz.\n\n### Addım 3. Və ya flash diskdən işə sal (Live USB)\n\nDiskə qurmadan işləyir. ISO-nu yüklə, **Balena Etcher** və ya **Rufus** vasitəsilə flash diskə yaz, BIOS-dan işə sal.\n\n## Qanuni öyrənmək üçün haradan\n\n- **OverTheWire.org** — birbaşa brauzerdə hacking üzrə tədris tapşırıqları, pulsuz.\n- **TryHackMe.com** — sıfırdan kurslar, pulsuz plan var, aktiv icma.\n- **HackTheBox.com** — sındırmaq üçün real virtual maşınlar, tam qanuni.\n- **PentesterLab.com** — praktika üçün zəif veb-tətbiqlər.\n\n## ⚠️ Vacibdir\n\nKali Linux — **alətdir**. Onu icazəsiz başqalarının sistemlərinə tətbiq etmək — **cinayətdir** (kompüter məlumatlarına qanunsuz giriş haqqında maddə). Bütün praktika yalnız:\n\n- 💻 öz sistemlərində,\n- 🎓 HackTheBox kimi tədris meydanlarında,\n- 📝 sahibinin yazılı icazəsi olan sistemlərdə (bug bounty proqramları).",
+      "daily": {
+        "2026-05-01": 1
+      }
+    },
+    {
+      "id": "art-10",
+      "category": "security",
+      "type": "article",
+      "name": "Полный чеклист безопасности: 20 шагов для защиты онлайн",
+      "name_az": "Tam təhlükəsizlik çek-listi: onlayn qorunmaq üçün 20 addım",
+      "icon": "✅",
+      "tags": [
+        "чеклист",
+        "защита",
+        "пароли"
+      ],
+      "rating": 5,
+      "readingTime": "7 мин",
+      "downloads": 5,
+      "createdAt": "2026-05-01T00:00:10.000Z",
+      "description": "Сохрани и пройди каждый пункт. Час времени — годы защищённой жизни в интернете.",
+      "description_az": "Saxla və hər bəndi keç. Bir saat vaxt — internetdə illərlə qorunmuş həyat.",
+      "content": "# Чеклист безопасности: 20 шагов\n\nСохрани и пройди каждый пункт. Займёт около **часа** — защитит на годы.\n\n## 🔑 Пароли\n\n- ☐ На каждом сайте свой **уникальный пароль**.\n- ☐ Установлен менеджер паролей (**Bitwarden** — бесплатный, открытый код).\n- ☐ Мастер-пароль от менеджера — **длинная фраза** из нескольких слов.\n- ☐ Email проверен на **haveibeenpwned.com**.\n\n## 👤 Аккаунты\n\n- ☐ 2FA включена на **Google / Apple ID**.\n- ☐ 2FA включена на **email**.\n- ☐ 2FA включена на **всех банках**.\n- ☐ 2FA включена на **Telegram**.\n- ☐ Резервные коды 2FA сохранены в надёжном месте.\n\n## 💻 Устройства\n\n- ☐ Автообновление операционной системы включено.\n- ☐ Экран блокируется паролем или биометрией.\n- ☐ Шифрование диска включено: **FileVault** на Mac, **BitLocker** на Windows.\n- ☐ Антивирус есть (на Windows встроенного **Defender** достаточно).\n\n## 🌐 Сеть\n\n- ☐ Пароль роутера сменён со стандартного.\n- ☐ Шифрование WiFi: **WPA2** или **WPA3**.\n- ☐ **WPS** на роутере отключён.\n- ☐ **VPN** используется в публичных сетях (кафе, аэропорт, отель).\n\n## 🌍 Браузер и общение\n\n- ☐ Браузер **Firefox** или **Brave** с расширением **uBlock Origin**.\n- ☐ Поисковик **DuckDuckGo** вместо Google.\n- ☐ По ссылкам из писем «от банков» **не кликаю** — открываю сайт вручную.\n\n## Финал\n\nЕсли отметил **все 20 пунктов** — ты защищён лучше **95% пользователей** интернета. Поздравляю — ты теперь сложная мишень, и любой хакер пойдёт искать жертву попроще.",
+      "content_az": "# Təhlükəsizlik çek-listi: 20 addım\n\nSaxla və hər bəndi keç. Təxminən **bir saat** vaxt aparacaq — illərlə qoruyacaq.\n\n## 🔑 Şifrələr\n\n- ☐ Hər saytda öz **unikal şifrən**.\n- ☐ Şifrə meneceri qurulub (**Bitwarden** — pulsuz, açıq mənbə).\n- ☐ Menecerin master şifrəsi — bir neçə sözdən ibarət **uzun fraza**.\n- ☐ Email **haveibeenpwned.com**-da yoxlanılıb.\n\n## 👤 Hesablar\n\n- ☐ 2FA **Google / Apple ID**-də aktivdir.\n- ☐ 2FA **email**-də aktivdir.\n- ☐ 2FA **bütün banklarda** aktivdir.\n- ☐ 2FA **Telegram**-da aktivdir.\n- ☐ 2FA ehtiyat kodları etibarlı yerdə saxlanılıb.\n\n## 💻 Cihazlar\n\n- ☐ ƏS-in avtomatik yenilənməsi aktivdir.\n- ☐ Ekran şifrə və ya biometriya ilə bloklanır.\n- ☐ Disk şifrələməsi aktivdir: Mac-da **FileVault**, Windows-da **BitLocker**.\n- ☐ Antivirus var (Windows-da daxili **Defender** kifayətdir).\n\n## 🌐 Şəbəkə\n\n- ☐ Routerin şifrəsi standartdan dəyişdirilib.\n- ☐ WiFi şifrələməsi: **WPA2** və ya **WPA3**.\n- ☐ Routerin **WPS**-i söndürülüb.\n- ☐ İctimai şəbəkələrdə (kafe, hava limanı, hotel) **VPN** istifadə olunur.\n\n## 🌍 Brauzer və ünsiyyət\n\n- ☐ Brauzer **Firefox** və ya **Brave**, **uBlock Origin** genişlənməsi ilə.\n- ☐ Google əvəzinə **DuckDuckGo** axtarışı.\n- ☐ «Banklardan» məktublardakı linklərə **klikləmirəm** — saytı əllə açıram.\n\n## Yekun\n\nƏgər **20 bəndin hamısını** işarələmisənsə — sən internet istifadəçilərinin **95%-dən** yaxşı qorunmusan. Təbriklər — indi mürəkkəb hədəfsən və istənilən haker daha asan qurban axtarmağa gedəcək.",
+      "daily": {
+        "2026-05-01": 1
+      }
+    }
+  ]
+}

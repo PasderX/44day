@@ -1,0 +1,19 @@
+node_modules/
+.env
+*.log
+.DS_Store
+Thumbs.db
+
+# old backups
+backup-*/
+*.old.*
+data/*.old.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.windsurf/
+
+# misc
+data/sprite-boxes.json
