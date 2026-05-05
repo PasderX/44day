@@ -219,14 +219,15 @@
       ],
       "rating": 5,
       "readingTime": "7 мин",
-      "downloads": 5,
+      "downloads": 6,
       "createdAt": "2026-05-01T00:00:10.000Z",
       "description": "Сохрани и пройди каждый пункт. Час времени — годы защищённой жизни в интернете.",
       "description_az": "Saxla və hər bəndi keç. Bir saat vaxt — internetdə illərlə qorunmuş həyat.",
       "content": "# Чеклист безопасности: 20 шагов\n\nСохрани и пройди каждый пункт. Займёт около **часа** — защитит на годы.\n\n## 🔑 Пароли\n\n- ☐ На каждом сайте свой **уникальный пароль**.\n- ☐ Установлен менеджер паролей (**Bitwarden** — бесплатный, открытый код).\n- ☐ Мастер-пароль от менеджера — **длинная фраза** из нескольких слов.\n- ☐ Email проверен на **haveibeenpwned.com**.\n\n## 👤 Аккаунты\n\n- ☐ 2FA включена на **Google / Apple ID**.\n- ☐ 2FA включена на **email**.\n- ☐ 2FA включена на **всех банках**.\n- ☐ 2FA включена на **Telegram**.\n- ☐ Резервные коды 2FA сохранены в надёжном месте.\n\n## 💻 Устройства\n\n- ☐ Автообновление операционной системы включено.\n- ☐ Экран блокируется паролем или биометрией.\n- ☐ Шифрование диска включено: **FileVault** на Mac, **BitLocker** на Windows.\n- ☐ Антивирус есть (на Windows встроенного **Defender** достаточно).\n\n## 🌐 Сеть\n\n- ☐ Пароль роутера сменён со стандартного.\n- ☐ Шифрование WiFi: **WPA2** или **WPA3**.\n- ☐ **WPS** на роутере отключён.\n- ☐ **VPN** используется в публичных сетях (кафе, аэропорт, отель).\n\n## 🌍 Браузер и общение\n\n- ☐ Браузер **Firefox** или **Brave** с расширением **uBlock Origin**.\n- ☐ Поисковик **DuckDuckGo** вместо Google.\n- ☐ По ссылкам из писем «от банков» **не кликаю** — открываю сайт вручную.\n\n## Финал\n\nЕсли отметил **все 20 пунктов** — ты защищён лучше **95% пользователей** интернета. Поздравляю — ты теперь сложная мишень, и любой хакер пойдёт искать жертву попроще.",
       "content_az": "# Təhlükəsizlik çek-listi: 20 addım\n\nSaxla və hər bəndi keç. Təxminən **bir saat** vaxt aparacaq — illərlə qoruyacaq.\n\n## 🔑 Şifrələr\n\n- ☐ Hər saytda öz **unikal şifrən**.\n- ☐ Şifrə meneceri qurulub (**Bitwarden** — pulsuz, açıq mənbə).\n- ☐ Menecerin master şifrəsi — bir neçə sözdən ibarət **uzun fraza**.\n- ☐ Email **haveibeenpwned.com**-da yoxlanılıb.\n\n## 👤 Hesablar\n\n- ☐ 2FA **Google / Apple ID**-də aktivdir.\n- ☐ 2FA **email**-də aktivdir.\n- ☐ 2FA **bütün banklarda** aktivdir.\n- ☐ 2FA **Telegram**-da aktivdir.\n- ☐ 2FA ehtiyat kodları etibarlı yerdə saxlanılıb.\n\n## 💻 Cihazlar\n\n- ☐ ƏS-in avtomatik yenilənməsi aktivdir.\n- ☐ Ekran şifrə və ya biometriya ilə bloklanır.\n- ☐ Disk şifrələməsi aktivdir: Mac-da **FileVault**, Windows-da **BitLocker**.\n- ☐ Antivirus var (Windows-da daxili **Defender** kifayətdir).\n\n## 🌐 Şəbəkə\n\n- ☐ Routerin şifrəsi standartdan dəyişdirilib.\n- ☐ WiFi şifrələməsi: **WPA2** və ya **WPA3**.\n- ☐ Routerin **WPS**-i söndürülüb.\n- ☐ İctimai şəbəkələrdə (kafe, hava limanı, hotel) **VPN** istifadə olunur.\n\n## 🌍 Brauzer və ünsiyyət\n\n- ☐ Brauzer **Firefox** və ya **Brave**, **uBlock Origin** genişlənməsi ilə.\n- ☐ Google əvəzinə **DuckDuckGo** axtarışı.\n- ☐ «Banklardan» məktublardakı linklərə **klikləmirəm** — saytı əllə açıram.\n\n## Yekun\n\nƏgər **20 bəndin hamısını** işarələmisənsə — sən internet istifadəçilərinin **95%-dən** yaxşı qorunmusan. Təbriklər — indi mürəkkəb hədəfsən və istənilən haker daha asan qurban axtarmağa gedəcək.",
       "daily": {
-        "2026-05-01": 1
+        "2026-05-01": 1,
+        "2026-05-05": 1
       }
     }
   ]
