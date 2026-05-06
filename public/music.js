@@ -1,152 +1,178 @@
-// ===== 44day_ — music player (mounts into topbar) =====
+// ===== 44day_ — music player (YouTube · NCS playlists) =====
+// Использует YouTube IFrame API для проигрывания готовых NCS плейлистов.
+// NCS = No Copyright Sounds — бесплатно, легально, идеально под "хакерскую" атмосферу.
 (() => {
-  const STATIONS = [
-    { id: 'nightride',  name: 'Nightride FM',          tag: 'synthwave',  url: 'https://stream.nightride.fm/nightride.mp3' },
-    { id: 'chillsynth', name: 'ChillSynth FM',         tag: 'chill',      url: 'https://stream.nightride.fm/chillsynth.mp3' },
-    { id: 'darksynth',  name: 'DarkSynth FM',          tag: 'darksynth',  url: 'https://stream.nightride.fm/darksynth.mp3' },
-    { id: 'spacesynth', name: 'SpaceSynth FM',         tag: 'space',      url: 'https://stream.nightride.fm/spacesynth.mp3' },
-    { id: 'defcon',     name: 'SomaFM · DEF CON Radio', tag: 'hacker',     url: 'https://ice1.somafm.com/defcon-128-mp3' },
-    { id: 'dronezone',  name: 'SomaFM · Drone Zone',   tag: 'ambient',    url: 'https://ice1.somafm.com/dronezone-128-mp3' },
-    { id: 'beat',       name: 'SomaFM · Beat Blender', tag: 'downtempo',  url: 'https://ice1.somafm.com/beatblender-128-mp3' },
-    { id: 'groove',     name: 'SomaFM · Groove Salad', tag: 'chillout',   url: 'https://ice1.somafm.com/groovesalad-128-mp3' },
-    { id: 'cliq',       name: 'SomaFM · cliqhop idm',  tag: 'idm',        url: 'https://ice1.somafm.com/cliqhop-128-mp3' },
-    { id: 'covers',     name: 'SomaFM · Covers',       tag: 'covers',     url: 'https://ice1.somafm.com/covers-128-mp3' },
+  // Известные публичные NCS плейлисты на YouTube
+  const PLAYLISTS = [
+    { id: 'PLRBp0Fe2GpgmsW46rJyudVFlY6IYjFBIK', name: 'NCS · Best of',          tag: 'best' },
+    { id: 'PLRBp0Fe2GpgnIh0AiYKh7o7HnYAej-5ph', name: 'NCS · House',            tag: 'house' },
+    { id: 'PLRBp0Fe2Gpgn3XFmFjRsjr0ppHRR9Ja7t', name: 'NCS · Trap',             tag: 'trap' },
+    { id: 'PLRBp0Fe2GpgmW1FrdpgQ7nEjcmuWHmphb', name: 'NCS · Drum & Bass',      tag: 'd&b' },
+    { id: 'PLRBp0Fe2Gpgkv-pxNiPvpqxJhZIVbtqLB', name: 'NCS · Dubstep',          tag: 'dub' },
+    { id: 'PLRBp0Fe2GpgnZOm5rCopMAOYhZCPoUyJ5', name: 'NCS · Hard Dance',       tag: 'hard' },
+    { id: 'PLRBp0Fe2GpgnIj3HMSwK1dT6fEWbuLpp1', name: 'NCS · Future Bass',      tag: 'fbass' },
+    { id: 'PLRBp0Fe2GpglqzC9X-tkeKt2pCPgiYvAJ', name: 'NCS · Dance',            tag: 'dance' },
   ];
 
-  const LS_STATION = '44day-mp-station';
-  const LS_VOL     = '44day-mp-vol';
+  const LS_PL  = '44day-mp-pl';
+  const LS_VOL = '44day-mp-vol';
 
-  // mount target: #music-player-mount (in topbar) or body fallback
   const mount = document.getElementById('music-player-mount') || document.body;
   const inTopbar = mount.id === 'music-player-mount';
 
   const root = document.createElement('div');
   root.id = 'music-player';
+  root.classList.add('yt');
   if (inTopbar) root.classList.add('in-topbar');
   root.innerHTML = `
-    <button class="mp-toggle" id="mp-toggle" title="music (M)" aria-label="music">
+    <button class="mp-toggle" id="mp-toggle" data-tip="music (M)" aria-label="music">
       <svg class="mp-ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       <svg class="mp-ico-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
       <div class="mp-eq"><span></span><span></span><span></span><span></span></div>
     </button>
     <div class="mp-panel" role="dialog" aria-label="music player">
       <div class="mp-head">
-        <span class="mp-now" id="mp-now">— select station —</span>
+        <span class="mp-now" id="mp-now">▶ NCS · No Copyright Sounds</span>
       </div>
-      <div class="mp-stations" id="mp-stations"></div>
+      <div class="mp-yt-host"><div id="mp-yt"></div></div>
+      <div class="mp-track-title" id="mp-track">— select playlist —</div>
+      <div class="mp-pl-list" id="mp-pl-list"></div>
       <div class="mp-controls">
-        <button class="mp-btn" id="mp-prev" title="prev [">‹</button>
-        <button class="mp-btn" id="mp-next" title="next ]">›</button>
+        <button class="mp-btn" id="mp-prev" data-tip="prev track [">‹‹</button>
+        <button class="mp-btn" id="mp-pp"   data-tip="play/pause">▶</button>
+        <button class="mp-btn" id="mp-next" data-tip="next track ]">››</button>
         <input type="range" class="mp-vol" id="mp-vol" min="0" max="100" value="55"/>
         <span class="mp-vol-val" id="mp-vol-val">55</span>
       </div>
     </div>
-    <audio id="mp-audio" preload="none" crossorigin="anonymous"></audio>
   `;
   mount.appendChild(root);
 
-  const $toggle    = root.querySelector('#mp-toggle');
-  const $panel     = root.querySelector('.mp-panel');
-  const $now       = root.querySelector('#mp-now');
-  const $stations  = root.querySelector('#mp-stations');
-  const $audio     = root.querySelector('#mp-audio');
-  const $vol       = root.querySelector('#mp-vol');
-  const $volVal    = root.querySelector('#mp-vol-val');
-  const $prev      = root.querySelector('#mp-prev');
-  const $next      = root.querySelector('#mp-next');
+  const $toggle = root.querySelector('#mp-toggle');
+  const $panel  = root.querySelector('.mp-panel');
+  const $now    = root.querySelector('#mp-now');
+  const $list   = root.querySelector('#mp-pl-list');
+  const $vol    = root.querySelector('#mp-vol');
+  const $volVal = root.querySelector('#mp-vol-val');
+  const $prev   = root.querySelector('#mp-prev');
+  const $next   = root.querySelector('#mp-next');
+  const $pp     = root.querySelector('#mp-pp');
+  const $track  = root.querySelector('#mp-track');
 
   let curIdx = -1;
-  let isPlaying = false;
   let panelOpen = false;
+  let player = null;
+  let isPlaying = false;
+  let pendingPL = null; // wait until API ready
 
-  function renderStations() {
-    $stations.innerHTML = STATIONS.map((s, i) => `
+  // ---- Load YouTube IFrame API once ----
+  if (!window.YT) {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+  window.onYouTubeIframeAPIReady = function () {
+    player = new YT.Player('mp-yt', {
+      height: '100%',
+      width: '100%',
+      playerVars: { autoplay: 0, controls: 1, modestbranding: 1, rel: 0, playsinline: 1 },
+      events: {
+        onReady: () => {
+          player.setVolume(parseInt($vol.value, 10));
+          if (pendingPL != null) loadPL(pendingPL);
+        },
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.PLAYING) {
+            isPlaying = true; $pp.textContent = '❚❚';
+            $toggle.classList.add('is-playing');
+            updateTrackTitle();
+          } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+            isPlaying = false; $pp.textContent = '▶';
+            $toggle.classList.remove('is-playing');
+          } else if (e.data === YT.PlayerState.BUFFERING) {
+            updateTrackTitle();
+          }
+        },
+      },
+    });
+  };
+
+  function updateTrackTitle() {
+    try {
+      const data = player && player.getVideoData && player.getVideoData();
+      if (data && data.title) $track.textContent = '♪ ' + data.title;
+    } catch (_) {}
+  }
+
+  function renderList() {
+    $list.innerHTML = PLAYLISTS.map((p, i) => `
       <button class="mp-station ${i === curIdx ? 'is-active' : ''}" data-i="${i}">
-        <span class="mp-st-dot"></span>
-        <span class="mp-st-name">${s.name}</span>
-        <span class="mp-tag">${s.tag}</span>
+        <span class="mp-st-name">${p.name}</span>
+        <span class="mp-tag">${p.tag}</span>
       </button>`).join('');
-    $stations.querySelectorAll('.mp-station').forEach((b) => {
-      b.addEventListener('click', () => playIdx(parseInt(b.dataset.i, 10)));
+    $list.querySelectorAll('.mp-station').forEach((b) => {
+      b.addEventListener('click', () => loadPL(parseInt(b.dataset.i, 10)));
     });
   }
 
-  function playIdx(i) {
-    if (i < 0 || i >= STATIONS.length) return;
+  function loadPL(i) {
+    if (i < 0 || i >= PLAYLISTS.length) return;
     curIdx = i;
-    const st = STATIONS[i];
-    localStorage.setItem(LS_STATION, st.id);
-    $audio.src = st.url;
-    $now.textContent = `loading… ${st.name}`;
-    $audio.play().then(() => {
-      isPlaying = true;
-      $toggle.classList.add('is-playing');
-      $now.textContent = `▶ ${st.name}`;
-    }).catch((err) => {
-      console.warn('music play failed:', err);
-      $now.textContent = `× cannot play ${st.name}`;
-      isPlaying = false;
-      $toggle.classList.remove('is-playing');
-    });
-    renderStations();
+    const pl = PLAYLISTS[i];
+    localStorage.setItem(LS_PL, pl.id);
+    $now.textContent = '▶ ' + pl.name;
+    $track.textContent = 'loading…';
+    if (!player || !player.loadPlaylist) {
+      pendingPL = i;
+      renderList();
+      return;
+    }
+    player.loadPlaylist({ list: pl.id, listType: 'playlist', index: 0, suggestedQuality: 'small' });
+    renderList();
   }
-  function stop() {
-    $audio.pause();
-    isPlaying = false;
-    $toggle.classList.remove('is-playing');
-    if (curIdx >= 0) $now.textContent = `❚❚ ${STATIONS[curIdx].name}`;
-  }
+
+  function play() { if (player && player.playVideo) player.playVideo(); }
+  function pause() { if (player && player.pauseVideo) player.pauseVideo(); }
   function togglePlay() {
-    if (isPlaying) { stop(); }
-    else if (curIdx >= 0) { playIdx(curIdx); }
-    else { playIdx(0); }
+    if (!player) return;
+    if (curIdx < 0) { loadPL(0); return; }
+    isPlaying ? pause() : play();
   }
+  function nextTrack() { if (player && player.nextVideo) player.nextVideo(); }
+  function prevTrack() { if (player && player.previousVideo) player.previousVideo(); }
+
   function openPanel()  { panelOpen = true;  root.classList.add('open'); }
   function closePanel() { panelOpen = false; root.classList.remove('open'); }
   function togglePanel() { panelOpen ? closePanel() : openPanel(); }
 
-  // click toggle: short click → toggle play. but if nothing playing yet → open panel.
   $toggle.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (curIdx < 0) {
-      togglePanel();
-    } else {
-      togglePlay();
-    }
+    if (curIdx < 0) togglePanel();
+    else togglePlay();
   });
-  // long-press / right-click → open panel
   $toggle.addEventListener('contextmenu', (e) => { e.preventDefault(); togglePanel(); });
-
-  // dedicated panel-open: clicking "now playing" text opens panel too
   $now.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
-
-  $prev.addEventListener('click', (e) => { e.stopPropagation(); playIdx((curIdx - 1 + STATIONS.length) % STATIONS.length); });
-  $next.addEventListener('click', (e) => { e.stopPropagation(); playIdx((curIdx + 1) % STATIONS.length); });
+  $pp.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+  $prev.addEventListener('click', (e) => { e.stopPropagation(); prevTrack(); });
+  $next.addEventListener('click', (e) => { e.stopPropagation(); nextTrack(); });
 
   $vol.addEventListener('input', () => {
-    $audio.volume = $vol.value / 100;
-    $volVal.textContent = $vol.value;
-    localStorage.setItem(LS_VOL, $vol.value);
+    const v = parseInt($vol.value, 10);
+    $volVal.textContent = v;
+    localStorage.setItem(LS_VOL, v);
+    if (player && player.setVolume) player.setVolume(v);
   });
-  $audio.addEventListener('ended', stop);
-  $audio.addEventListener('error', () => {
-    $now.textContent = `× stream error`;
-    isPlaying = false;
-    $toggle.classList.remove('is-playing');
-  });
-  $panel.addEventListener('click', (e) => e.stopPropagation());
 
-  // close panel on outside click
+  $panel.addEventListener('click', (e) => e.stopPropagation());
   document.addEventListener('click', () => { if (panelOpen) closePanel(); });
 
-  // hotkeys
   document.addEventListener('keydown', (e) => {
     const inField = e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable);
     if (inField) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key === 'm' || e.key === 'M') { e.preventDefault(); togglePanel(); }
-    else if (e.key === '[') { e.preventDefault(); $prev.click(); }
-    else if (e.key === ']') { e.preventDefault(); $next.click(); }
+    else if (e.key === '[') { e.preventDefault(); prevTrack(); }
+    else if (e.key === ']') { e.preventDefault(); nextTrack(); }
     else if (e.key === 'Escape' && panelOpen) { closePanel(); }
   });
 
@@ -154,15 +180,11 @@
   const savedVol = parseInt(localStorage.getItem(LS_VOL) || '55', 10);
   $vol.value = savedVol;
   $volVal.textContent = savedVol;
-  $audio.volume = savedVol / 100;
 
-  const savedId = localStorage.getItem(LS_STATION);
-  if (savedId) {
-    const idx = STATIONS.findIndex((s) => s.id === savedId);
-    if (idx >= 0) {
-      curIdx = idx;
-      $now.textContent = STATIONS[idx].name;
-    }
+  const savedPLId = localStorage.getItem(LS_PL);
+  if (savedPLId) {
+    const idx = PLAYLISTS.findIndex((p) => p.id === savedPLId);
+    if (idx >= 0) curIdx = idx;
   }
-  renderStations();
+  renderList();
 })();

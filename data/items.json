@@ -746,28 +746,6 @@
       "downloadUrl": "https://t.me/baku_root",
       "modUrl": "",
       "createdAt": "2026-04-10T00:00:00.000Z"
-    },
-    {
-      "type": "software",
-      "name": "test progtram",
-      "name_az": "",
-      "category": "android",
-      "icon": "📦",
-      "rating": 0,
-      "tags": [],
-      "description": "",
-      "description_az": "",
-      "version": "",
-      "size": "",
-      "downloadUrl": "",
-      "modUrl": "",
-      "status": "",
-      "format": "",
-      "provider": "",
-      "subcategory": "",
-      "id": "and-mot6urb8",
-      "createdAt": "2026-05-05T22:16:58.052Z",
-      "downloads": 0
     }
   ]
 }

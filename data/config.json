@@ -20,11 +20,36 @@
       "description": "Туннели, инжекторы, VPN, Premium-моды и хак-инструменты для Android",
       "description_az": "Tunellər, injector-lar, VPN, Premium-modlar və hack alətləri Android üçün",
       "subcategories": [
-        { "id": "tunnels",  "name": "Инжекторы",          "name_az": "Injector-lar",        "icon": "🛰" },
-        { "id": "vpn",      "name": "VPN",                  "name_az": "VPN",                 "icon": "🔒" },
-        { "id": "hacking",  "name": "Хакерские инструменты", "name_az": "Hacker alətləri",   "icon": "💀" },
-        { "id": "mods",     "name": "Premium Моды",          "name_az": "Premium Modlar",      "icon": "⭐" },
-        { "id": "dev",      "name": "Терминал / Dev",        "name_az": "Terminal / Dev",      "icon": "⌨" }
+        {
+          "id": "tunnels",
+          "name": "Инжекторы",
+          "name_az": "Injector-lar",
+          "icon": "🛰"
+        },
+        {
+          "id": "vpn",
+          "name": "VPN",
+          "name_az": "VPN",
+          "icon": "🔒"
+        },
+        {
+          "id": "hacking",
+          "name": "Хакерские инструменты",
+          "name_az": "Hacker alətləri",
+          "icon": "💀"
+        },
+        {
+          "id": "mods",
+          "name": "Premium Моды",
+          "name_az": "Premium Modlar",
+          "icon": "⭐"
+        },
+        {
+          "id": "dev",
+          "name": "Терминал / Dev",
+          "name_az": "Terminal / Dev",
+          "icon": "⌨"
+        }
       ]
     },
     {
@@ -54,10 +79,30 @@
       "description": "Бесплатные open-source инструменты: VPN, OBS, утилиты",
       "description_az": "Pulsuz open-source alətlər: VPN, OBS, utilitlər",
       "subcategories": [
-        { "id": "vpn",     "name": "VPN & Proxy",  "name_az": "VPN və Proxy", "icon": "🔒" },
-        { "id": "media",   "name": "Media",        "name_az": "Media",        "icon": "🎬" },
-        { "id": "utils",   "name": "Utilities",    "name_az": "Utilitlər",    "icon": "⚙" },
-        { "id": "dev",     "name": "Dev Tools",    "name_az": "Dev Alətləri", "icon": "⌨" }
+        {
+          "id": "vpn",
+          "name": "VPN & Proxy",
+          "name_az": "VPN və Proxy",
+          "icon": "🔒"
+        },
+        {
+          "id": "media",
+          "name": "Media",
+          "name_az": "Media",
+          "icon": "🎬"
+        },
+        {
+          "id": "utils",
+          "name": "Utilities",
+          "name_az": "Utilitlər",
+          "icon": "⚙"
+        },
+        {
+          "id": "dev",
+          "name": "Dev Tools",
+          "name_az": "Dev Alətləri",
+          "icon": "⌨"
+        }
       ]
     },
     {
@@ -69,9 +114,24 @@
       "description": "Готовые .ehi / .hat / .npv / .dt / .hc файлы для Azercell, Bakcell, Nar",
       "description_az": "Azərcell, Bakcell, Nar üçün hazır .ehi / .hat / .npv / .dt / .hc faylları",
       "subcategories": [
-        { "id": "azercell", "name": "Azercell", "name_az": "Azercell", "icon": "📡" },
-        { "id": "bakcell",  "name": "Bakcell",  "name_az": "Bakcell",  "icon": "📡" },
-        { "id": "nar",      "name": "Nar",      "name_az": "Nar",      "icon": "📡" }
+        {
+          "id": "azercell",
+          "name": "Azercell",
+          "name_az": "Azercell",
+          "icon": "📡"
+        },
+        {
+          "id": "bakcell",
+          "name": "Bakcell",
+          "name_az": "Bakcell",
+          "icon": "📡"
+        },
+        {
+          "id": "nar",
+          "name": "Nar",
+          "name_az": "Nar",
+          "icon": "📡"
+        }
       ]
     },
     {

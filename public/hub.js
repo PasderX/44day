@@ -36,6 +36,7 @@
 
       renderCategories();
       renderRecent();
+      if (window.icons) window.icons.refresh();
     } catch (e) {
       const c = document.getElementById('cat-list');
       if (c) c.innerHTML = `<li class="empty"><h3>${window.t('state.error')}</h3><p>${esc(e.message)}</p></li>`;
@@ -56,7 +57,9 @@
       const count = cache.counts[c.id] || 0;
       const href = c.external || `/section/${esc(c.id)}`;
       const target = c.external ? ' target="_blank" rel="noopener"' : '';
-      const icon = esc(c.icon || '·');
+      const icon = (window.icons && window.icons.forCategory)
+        ? window.icons.forCategory(c.id, esc(c.icon || '·'))
+        : esc(c.icon || '·');
       return `
       <li class="cat-row" data-href="${esc(href)}"${target ? ' data-ext="1"' : ''}>
         <span class="c-icon">${icon}</span>
@@ -111,10 +114,10 @@
     const isHot = cache.trending.has(it.id);
     const dlCount = it.downloads || 0;
 
-    // icon: image url or emoji
-    let iconHtml;
-    if (it.iconUrl) iconHtml = `<img src="${esc(it.iconUrl)}" alt="" loading="lazy"/>`;
-    else iconHtml = esc(it.icon || '·');
+    // icon: image url, lucide name, keyword-detected lucide, or emoji
+    const iconHtml = (window.icons && window.icons.forItem)
+      ? window.icons.forItem(it)
+      : (it.iconUrl ? `<img src="${esc(it.iconUrl)}" alt="" loading="lazy"/>` : esc(it.icon || '·'));
 
     // source badge
     const src = detectSource(it.downloadUrl);

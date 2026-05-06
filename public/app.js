@@ -424,44 +424,8 @@ testBody.addEventListener('click', (e) => {
   if (btn) handleRowAction(btn);
 });
 
-// === TOP-10 ===
-const top10El = document.getElementById('top10');
-const top10ListEl = document.getElementById('top10-list');
-function renderTop10(sorted) {
-  const top = sorted.filter((r) => scoreRow(r) >= 60).slice(0, 10);
-  if (!top.length) { top10El.classList.add('hidden'); return; }
-  top10El.classList.remove('hidden');
-  top10ListEl.innerHTML = '';
-  top.forEach((r, i) => {
-    const score = scoreRow(r);
-    const rankCls = i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : 'r0';
-    const div = document.createElement('div');
-    div.className = 'top10-item';
-    div.innerHTML = `
-      <div class="top10-rank ${rankCls}">${i+1}</div>
-      <div class="top10-host" title="${r.host}">${r.host}</div>
-      <div class="top10-score">${score}%</div>
-      <div class="top10-actions">
-        <button class="btn-mini" data-act="copy" data-host="${r.host}">COPY</button>
-        <button class="btn-mini" data-act="deep" data-host="${r.host}">DEEP</button>
-        <button class="btn-mini green" data-act="payload" data-host="${r.host}">USE</button>
-      </div>
-    `;
-    top10ListEl.appendChild(div);
-  });
-}
-top10ListEl.addEventListener('click', (e) => {
-  const btn = e.target.closest('button[data-act]');
-  if (!btn) return;
-  e.stopPropagation();
-  handleRowAction(btn);
-});
-document.getElementById('copy-top10').addEventListener('click', () => {
-  const items = [...top10ListEl.querySelectorAll('.top10-host')].map((x) => x.textContent.trim());
-  if (!items.length) return;
-  navigator.clipboard.writeText(items.join('\n'));
-  soundDone();
-});
+// === TOP-10 (removed) ===
+function renderTop10() { /* removed */ }
 
 // === PAYLOAD MODAL ===
 const payloadModal = document.getElementById('payload-modal');

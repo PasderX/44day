@@ -16,6 +16,7 @@ const ITEMS_FILE = path.join(DATA_DIR, 'items.json');
 const ARTICLES_FILE = path.join(DATA_DIR, 'articles.json');
 const CONFIG_FILE = path.join(DATA_DIR, 'config.json');
 
+app.set('trust proxy', true);
 app.use(express.json({ limit: '2mb' }));
 
 // ===== explicit hub routes (BEFORE static so we control them) =====
@@ -1051,6 +1052,69 @@ app.get('/api/test-stream', async (req, res) => {
 
   send('done', { total: hosts.length });
   res.end();
+});
+
+// ===== /api/me — geo + ISP + provider detection =====
+const meCache = new Map(); // ip -> { data, ts }
+const ME_TTL = 60 * 60 * 1000; // 1h
+
+function detectProvider(asn, isp) {
+  if ([29049].includes(asn)) return 'azercell';
+  if ([29378].includes(asn)) return 'bakcell';
+  if ([41997, 51074].includes(asn)) return 'nar';
+  if ([8814].includes(asn)) return 'aztelekom';
+  const s = (isp || '').toLowerCase();
+  if (s.includes('azercell')) return 'azercell';
+  if (s.includes('bakcell')) return 'bakcell';
+  if (s.includes('azerfon') || s.includes('nar')) return 'nar';
+  if (s.includes('aztelekom') || s.includes('aztelecom')) return 'aztelekom';
+  return null;
+}
+
+function countryFlag(cc) {
+  if (!cc || cc.length !== 2) return '🌐';
+  const A = 0x1F1E6;
+  return String.fromCodePoint(A + cc.charCodeAt(0) - 65, A + cc.charCodeAt(1) - 65);
+}
+
+app.get('/api/me', async (req, res) => {
+  let ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim()
+        || req.socket.remoteAddress || '';
+  if (ip.startsWith('::ffff:')) ip = ip.slice(7);
+
+  if (!ip || ip === '::1' || ip === '127.0.0.1' || ip.startsWith('192.168.') || ip.startsWith('10.') || ip.startsWith('172.')) {
+    return res.json({
+      ip: 'localhost', country: 'Local', countryCode: 'LO', flag: '🏠',
+      region: '—', city: 'localhost', isp: 'You', org: '—', asn: 'AS0',
+      provider: 'local',
+    });
+  }
+
+  const cached = meCache.get(ip);
+  if (cached && Date.now() - cached.ts < ME_TTL) return res.json(cached.data);
+
+  try {
+    const r = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,countryCode,regionName,city,isp,org,as,query`);
+    const d = await r.json();
+    if (d.status !== 'success') throw new Error('lookup_failed');
+    const asn = parseInt(((d.as || '').match(/AS(\d+)/) || [])[1] || '0', 10);
+    const data = {
+      ip: d.query,
+      country: d.country,
+      countryCode: d.countryCode,
+      flag: countryFlag(d.countryCode),
+      region: d.regionName,
+      city: d.city,
+      isp: d.isp,
+      org: d.org,
+      asn: d.as,
+      provider: detectProvider(asn, d.isp),
+    };
+    meCache.set(ip, { data, ts: Date.now() });
+    res.json(data);
+  } catch (e) {
+    res.status(502).json({ error: 'lookup_failed', message: e.message });
+  }
 });
 
 // ===== ONLINE COUNTER via SSE =====

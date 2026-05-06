@@ -44,7 +44,27 @@
       if (FS[f] != null) return FS[f];
       return `cat: ${f}: No such file or directory`;
     },
-    whoami() { return 'guest@44day (elevated: no — try sudo su)'; },
+    whoami() {
+      push('resolving identity...', 'sys');
+      fetch('/api/me', { cache: 'no-store' })
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.error) { push('lookup failed', 'err'); return; }
+          const lines = [
+            `ip:       ${d.ip}`,
+            `isp:      ${d.isp || '—'}`,
+            `org:      ${d.org || '—'}`,
+            `asn:      ${d.asn || '—'}`,
+            `geo:      ${d.flag} ${d.city || '—'}, ${d.country || '—'}`,
+            `provider: ${d.provider || 'unknown'}`,
+            '',
+            `> elevated: no — try \`sudo su\``,
+          ];
+          lines.forEach((l) => push(l, 'out'));
+        })
+        .catch(() => push('lookup failed', 'err'));
+      return null;
+    },
     'sudo'(args) {
       if (args[0] === 'su') return 'password: ********\n[authenticating]\n[authenticated]\nroot@44day:~# have fun, hacker.';
       return 'sudo: ' + (args.join(' ') || '') + ': command not found';

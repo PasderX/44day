@@ -35,7 +35,9 @@
     const isFav = window.fav && window.fav.has(it.id);
     const isHot = trending.has(it.id);
     const dlCount = it.downloads || 0;
-    const iconHtml = it.iconUrl ? `<img src="${esc(it.iconUrl)}" alt="" loading="lazy"/>` : esc(it.icon || '·');
+    const iconHtml = (window.icons && window.icons.forItem)
+      ? window.icons.forItem(it)
+      : (it.iconUrl ? `<img src="${esc(it.iconUrl)}" alt="" loading="lazy"/>` : esc(it.icon || '·'));
 
     const src = detectSource(it.downloadUrl);
     const srcBadge = src && !isArticle ? `<span class="tag-src ${src.cls}">${esc(src.label)}</span>` : '';
@@ -77,11 +79,15 @@
     const desc = window.tField(category, 'description') || '';
     document.getElementById('sh-title').textContent = name;
     document.getElementById('sh-desc').textContent = desc;
-    document.getElementById('sh-icon').textContent = category.icon || '·';
-    document.title = `${name} — 44day_`;
-    if (category.color) {
-      document.getElementById('sh-icon').style.color = category.color;
+    const shIcon = document.getElementById('sh-icon');
+    if (window.icons && window.icons.forCategory) {
+      shIcon.innerHTML = window.icons.forCategory(category.id, category.icon || '·');
+      window.icons.refresh();
+    } else {
+      shIcon.textContent = category.icon || '·';
     }
+    document.title = `${name} — 44day_`;
+    if (category.color) shIcon.style.color = category.color;
   }
 
   function renderChips() {
@@ -137,6 +143,7 @@
     } else {
       grid.innerHTML = list.map(renderItem).join('');
       bindActions(grid);
+      if (window.icons) window.icons.refresh();
     }
 
     // header stats
