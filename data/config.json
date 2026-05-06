@@ -1,5 +1,5 @@
 {
-  "adminPassword": "44day-admin-2026",
+  "adminPassword": "pasder055P",
   "siteName": "44day_",
   "categories": [
     {
@@ -144,5 +144,8 @@
       "description_az": "SNI Host Finder — pulsuz tunel üçün host axtarışı",
       "external": "/sni"
     }
-  ]
+  ],
+  "accent": "#5cd4ff",
+  "defaultTheme": "dark",
+  "defaultLang": "ru"
 }

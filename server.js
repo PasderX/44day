@@ -219,6 +219,44 @@ app.get('/api/trending', (_req, res) => {
   res.json({ items: scored.slice(0, 20) });
 });
 
+// ===== Likes / Dislikes =====
+app.post('/api/items/:id/vote', (req, res) => {
+  const { vote } = req.body || {}; // 'up' | 'down' | 'unvote-up' | 'unvote-down'
+  const data = loadItems();
+  const it = data.items.find((x) => x.id === req.params.id);
+  if (!it) return res.status(404).json({ error: 'not_found' });
+  it.likes = it.likes || 0;
+  it.dislikes = it.dislikes || 0;
+  if (vote === 'up') it.likes++;
+  else if (vote === 'down') it.dislikes++;
+  else if (vote === 'unvote-up') it.likes = Math.max(0, it.likes - 1);
+  else if (vote === 'unvote-down') it.dislikes = Math.max(0, it.dislikes - 1);
+  saveItems(data);
+  res.json({ likes: it.likes, dislikes: it.dislikes });
+});
+
+// ===== Music — list of mp3 files in public/music/ =====
+app.get('/api/music', (_req, res) => {
+  try {
+    const dir = path.join(__dirname, 'public', 'music');
+    if (!fs.existsSync(dir)) return res.json({ tracks: [] });
+    const files = fs.readdirSync(dir)
+      .filter((f) => /\.(mp3|m4a|ogg|wav|flac)$/i.test(f))
+      .sort()
+      .map((f) => {
+        const base = f.replace(/\.[^.]+$/, '');
+        // "Artist - Title.mp3" → split, otherwise just title
+        const parts = base.split(' - ');
+        const artist = parts.length > 1 ? parts[0] : '';
+        const title  = parts.length > 1 ? parts.slice(1).join(' - ') : base;
+        return { file: f, url: '/music/' + encodeURIComponent(f), artist, title };
+      });
+    res.json({ tracks: files });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // ===== Admin: Categories CRUD =====
 app.get('/api/admin/categories', requireAuth, (_req, res) => {
   const cfg = loadConfig();
