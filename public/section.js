@@ -17,6 +17,56 @@
   let allItems = [];
   let trending = new Set();
   let activeSub = '';
+  let activeOp = (new URLSearchParams(location.search)).get('op') || '';
+
+  // operator filter (only relevant for sni / configs)
+  function renderOpFilter() {
+    if (!['sni', 'configs', 'internet'].includes(catId)) return;
+    let bar = document.getElementById('op-filter');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'op-filter';
+      bar.className = 'op-filter';
+      const grid = document.getElementById('sec-grid');
+      grid.parentNode.insertBefore(bar, grid);
+    }
+    const ops = ['', 'bakcell', 'azercell', 'nar'];
+    bar.innerHTML = ops.map((o) => {
+      const lbl = o === '' ? 'все' : o;
+      const cnt = o === '' ? allItems.length : allItems.filter((x) => hasOp(x, o)).length;
+      return `<button class="op-chip${activeOp === o ? ' is-active' : ''}" data-op="${o}">${lbl}<span class="c-num">${cnt}</span></button>`;
+    }).join('');
+    bar.querySelectorAll('.op-chip').forEach((b) => {
+      b.addEventListener('click', () => {
+        activeOp = b.dataset.op;
+        const url = new URL(location.href);
+        if (activeOp) url.searchParams.set('op', activeOp); else url.searchParams.delete('op');
+        history.replaceState(null, '', url.pathname + url.search);
+        renderOpFilter();
+        renderList();
+      });
+    });
+  }
+  function hasOp(it, op) {
+    const v = it.operator;
+    if (!v) return false;
+    if (Array.isArray(v)) return v.map((s) => String(s).toLowerCase()).includes(op);
+    return String(v).toLowerCase().split(/[,\s]+/).includes(op);
+  }
+
+  function showSkeleton() {
+    const grid = document.getElementById('sec-grid');
+    if (!grid) return;
+    grid.innerHTML = Array.from({ length: 5 }).map(() => `
+      <li class="skeleton-row">
+        <div class="skeleton sk-icon"></div>
+        <div class="sk-lines">
+          <div class="skeleton sk-line sk-w-70"></div>
+          <div class="skeleton sk-line sk-w-90"></div>
+          <div class="skeleton sk-line sk-w-50"></div>
+        </div>
+      </li>`).join('');
+  }
 
   function detectSource(url) {
     if (!url) return null;
@@ -127,6 +177,7 @@
 
     let list = allItems.slice();
     if (activeSub) list = list.filter((x) => x.subcategory === activeSub);
+    if (activeOp) list = list.filter((x) => hasOp(x, activeOp));
     if (q) {
       list = list.filter((x) =>
         ((x.name || '') + ' ' + (x.name_az || '') + ' ' + (x.description || '') + ' ' + (x.description_az || ''))
@@ -168,6 +219,7 @@
   }
 
   async function load() {
+    showSkeleton();
     try {
       const [{ categories }, { items }, trendRes] = await Promise.all([
         api('/api/site'),
@@ -187,6 +239,7 @@
       window.__hubCache = { categories: categories || [], items: allItems, trending };
       applyHeader();
       renderChips();
+      renderOpFilter();
       renderList();
     } catch (e) {
       document.getElementById('sec-grid').innerHTML = `<li class="empty"><h3>${window.t('state.error')}</h3><p>${esc(e.message)}</p></li>`;

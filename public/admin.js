@@ -156,6 +156,7 @@ function openForm(id) {
     $('#f-name-az').value = it.name_az || '';
     $('#f-category').value = it.category || '';
     $('#f-subcategory').value = it.subcategory || '';
+    if ($('#f-operator')) $('#f-operator').value = Array.isArray(it.operator) ? it.operator.join(',') : (it.operator || '');
     $('#f-version').value = it.version || '';
     $('#f-size').value = it.size || '';
     $('#f-icon').value = it.icon || '';
@@ -214,6 +215,11 @@ async function saveItem() {
     payload.provider = $('#f-provider').value.trim();
   }
   payload.subcategory = $('#f-subcategory').value.trim();
+  if ($('#f-operator')) {
+    const op = $('#f-operator').value.trim();
+    if (op) payload.operator = op.toLowerCase().split(/[,\s]+/).filter(Boolean);
+    else payload.operator = [];
+  }
   if (!payload.name) return toast('Укажи название', 'err');
   if (!payload.category) return toast('Выбери категорию', 'err');
   try {
