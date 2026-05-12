@@ -1,4 +1,6 @@
 // ===== 44day_ — online counter via SSE =====
+// DISABLED by user request — keep the file as a no-op so old script tags don't 404.
+(() => { return; })();
 (() => {
   if (window.__onlineLoaded) return;
   window.__onlineLoaded = true;

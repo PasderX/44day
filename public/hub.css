@@ -1912,7 +1912,7 @@ img, svg { display: block; max-width: 100%; }
 }
 [data-tip-pos="right"]:hover::after { transform: translateY(50%) translateX(0); }
 [data-tip-pos="right"]::before { display: none; }
-.home-side-left { z-index: 60; }
+.home-side-left { z-index: 40; } /* below topbar (z:50) so it doesn't overlap brand */
 
 /* tooltips inside topbar — show BELOW (else they get clipped by viewport top) */
 .topbar [data-tip]:not([data-tip-pos])::after {
