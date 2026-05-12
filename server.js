@@ -28,6 +28,8 @@ app.get('/article/:id', (_req, res) => res.sendFile(path.join(__dirname, 'public
 app.get('/tools', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'tools.html')));
 app.get('/favorites', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'favorites.html')));
 app.get('/whoami', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'whoami.html')));
+app.get('/shop', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'shop.html')));
+app.get('/shop/order/:id', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'shop-order.html')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -1179,6 +1181,406 @@ app.get('/api/online', (req, res) => {
     onlineClients.delete(res);
     broadcastOnline();
   });
+});
+
+// =====================================================================
+// ★ SHOP — products + orders (Phase 1: structure + manual payment confirm)
+// =====================================================================
+const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
+const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
+const SHOP_CONFIG_FILE = path.join(DATA_DIR, 'shop-config.json');
+
+// =====================================================================
+// Default price matrix: prices[type][tariff][duration] = { price, old? }
+// SNI = самый дорогой (хост многоразовый), конфиги — одинаковые и дешевле
+// 0 баланс — самый дорогой тариф
+// =====================================================================
+function buildDefaultPrices() {
+  // helper: cell with optional discount (old price)
+  const c = (price, old) => (old != null ? { price, old } : { price });
+
+  // SNI host (multi-use, hidden in configs — most expensive)
+  const sni = {
+    zero:      { '1d': c(15),       '7d': c(40, 60), '30d': c(80) },
+    whatsapp:  { '1d': c(8),        '7d': c(20, 30), '30d': c(45) },
+    telegram:  { '1d': c(8),        '7d': c(20, 30), '30d': c(45) },
+    facebook:  { '1d': c(10),       '7d': c(25, 35), '30d': c(55) },
+    instagram: { '1d': c(10),       '7d': c(25, 35), '30d': c(55) },
+    tiktok:    { '1d': c(12),       '7d': c(30),     '30d': c(60) },
+  };
+  // configs (sni hidden inside) — same price for all 3 apps
+  const cfgPrices = {
+    zero:      { '1d': c(8),        '7d': c(20, 30), '30d': c(45) },
+    whatsapp:  { '1d': c(3),        '7d': c(8, 12),  '30d': c(18) },
+    telegram:  { '1d': c(3),        '7d': c(8, 12),  '30d': c(18) },
+    facebook:  { '1d': c(4),        '7d': c(10, 15), '30d': c(22) },
+    instagram: { '1d': c(4),        '7d': c(10, 15), '30d': c(22) },
+    tiktok:    { '1d': c(5),        '7d': c(12),     '30d': c(25) },
+  };
+  return {
+    sni,
+    http_injector: JSON.parse(JSON.stringify(cfgPrices)),
+    dark_tunnel:   JSON.parse(JSON.stringify(cfgPrices)),
+    ha_tunnel:     JSON.parse(JSON.stringify(cfgPrices)),
+  };
+}
+
+const DEFAULT_SHOP_CONFIG = {
+  enabled: true,
+  currency: 'AZN',
+  // payment destinations (admin edits in admin panel)
+  payments: {
+    usdt_trc20: '',     // USDT TRC-20 address
+    usdt_bep20: '',     // optional
+    m10_phone: '',      // m10 / Birbank phone number
+    m10_name: '',       // recipient display name
+    contact_telegram: '@baku_root',
+  },
+  // full price matrix — admin can edit any cell from admin panel
+  prices: buildDefaultPrices(),
+};
+
+function loadShopFile(file, fallback) {
+  try { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+  catch { return fallback; }
+}
+function saveShopFile(file, data) {
+  fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf8');
+}
+function getShopConfig() {
+  if (!fs.existsSync(SHOP_CONFIG_FILE)) {
+    saveShopFile(SHOP_CONFIG_FILE, DEFAULT_SHOP_CONFIG);
+    return DEFAULT_SHOP_CONFIG;
+  }
+  return loadShopFile(SHOP_CONFIG_FILE, DEFAULT_SHOP_CONFIG);
+}
+function getProducts() {
+  return loadShopFile(PRODUCTS_FILE, { products: [] }).products || [];
+}
+function saveProducts(products) {
+  saveShopFile(PRODUCTS_FILE, { products });
+}
+function getOrders() {
+  return loadShopFile(ORDERS_FILE, { orders: [] }).orders || [];
+}
+function saveOrders(orders) {
+  saveShopFile(ORDERS_FILE, { orders });
+}
+
+const VALID_OPERATORS = ['bakcell', 'azercell', 'nar'];
+const VALID_TYPES = ['sni', 'http_injector', 'dark_tunnel', 'ha_tunnel'];
+const VALID_TARIFFS = ['zero', 'whatsapp', 'telegram', 'facebook', 'instagram', 'tiktok'];
+const VALID_DURATIONS = ['1d', '7d', '30d'];
+
+// returns { price, old? } from matrix (admin-editable)
+function priceCell(cfg, { type, tariff, duration }) {
+  const cell = cfg?.prices?.[type]?.[tariff]?.[duration];
+  if (cell && typeof cell === 'object') {
+    const price = Number(cell.price) || 0;
+    const old = cell.old != null ? Number(cell.old) : null;
+    return { price, old };
+  }
+  return { price: 0, old: null };
+}
+
+function genId(prefix) {
+  return prefix + '_' + Date.now().toString(36) + crypto.randomBytes(3).toString('hex');
+}
+
+// ---- Public: shop info / catalog ----
+app.get('/api/shop/config', (_req, res) => {
+  const cfg = getShopConfig();
+  // never expose private data
+  res.json({
+    enabled: cfg.enabled,
+    currency: cfg.currency,
+    prices: cfg.prices,
+    operators: VALID_OPERATORS,
+    types: VALID_TYPES,
+    tariffs: VALID_TARIFFS,
+    durations: VALID_DURATIONS,
+  });
+});
+
+app.get('/api/shop/stock', (_req, res) => {
+  // count of available products by (operator, type, tariff)
+  const products = getProducts();
+  const stock = {};
+  for (const p of products) {
+    if (p.status !== 'available') continue;
+    const k = `${p.operator}|${p.type}|${p.tariff}`;
+    stock[k] = (stock[k] || 0) + 1;
+  }
+  res.json({ stock });
+});
+
+app.post('/api/shop/quote', (req, res) => {
+  const cfg = getShopConfig();
+  const { operator, type, tariff, duration } = req.body || {};
+  if (!VALID_OPERATORS.includes(operator)) return res.status(400).json({ error: 'bad_operator' });
+  if (!VALID_TYPES.includes(type)) return res.status(400).json({ error: 'bad_type' });
+  if (!VALID_TARIFFS.includes(tariff)) return res.status(400).json({ error: 'bad_tariff' });
+  if (!VALID_DURATIONS.includes(duration)) return res.status(400).json({ error: 'bad_duration' });
+  const { price, old } = priceCell(cfg, { type, tariff, duration });
+  const products = getProducts();
+  const inStock = products.some((p) =>
+    p.status === 'available' && p.operator === operator && p.type === type && p.tariff === tariff);
+  res.json({ operator, type, tariff, duration, price, oldPrice: old, currency: cfg.currency, inStock });
+});
+
+app.post('/api/shop/order', (req, res) => {
+  const cfg = getShopConfig();
+  if (!cfg.enabled) return res.status(403).json({ error: 'shop_disabled' });
+  const { operator, type, tariff, duration, paymentMethod, contact } = req.body || {};
+  if (!VALID_OPERATORS.includes(operator)) return res.status(400).json({ error: 'bad_operator' });
+  if (!VALID_TYPES.includes(type)) return res.status(400).json({ error: 'bad_type' });
+  if (!VALID_TARIFFS.includes(tariff)) return res.status(400).json({ error: 'bad_tariff' });
+  if (!VALID_DURATIONS.includes(duration)) return res.status(400).json({ error: 'bad_duration' });
+  if (!['usdt', 'm10'].includes(paymentMethod)) return res.status(400).json({ error: 'bad_payment' });
+  const cleanContact = String(contact || '').trim().slice(0, 120);
+  if (!cleanContact || cleanContact.length < 3) return res.status(400).json({ error: 'bad_contact' });
+
+  const { price } = priceCell(cfg, { type, tariff, duration });
+  if (!price || price <= 0) return res.status(400).json({ error: 'price_unavailable' });
+  const orderId = genId('ord');
+  const accessKey = crypto.randomBytes(8).toString('hex');
+  const order = {
+    id: orderId,
+    accessKey,
+    createdAt: Date.now(),
+    operator, type, tariff, duration,
+    paymentMethod,
+    price, currency: cfg.currency,
+    contact: cleanContact,
+    status: 'pending_payment', // pending_payment | paid_pending_review | confirmed | delivered | cancelled
+    paymentNote: '',
+    productId: null,
+    delivered: null, // populated when admin confirms
+  };
+  const orders = getOrders();
+  orders.push(order);
+  saveOrders(orders);
+
+  // public payment info
+  const paymentInfo = paymentMethod === 'usdt'
+    ? {
+        method: 'usdt',
+        address: cfg.payments.usdt_trc20 || '(не задано — спроси админа)',
+        network: 'TRC-20',
+        amount: price,
+        amountUSDT: Math.max(0.5, Math.round((price / 1.7) * 100) / 100), // approx AZN→USDT
+      }
+    : {
+        method: 'm10',
+        phone: cfg.payments.m10_phone || '(не задано — спроси админа)',
+        name: cfg.payments.m10_name || '',
+        amount: price,
+      };
+
+  res.json({
+    orderId, accessKey, price, currency: cfg.currency,
+    status: order.status,
+    paymentInfo,
+    contactTelegram: cfg.payments.contact_telegram,
+    redirect: `/shop/order/${orderId}?key=${accessKey}`,
+  });
+});
+
+function buildPaymentInfo(cfg, o) {
+  if (o.paymentMethod === 'usdt') {
+    return {
+      method: 'usdt',
+      address: cfg.payments.usdt_trc20 || '',
+      network: 'TRC-20',
+      amountAZN: o.price,
+      amountUSDT: Math.max(0.5, Math.round((o.price / 1.7) * 100) / 100),
+    };
+  }
+  return {
+    method: 'm10',
+    phone: cfg.payments.m10_phone || '',
+    name: cfg.payments.m10_name || '',
+    amountAZN: o.price,
+  };
+}
+
+app.get('/api/shop/order/:id', (req, res) => {
+  const id = String(req.params.id);
+  const key = String(req.query.key || '');
+  const orders = getOrders();
+  const o = orders.find((x) => x.id === id);
+  if (!o) return res.status(404).json({ error: 'not_found' });
+  if (o.accessKey !== key) return res.status(403).json({ error: 'bad_key' });
+  const cfg = getShopConfig();
+  res.json({
+    id: o.id, status: o.status,
+    operator: o.operator, type: o.type, tariff: o.tariff, duration: o.duration,
+    price: o.price, currency: o.currency, paymentMethod: o.paymentMethod,
+    contact: o.contact,
+    createdAt: o.createdAt,
+    paymentInfo: buildPaymentInfo(cfg, o),
+    contactTelegram: cfg.payments.contact_telegram,
+    delivered: o.status === 'delivered' ? o.delivered : null,
+  });
+});
+
+// user signals "I paid"
+app.post('/api/shop/order/:id/paid', (req, res) => {
+  const id = String(req.params.id);
+  const key = String((req.body && req.body.key) || '');
+  const note = String((req.body && req.body.note) || '').trim().slice(0, 500);
+  const orders = getOrders();
+  const o = orders.find((x) => x.id === id);
+  if (!o) return res.status(404).json({ error: 'not_found' });
+  if (o.accessKey !== key) return res.status(403).json({ error: 'bad_key' });
+  if (o.status === 'pending_payment') {
+    o.status = 'paid_pending_review';
+    o.paymentNote = note;
+    saveOrders(orders);
+  }
+  res.json({ ok: true, status: o.status });
+});
+
+// ---- Admin: products CRUD ----
+app.get('/api/admin/shop/products', requireAuth, (_req, res) => {
+  res.json({ products: getProducts() });
+});
+app.post('/api/admin/shop/products', requireAuth, (req, res) => {
+  const b = req.body || {};
+  if (!VALID_OPERATORS.includes(b.operator)) return res.status(400).json({ error: 'bad_operator' });
+  if (!VALID_TYPES.includes(b.type)) return res.status(400).json({ error: 'bad_type' });
+  if (!VALID_TARIFFS.includes(b.tariff)) return res.status(400).json({ error: 'bad_tariff' });
+  const product = {
+    id: genId('prd'),
+    createdAt: Date.now(),
+    operator: b.operator,
+    type: b.type,
+    tariff: b.tariff,
+    title: String(b.title || '').slice(0, 200),
+    payload: String(b.payload || ''), // host string OR base64 file content OR raw config
+    payloadFilename: String(b.payloadFilename || '').slice(0, 200),
+    note: String(b.note || '').slice(0, 1000),
+    status: 'available',
+  };
+  const products = getProducts();
+  products.push(product);
+  saveProducts(products);
+  res.json({ ok: true, product });
+});
+app.put('/api/admin/shop/products/:id', requireAuth, (req, res) => {
+  const id = String(req.params.id);
+  const products = getProducts();
+  const p = products.find((x) => x.id === id);
+  if (!p) return res.status(404).json({ error: 'not_found' });
+  const b = req.body || {};
+  ['operator', 'type', 'tariff'].forEach((k) => {
+    if (b[k] != null) p[k] = b[k];
+  });
+  ['title', 'payload', 'payloadFilename', 'note', 'status'].forEach((k) => {
+    if (b[k] != null) p[k] = String(b[k]);
+  });
+  saveProducts(products);
+  res.json({ ok: true, product: p });
+});
+app.delete('/api/admin/shop/products/:id', requireAuth, (req, res) => {
+  const id = String(req.params.id);
+  const products = getProducts().filter((p) => p.id !== id);
+  saveProducts(products);
+  res.json({ ok: true });
+});
+
+// ---- Admin: orders ----
+app.get('/api/admin/shop/orders', requireAuth, (_req, res) => {
+  res.json({ orders: getOrders() });
+});
+app.post('/api/admin/shop/orders/:id/deliver', requireAuth, (req, res) => {
+  const id = String(req.params.id);
+  const productId = String((req.body && req.body.productId) || '');
+  const orders = getOrders();
+  const o = orders.find((x) => x.id === id);
+  if (!o) return res.status(404).json({ error: 'not_found' });
+  const products = getProducts();
+  const p = products.find((x) => x.id === productId);
+  if (!p) return res.status(404).json({ error: 'product_not_found' });
+  if (p.status !== 'available') return res.status(400).json({ error: 'product_not_available' });
+  // attach
+  o.productId = p.id;
+  o.delivered = {
+    title: p.title,
+    payload: p.payload,
+    payloadFilename: p.payloadFilename,
+    note: p.note,
+    deliveredAt: Date.now(),
+  };
+  o.status = 'delivered';
+  p.status = 'sold';
+  saveOrders(orders);
+  saveProducts(products);
+  res.json({ ok: true, order: o });
+});
+app.post('/api/admin/shop/orders/:id/cancel', requireAuth, (req, res) => {
+  const id = String(req.params.id);
+  const orders = getOrders();
+  const o = orders.find((x) => x.id === id);
+  if (!o) return res.status(404).json({ error: 'not_found' });
+  o.status = 'cancelled';
+  saveOrders(orders);
+  res.json({ ok: true });
+});
+
+// ---- Admin: shop config ----
+app.get('/api/admin/shop/config', requireAuth, (_req, res) => {
+  res.json(getShopConfig());
+});
+app.put('/api/admin/shop/config', requireAuth, (req, res) => {
+  const cur = getShopConfig();
+  const b = req.body || {};
+  const next = { ...cur };
+  if (typeof b.enabled === 'boolean') next.enabled = b.enabled;
+  if (b.currency) next.currency = String(b.currency).slice(0, 8);
+  if (b.payments && typeof b.payments === 'object') {
+    next.payments = { ...cur.payments };
+    ['usdt_trc20', 'usdt_bep20', 'm10_phone', 'm10_name', 'contact_telegram'].forEach((k) => {
+      if (b.payments[k] != null) next.payments[k] = String(b.payments[k]).slice(0, 200);
+    });
+  }
+  if (b.prices && typeof b.prices === 'object') {
+    // accept full or partial price matrix; sanitize numbers
+    const sanitized = {};
+    for (const t of VALID_TYPES) {
+      sanitized[t] = (cur.prices && cur.prices[t]) ? { ...cur.prices[t] } : {};
+      const incomingType = b.prices[t];
+      if (!incomingType || typeof incomingType !== 'object') continue;
+      for (const tariff of VALID_TARIFFS) {
+        sanitized[t][tariff] = sanitized[t][tariff] || {};
+        const incomingTariff = incomingType[tariff];
+        if (!incomingTariff || typeof incomingTariff !== 'object') continue;
+        for (const dur of VALID_DURATIONS) {
+          const cell = incomingTariff[dur];
+          if (cell && typeof cell === 'object') {
+            const price = Number(cell.price);
+            if (Number.isFinite(price) && price >= 0) {
+              const out = { price: Math.round(price * 100) / 100 };
+              const old = cell.old != null ? Number(cell.old) : null;
+              if (Number.isFinite(old) && old > 0) out.old = Math.round(old * 100) / 100;
+              sanitized[t][tariff][dur] = out;
+            }
+          }
+        }
+      }
+    }
+    next.prices = sanitized;
+  }
+  saveShopFile(SHOP_CONFIG_FILE, next);
+  res.json({ ok: true, config: next });
+});
+
+// reset prices to defaults
+app.post('/api/admin/shop/config/reset-prices', requireAuth, (_req, res) => {
+  const cur = getShopConfig();
+  cur.prices = buildDefaultPrices();
+  saveShopFile(SHOP_CONFIG_FILE, cur);
+  res.json({ ok: true, prices: cur.prices });
 });
 
 // ===== 404 kernel-panic =====

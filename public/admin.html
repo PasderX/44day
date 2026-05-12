@@ -54,6 +54,7 @@
         <button class="ad-tab" data-tab="categories">категории</button>
         <button class="ad-tab" data-tab="config">настройки</button>
         <button class="ad-tab" data-tab="stats">статистика</button>
+        <button class="ad-tab ad-tab-shop" data-tab="shop">🛒 магазин</button>
         <div class="ad-tabs-spacer"></div>
         <button id="logout-btn" class="btn-ghost">выход</button>
       </nav>
@@ -285,6 +286,144 @@
         </div>
       </div>
 
+      <!-- =========== TAB: SHOP =========== -->
+      <div class="ad-panel" data-panel="shop">
+        <div class="admin-toolbar">
+          <h2>🛒 магазин</h2>
+          <div class="right">
+            <span id="shop-enabled-pill" class="shop-enabled-pill">…</span>
+            <button id="shop-toggle-enabled" class="btn-ghost">переключить</button>
+          </div>
+        </div>
+
+        <!-- sub-tabs -->
+        <div class="shop-subtabs">
+          <button class="shop-subtab active" data-shop-tab="orders">📦 заказы <span id="ord-count" class="cnt"></span></button>
+          <button class="shop-subtab" data-shop-tab="products">🎁 товары <span id="prd-count" class="cnt"></span></button>
+          <button class="shop-subtab" data-shop-tab="prices">💲 цены / скидки</button>
+          <button class="shop-subtab" data-shop-tab="payments">💳 реквизиты</button>
+        </div>
+
+        <!-- ORDERS sub-panel -->
+        <div class="shop-subpanel active" data-shop-panel="orders">
+          <div id="orders-list" class="orders-list">загрузка…</div>
+        </div>
+
+        <!-- PRODUCTS sub-panel -->
+        <div class="shop-subpanel" data-shop-panel="products">
+          <div class="admin-toolbar inner">
+            <p class="muted">Здесь хранятся хосты и конфиги, которые ты будешь продавать. После оплаты заказа выбери из списка нужный товар → доставка автоматически.</p>
+            <button id="prd-add-btn" class="btn-primary">+ добавить товар</button>
+          </div>
+
+          <div id="prd-form-wrap" class="admin-form" style="display:none">
+            <h3 id="prd-form-title">новый товар</h3>
+            <div class="grid">
+              <div>
+                <label>оператор</label>
+                <select id="prd-operator">
+                  <option value="bakcell">Bakcell</option>
+                  <option value="azercell">Azercell</option>
+                  <option value="nar">Nar</option>
+                </select>
+              </div>
+              <div>
+                <label>тип</label>
+                <select id="prd-type">
+                  <option value="sni">SNI хост</option>
+                  <option value="http_injector">HTTP Injector конфиг</option>
+                  <option value="dark_tunnel">Dark Tunnel конфиг</option>
+                  <option value="ha_tunnel">HA Tunnel конфиг</option>
+                </select>
+              </div>
+              <div>
+                <label>тариф (для какого тарифа подходит)</label>
+                <select id="prd-tariff">
+                  <option value="zero">0 баланс</option>
+                  <option value="whatsapp">бесплатный WhatsApp</option>
+                  <option value="telegram">бесплатный Telegram</option>
+                  <option value="facebook">бесплатный Facebook</option>
+                  <option value="instagram">бесплатный Instagram</option>
+                  <option value="tiktok">бесплатный TikTok</option>
+                </select>
+              </div>
+              <div>
+                <label>название (для покупателя)</label>
+                <input id="prd-title" type="text" placeholder="напр. SNI Bakcell WhatsApp #042"/>
+              </div>
+              <div class="full">
+                <label>содержимое (хост-строка ИЛИ base64 файла конфига)</label>
+                <textarea id="prd-payload" placeholder="для SNI: media-cpt1-1.cdn.whatsapp.net&#10;для конфига: вставь base64 файла или используй кнопку ниже"></textarea>
+              </div>
+              <div>
+                <label>имя файла (для конфигов)</label>
+                <input id="prd-payload-filename" type="text" placeholder="config.ehi"/>
+              </div>
+              <div>
+                <label>загрузить файл (опц.)</label>
+                <input id="prd-file" type="file"/>
+              </div>
+              <div class="full">
+                <label>заметка для покупателя (инструкция)</label>
+                <textarea id="prd-note" placeholder="напр. импортируй файл в HTTP Injector, нажми Start"></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button id="prd-save" class="btn-primary">сохранить</button>
+              <button id="prd-cancel" class="btn-ghost">отмена</button>
+            </div>
+          </div>
+
+          <div id="products-list" class="products-list">загрузка…</div>
+        </div>
+
+        <!-- PRICES sub-panel -->
+        <div class="shop-subpanel" data-shop-panel="prices">
+          <div class="admin-toolbar inner">
+            <p class="muted">Матрица цен. Каждая ячейка = <b>текущая цена</b> / <b>старая (зачёркнутая)</b>. Если старая больше текущей — на сайте показывается скидка. Пустую старую цену оставь чтобы скидки не было.</p>
+            <div class="right">
+              <button id="prices-reset" class="btn-ghost">сбросить к дефолтам</button>
+              <button id="prices-save" class="btn-primary">💾 сохранить все цены</button>
+            </div>
+          </div>
+          <div id="prices-matrix" class="prices-matrix">загрузка…</div>
+        </div>
+
+        <!-- PAYMENTS sub-panel -->
+        <div class="shop-subpanel" data-shop-panel="payments">
+          <div class="admin-toolbar inner">
+            <p class="muted">Реквизиты для приёма платежей. Эти данные будут показаны покупателям на странице заказа.</p>
+          </div>
+          <div class="payments-form">
+            <div class="grid">
+              <div class="full">
+                <label>USDT адрес (TRC-20)</label>
+                <input id="pay-usdt-trc20" type="text" placeholder="TXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"/>
+              </div>
+              <div class="full">
+                <label>USDT адрес (BEP-20, опц.)</label>
+                <input id="pay-usdt-bep20" type="text" placeholder="0x..."/>
+              </div>
+              <div>
+                <label>m10 / Birbank — номер</label>
+                <input id="pay-m10-phone-input" type="text" placeholder="+994 50 123 45 67"/>
+              </div>
+              <div>
+                <label>m10 — имя получателя</label>
+                <input id="pay-m10-name-input" type="text" placeholder="Vaqif M."/>
+              </div>
+              <div class="full">
+                <label>Telegram для связи (показывается покупателям)</label>
+                <input id="pay-contact-tg" type="text" placeholder="@baku_root"/>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button id="payments-save" class="btn-primary">💾 сохранить реквизиты</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
   </main>
 
@@ -292,5 +431,6 @@
 
   <script src="ui.js"></script>
   <script src="admin.js"></script>
+  <script src="admin-shop.js?v=260509150000"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>44Day — SNI Host Finder</title>
+  <title>44Day вЂ” SNI Host Finder</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,11 +46,11 @@
 
       <a class="tg-invite" href="https://t.me/baku_root" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        <span data-i18n="splash.tg">Подписаться на Telegram</span>
+        <span data-i18n="splash.tg">РџРѕРґРїРёСЃР°С‚СЊСЃСЏ РЅР° Telegram</span>
         <span class="tg-handle">@baku_root</span>
       </a>
 
-      <button id="enter-btn" class="enter-btn" data-i18n="splash.enter">[ НАЧАТЬ ]</button>
+      <button id="enter-btn" class="enter-btn" data-i18n="splash.enter">[ РќРђР§РђРўР¬ ]</button>
     </div>
   </section>
 
@@ -67,7 +67,7 @@
         </div>
         <div>
           <div class="brand-title">44<span class="accent">Day</span></div>
-          <div class="brand-sub">v3.4351 · SNI HOST FINDER</div>
+          <div class="brand-sub">v3.4351 В· SNI HOST FINDER</div>
         </div>
       </div>
 
@@ -88,7 +88,7 @@
       </div>
 
       <div class="topbar-right">
-        <div class="theme-switch" title="Тема оформления">
+        <div class="theme-switch" title="РўРµРјР° РѕС„РѕСЂРјР»РµРЅРёСЏ">
           <button class="theme-btn active" data-theme="dark" title="Dark mode" aria-label="Dark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </button>
@@ -108,11 +108,11 @@
     <nav class="tabs">
       <button class="tab active" data-tab="search">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <span data-i18n="tabs.search">Поиск</span>
+        <span data-i18n="tabs.search">РџРѕРёСЃРє</span>
       </button>
       <button class="tab" data-tab="test">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <span data-i18n="tabs.test">Тест хостов</span>
+        <span data-i18n="tabs.test">РўРµСЃС‚ С…РѕСЃС‚РѕРІ</span>
       </button>
       <button class="tab" data-tab="deep">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>
@@ -120,19 +120,19 @@
       </button>
       <button class="tab" data-tab="howto">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span data-i18n="tabs.howto">Инструкция</span>
+        <span data-i18n="tabs.howto">РРЅСЃС‚СЂСѓРєС†РёСЏ</span>
       </button>
       <button class="tab" data-tab="about">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span data-i18n="tabs.about">О проекте</span>
+        <span data-i18n="tabs.about">Рћ РїСЂРѕРµРєС‚Рµ</span>
       </button>
     </nav>
 
     <!-- ============ TAB: SEARCH ============ -->
     <section class="tab-panel active" id="panel-search">
       <div class="panel-head">
-        <h2 data-i18n="search.title">Поиск SNI поддоменов</h2>
-        <p data-i18n="search.desc">Расширенный поиск по 9 источникам: CT (crt.sh, CertSpotter), AlienVault OTX, HackerTarget, RapidDNS, Anubis, URLScan, Wayback Machine + DNS брутфорс.</p>
+        <h2 data-i18n="search.title">РџРѕРёСЃРє SNI РїРѕРґРґРѕРјРµРЅРѕРІ</h2>
+        <p data-i18n="search.desc">Р Р°СЃС€РёСЂРµРЅРЅС‹Р№ РїРѕРёСЃРє РїРѕ 9 РёСЃС‚РѕС‡РЅРёРєР°Рј: CT (crt.sh, CertSpotter), AlienVault OTX, HackerTarget, RapidDNS, Anubis, URLScan, Wayback Machine + DNS Р±СЂСѓС‚С„РѕСЂСЃ.</p>
       </div>
 
       <form id="search-form" class="bar">
@@ -141,13 +141,13 @@
           <input id="domain" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" required/>
         </div>
         <button id="search-btn" type="submit" class="btn-primary">
-          <span class="btn-text" data-i18n="search.button">ПОИСК</span>
+          <span class="btn-text" data-i18n="search.button">РџРћРРЎРљ</span>
           <span class="btn-spinner"></span>
         </button>
       </form>
 
       <div class="chips">
-        <span class="chips-label" data-i18n="search.examples">Примеры:</span>
+        <span class="chips-label" data-i18n="search.examples">РџСЂРёРјРµСЂС‹:</span>
         <button class="chip" data-domain="zoom.us">zoom.us</button>
         <button class="chip" data-domain="discord.com">discord.com</button>
         <button class="chip" data-domain="cloudflare.com">cloudflare.com</button>
@@ -160,7 +160,7 @@
           <span class="term-dot red"></span>
           <span class="term-dot yellow"></span>
           <span class="term-dot green"></span>
-          <span class="term-title">/bin/44day — search</span>
+          <span class="term-title">/bin/44day вЂ” search</span>
         </div>
         <div id="term-body" class="term-body"></div>
       </div>
@@ -173,10 +173,10 @@
           </div>
           <div class="results-actions">
             <input id="filter-search" type="text" placeholder="filter..."/>
-            <button id="select-all" class="btn-ghost" data-i18n="actions.selectAll">Выбрать все</button>
-            <button id="send-to-test" class="btn-cyan" data-i18n="actions.sendTest">Отправить в тест →</button>
-            <button id="copy-search" class="btn-ghost" data-i18n="actions.copy">Копировать</button>
-            <button id="download-search" class="btn-ghost" data-i18n="actions.download">Скачать</button>
+            <button id="select-all" class="btn-ghost" data-i18n="actions.selectAll">Р’С‹Р±СЂР°С‚СЊ РІСЃРµ</button>
+            <button id="send-to-test" class="btn-cyan" data-i18n="actions.sendTest">РћС‚РїСЂР°РІРёС‚СЊ РІ С‚РµСЃС‚ в†’</button>
+            <button id="copy-search" class="btn-ghost" data-i18n="actions.copy">РљРѕРїРёСЂРѕРІР°С‚СЊ</button>
+            <button id="download-search" class="btn-ghost" data-i18n="actions.download">РЎРєР°С‡Р°С‚СЊ</button>
           </div>
         </div>
         <div class="table-wrap">
@@ -185,7 +185,7 @@
               <tr>
                 <th><input type="checkbox" id="check-all"/></th>
                 <th>#</th>
-                <th data-i18n="th.subdomain">Поддомен</th>
+                <th data-i18n="th.subdomain">РџРѕРґРґРѕРјРµРЅ</th>
               </tr>
             </thead>
             <tbody id="search-body"></tbody>
@@ -197,14 +197,14 @@
     <!-- ============ TAB: TEST ============ -->
     <section class="tab-panel" id="panel-test">
       <div class="panel-head">
-        <h2 data-i18n="test.title">Тестирование хостов</h2>
-        <p data-i18n="test.desc">Проверка HTTP-статуса, WebSocket Upgrade, SNI/TLS и определение Cloudflare.</p>
+        <h2 data-i18n="test.title">РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ С…РѕСЃС‚РѕРІ</h2>
+        <p data-i18n="test.desc">РџСЂРѕРІРµСЂРєР° HTTP-СЃС‚Р°С‚СѓСЃР°, WebSocket Upgrade, SNI/TLS Рё РѕРїСЂРµРґРµР»РµРЅРёРµ Cloudflare.</p>
       </div>
 
       <div class="test-grid">
         <div class="test-controls">
           <label class="field">
-            <span data-i18n="test.hosts">Хосты (по одному в строке):</span>
+            <span data-i18n="test.hosts">РҐРѕСЃС‚С‹ (РїРѕ РѕРґРЅРѕРјСѓ РІ СЃС‚СЂРѕРєРµ):</span>
             <textarea id="test-hosts" rows="8" placeholder="cloudflare.com
 discord.com
 zoom.us"></textarea>
@@ -217,12 +217,12 @@ zoom.us"></textarea>
           </div>
 
           <label class="field-row">
-            <span data-i18n="test.concurrency">Параллельно:</span>
+            <span data-i18n="test.concurrency">РџР°СЂР°Р»Р»РµР»СЊРЅРѕ:</span>
             <input id="concurrency" type="number" value="12" min="1" max="25"/>
           </label>
 
           <button id="test-btn" class="btn-primary block">
-            <span class="btn-text" data-i18n="test.start">ЗАПУСТИТЬ ТЕСТ</span>
+            <span class="btn-text" data-i18n="test.start">Р—РђРџРЈРЎРўРРўР¬ РўР•РЎРў</span>
             <span class="btn-spinner"></span>
           </button>
           <div class="progress hidden" id="test-progress">
@@ -236,7 +236,7 @@ zoom.us"></textarea>
             <span class="term-dot red"></span>
             <span class="term-dot yellow"></span>
             <span class="term-dot green"></span>
-            <span class="term-title">/bin/44day — host_test</span>
+            <span class="term-title">/bin/44day вЂ” host_test</span>
             <div class="term-tabs">
               <button class="term-tab active" data-stream="all">ALL</button>
               <button class="term-tab" data-stream="http">HTTP</button>
@@ -264,26 +264,26 @@ zoom.us"></textarea>
       <div id="test-results" class="results-card hidden">
         <div class="results-head">
           <div>
-            <h3 data-i18n="test.results">Результаты теста</h3>
+            <h3 data-i18n="test.results">Р РµР·СѓР»СЊС‚Р°С‚С‹ С‚РµСЃС‚Р°</h3>
             <p id="test-meta" class="muted"></p>
           </div>
           <div class="results-actions">
             <select id="test-filter">
-              <option value="all" data-i18n="filter.all">Все</option>
+              <option value="all" data-i18n="filter.all">Р’СЃРµ</option>
               <option value="cf" data-i18n="filter.cf">Cloudflare</option>
               <option value="ws" data-i18n="filter.ws">WebSocket OK</option>
               <option value="200" data-i18n="filter.200">200 OK</option>
               <option value="301" data-i18n="filter.3xx">3xx Redirect</option>
-              <option value="working" data-i18n="filter.working">Рабочие SNI</option>
+              <option value="working" data-i18n="filter.working">Р Р°Р±РѕС‡РёРµ SNI</option>
             </select>
             <select id="export-format">
               <option value="json">JSON</option>
-              <option value="txt">TXT (хосты)</option>
+              <option value="txt">TXT (С…РѕСЃС‚С‹)</option>
               <option value="payloads">Payloads (.txt)</option>
               <option value="hat">HA Tunnel (.hat)</option>
               <option value="ehi">HTTP Injector (.ehi)</option>
             </select>
-            <button id="export-test" class="btn-ghost" data-i18n="actions.export">Экспорт</button>
+            <button id="export-test" class="btn-ghost" data-i18n="actions.export">Р­РєСЃРїРѕСЂС‚</button>
           </div>
         </div>
         <div class="table-wrap">
@@ -291,13 +291,13 @@ zoom.us"></textarea>
             <thead>
               <tr>
                 <th>#</th>
-                <th data-i18n="th.host">Хост</th>
+                <th data-i18n="th.host">РҐРѕСЃС‚</th>
                 <th data-i18n="th.score">Score</th>
                 <th>HTTP</th>
                 <th>WS</th>
                 <th>SNI</th>
                 <th>CDN</th>
-                <th data-i18n="th.actions">Действия</th>
+                <th data-i18n="th.actions">Р”РµР№СЃС‚РІРёСЏ</th>
               </tr>
             </thead>
             <tbody id="test-body"></tbody>
@@ -309,8 +309,8 @@ zoom.us"></textarea>
     <!-- ============ TAB: DEEP ============ -->
     <section class="tab-panel" id="panel-deep">
       <div class="panel-head">
-        <h2 data-i18n="deep.title">Deep Probe / Глубокий анализ</h2>
-        <p data-i18n="deep.desc">9 тестов: DNS · TCP Ping · TLS · HTTP/2 · SNI Routing · Domain Fronting · Replay · ASN/GeoIP · ECH</p>
+        <h2 data-i18n="deep.title">Deep Probe / Р“Р»СѓР±РѕРєРёР№ Р°РЅР°Р»РёР·</h2>
+        <p data-i18n="deep.desc">9 С‚РµСЃС‚РѕРІ: DNS В· TCP Ping В· TLS В· HTTP/2 В· SNI Routing В· Domain Fronting В· Replay В· ASN/GeoIP В· ECH</p>
       </div>
 
       <form id="deep-form" class="bar">
@@ -319,13 +319,13 @@ zoom.us"></textarea>
           <input id="deep-input" type="text" placeholder="cdn.example.com" autocomplete="off" spellcheck="false" required/>
         </div>
         <button id="deep-btn" type="submit" class="btn-primary">
-          <span class="btn-text" data-i18n="deep.run">СКАНИРОВАТЬ</span>
+          <span class="btn-text" data-i18n="deep.run">РЎРљРђРќРР РћР’РђРўР¬</span>
           <span class="btn-spinner"></span>
         </button>
       </form>
 
       <div class="chips">
-        <span class="chips-label" data-i18n="search.examples">Примеры:</span>
+        <span class="chips-label" data-i18n="search.examples">РџСЂРёРјРµСЂС‹:</span>
         <button class="chip" data-deep="www.cloudflare.com">www.cloudflare.com</button>
         <button class="chip" data-deep="discord.com">discord.com</button>
         <button class="chip" data-deep="m.facebook.com">m.facebook.com</button>
@@ -335,8 +335,8 @@ zoom.us"></textarea>
       <div id="deep-panel" class="deep-panel hidden">
         <div id="deep-loading" class="deep-loading hidden">
           <div class="deep-spinner"></div>
-          <div class="deep-loading-text" data-i18n="deep.loading">Сканирую хост по 9 параметрам...</div>
-          <div class="deep-loading-sub">DNS · TLS · HTTP/2 · SNI Routing · Domain Fronting · Replay · Ping · ASN · ECH</div>
+          <div class="deep-loading-text" data-i18n="deep.loading">РЎРєР°РЅРёСЂСѓСЋ С…РѕСЃС‚ РїРѕ 9 РїР°СЂР°РјРµС‚СЂР°Рј...</div>
+          <div class="deep-loading-sub">DNS В· TLS В· HTTP/2 В· SNI Routing В· Domain Fronting В· Replay В· Ping В· ASN В· ECH</div>
         </div>
         <div id="deep-content" class="deep-content hidden"></div>
       </div>
@@ -345,96 +345,96 @@ zoom.us"></textarea>
     <!-- ============ TAB: HOWTO ============ -->
     <section class="tab-panel" id="panel-howto">
       <div class="panel-head">
-        <h2 data-i18n="howto.title">Инструкция: бесплатный интернет через SNI</h2>
-        <p data-i18n="howto.desc">Краткий гид по использованию SNI-хостов в популярных приложениях.</p>
+        <h2 data-i18n="howto.title">РРЅСЃС‚СЂСѓРєС†РёСЏ: Р±РµСЃРїР»Р°С‚РЅС‹Р№ РёРЅС‚РµСЂРЅРµС‚ С‡РµСЂРµР· SNI</h2>
+        <p data-i18n="howto.desc">РљСЂР°С‚РєРёР№ РіРёРґ РїРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ SNI-С…РѕСЃС‚РѕРІ РІ РїРѕРїСѓР»СЏСЂРЅС‹С… РїСЂРёР»РѕР¶РµРЅРёСЏС….</p>
       </div>
 
       <div class="howto-main">
         <div class="howto-card big">
-          <div class="howto-head"><span class="howto-num">01</span><h3 data-i18n="howto.step1">Найди поддомены</h3></div>
-          <p data-i18n="howto.step1d">Во вкладке <strong>«Поиск»</strong> введи домен оператора или популярного сервиса. Программа опросит <strong>9 источников</strong> (CT-логи, AlienVault, RapidDNS, Anubis, URLScan, Wayback, CertSpotter + DNS брутфорс) и соберёт максимум поддоменов.</p>
-          <p class="muted" data-i18n="howto.step1tip">💡 Совет: пробуй <code>azercell.az</code>, <code>bakcell.com</code>, <code>nar.az</code>, <code>m.facebook.com</code>, <code>cloudflare.com</code>, <code>discord.com</code>, <code>zoom.us</code>.</p>
+          <div class="howto-head"><span class="howto-num">01</span><h3 data-i18n="howto.step1">РќР°Р№РґРё РїРѕРґРґРѕРјРµРЅС‹</h3></div>
+          <p data-i18n="howto.step1d">Р’Рѕ РІРєР»Р°РґРєРµ <strong>В«РџРѕРёСЃРєВ»</strong> РІРІРµРґРё РґРѕРјРµРЅ РѕРїРµСЂР°С‚РѕСЂР° РёР»Рё РїРѕРїСѓР»СЏСЂРЅРѕРіРѕ СЃРµСЂРІРёСЃР°. РџСЂРѕРіСЂР°РјРјР° РѕРїСЂРѕСЃРёС‚ <strong>9 РёСЃС‚РѕС‡РЅРёРєРѕРІ</strong> (CT-Р»РѕРіРё, AlienVault, RapidDNS, Anubis, URLScan, Wayback, CertSpotter + DNS Р±СЂСѓС‚С„РѕСЂСЃ) Рё СЃРѕР±РµСЂС‘С‚ РјР°РєСЃРёРјСѓРј РїРѕРґРґРѕРјРµРЅРѕРІ.</p>
+          <p class="muted" data-i18n="howto.step1tip">рџ’Ў РЎРѕРІРµС‚: РїСЂРѕР±СѓР№ <code>azercell.az</code>, <code>bakcell.com</code>, <code>nar.az</code>, <code>m.facebook.com</code>, <code>cloudflare.com</code>, <code>discord.com</code>, <code>zoom.us</code>.</p>
         </div>
         <div class="howto-card big">
-          <div class="howto-head"><span class="howto-num">02</span><h3 data-i18n="howto.step2">Протестируй хосты</h3></div>
-          <p data-i18n="howto.step2d">Отметь нужные → <strong>«Отправить в тест»</strong>. Программа проверит каждый хост по <strong>HTTP/HTTPS, WebSocket, SNI/TLS</strong> и оценит <strong>Score 0–100</strong>.</p>
+          <div class="howto-head"><span class="howto-num">02</span><h3 data-i18n="howto.step2">РџСЂРѕС‚РµСЃС‚РёСЂСѓР№ С…РѕСЃС‚С‹</h3></div>
+          <p data-i18n="howto.step2d">РћС‚РјРµС‚СЊ РЅСѓР¶РЅС‹Рµ в†’ <strong>В«РћС‚РїСЂР°РІРёС‚СЊ РІ С‚РµСЃС‚В»</strong>. РџСЂРѕРіСЂР°РјРјР° РїСЂРѕРІРµСЂРёС‚ РєР°Р¶РґС‹Р№ С…РѕСЃС‚ РїРѕ <strong>HTTP/HTTPS, WebSocket, SNI/TLS</strong> Рё РѕС†РµРЅРёС‚ <strong>Score 0вЂ“100</strong>.</p>
           <ul class="howto-list">
-            <li data-i18n="howto.s2a"><strong>Score ≥ 80 (зелёный):</strong> почти точно работает</li>
-            <li data-i18n="howto.s2b"><strong>Score 60–79 (cyan):</strong> высокий шанс, попадает в ТОП-10</li>
-            <li data-i18n="howto.s2c"><strong>Score &lt; 40:</strong> не пробуй</li>
+            <li data-i18n="howto.s2a"><strong>Score в‰Ґ 80 (Р·РµР»С‘РЅС‹Р№):</strong> РїРѕС‡С‚Рё С‚РѕС‡РЅРѕ СЂР°Р±РѕС‚Р°РµС‚</li>
+            <li data-i18n="howto.s2b"><strong>Score 60вЂ“79 (cyan):</strong> РІС‹СЃРѕРєРёР№ С€Р°РЅСЃ, РїРѕРїР°РґР°РµС‚ РІ РўРћРџ-10</li>
+            <li data-i18n="howto.s2c"><strong>Score &lt; 40:</strong> РЅРµ РїСЂРѕР±СѓР№</li>
           </ul>
         </div>
         <div class="howto-card big">
-          <div class="howto-head"><span class="howto-num">03</span><h3 data-i18n="howto.step3">Углубись в Deep Probe</h3></div>
-          <p data-i18n="howto.step3d">Нажми <strong>DEEP</strong> на любом хосте → откроется вкладка с <strong>9 проверками</strong>: TLS 1.3, HTTP/2, SNI Routing, Domain Fronting, Replay, ASN, ECH, IPv6, SAN. Хосты с <strong>SNI ROUTING + DOMAIN FRONTING</strong> — золото для bypass.</p>
-          <p class="muted" data-i18n="howto.step3tip">💡 В разделе SAN ты увидишь <strong>все домены на одном сертификате</strong> — это готовые альтернативные SNI на том же IP.</p>
+          <div class="howto-head"><span class="howto-num">03</span><h3 data-i18n="howto.step3">РЈРіР»СѓР±РёСЃСЊ РІ Deep Probe</h3></div>
+          <p data-i18n="howto.step3d">РќР°Р¶РјРё <strong>DEEP</strong> РЅР° Р»СЋР±РѕРј С…РѕСЃС‚Рµ в†’ РѕС‚РєСЂРѕРµС‚СЃСЏ РІРєР»Р°РґРєР° СЃ <strong>9 РїСЂРѕРІРµСЂРєР°РјРё</strong>: TLS 1.3, HTTP/2, SNI Routing, Domain Fronting, Replay, ASN, ECH, IPv6, SAN. РҐРѕСЃС‚С‹ СЃ <strong>SNI ROUTING + DOMAIN FRONTING</strong> вЂ” Р·РѕР»РѕС‚Рѕ РґР»СЏ bypass.</p>
+          <p class="muted" data-i18n="howto.step3tip">рџ’Ў Р’ СЂР°Р·РґРµР»Рµ SAN С‚С‹ СѓРІРёРґРёС€СЊ <strong>РІСЃРµ РґРѕРјРµРЅС‹ РЅР° РѕРґРЅРѕРј СЃРµСЂС‚РёС„РёРєР°С‚Рµ</strong> вЂ” СЌС‚Рѕ РіРѕС‚РѕРІС‹Рµ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Рµ SNI РЅР° С‚РѕРј Р¶Рµ IP.</p>
         </div>
         <div class="howto-card big">
-          <div class="howto-head"><span class="howto-num">04</span><h3 data-i18n="howto.step4">Получи готовый Payload</h3></div>
-          <p data-i18n="howto.step4d">У зелёных строк есть кнопка <strong>PAYLOAD</strong> — открывает окно с готовыми настройками для:</p>
+          <div class="howto-head"><span class="howto-num">04</span><h3 data-i18n="howto.step4">РџРѕР»СѓС‡Рё РіРѕС‚РѕРІС‹Р№ Payload</h3></div>
+          <p data-i18n="howto.step4d">РЈ Р·РµР»С‘РЅС‹С… СЃС‚СЂРѕРє РµСЃС‚СЊ РєРЅРѕРїРєР° <strong>PAYLOAD</strong> вЂ” РѕС‚РєСЂС‹РІР°РµС‚ РѕРєРЅРѕ СЃ РіРѕС‚РѕРІС‹РјРё РЅР°СЃС‚СЂРѕР№РєР°РјРё РґР»СЏ:</p>
           <ul class="howto-list">
-            <li><strong>HTTP Injector</strong> · <strong>HA Tunnel</strong> · <strong>HTTP Custom</strong> · <strong>DarkTunnel</strong> · <strong>TLS Tunnel</strong></li>
+            <li><strong>HTTP Injector</strong> В· <strong>HA Tunnel</strong> В· <strong>HTTP Custom</strong> В· <strong>DarkTunnel</strong> В· <strong>TLS Tunnel</strong></li>
           </ul>
-          <p data-i18n="howto.step4d2">Каждое поле копируется отдельной кнопкой. Кнопка <strong>«СКОПИРОВАТЬ ВСЁ»</strong> копирует только нужные значения (SNI, Port, Mode, Payload) — без лишнего текста.</p>
+          <p data-i18n="howto.step4d2">РљР°Р¶РґРѕРµ РїРѕР»Рµ РєРѕРїРёСЂСѓРµС‚СЃСЏ РѕС‚РґРµР»СЊРЅРѕР№ РєРЅРѕРїРєРѕР№. РљРЅРѕРїРєР° <strong>В«РЎРљРћРџРР РћР’РђРўР¬ Р’РЎРЃВ»</strong> РєРѕРїРёСЂСѓРµС‚ С‚РѕР»СЊРєРѕ РЅСѓР¶РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ (SNI, Port, Mode, Payload) вЂ” Р±РµР· Р»РёС€РЅРµРіРѕ С‚РµРєСЃС‚Р°.</p>
         </div>
         <div class="howto-card big">
-          <div class="howto-head"><span class="howto-num">05</span><h3 data-i18n="howto.step5">Настрой приложение</h3></div>
-          <p data-i18n="howto.step5d">Открой нужное приложение → новая конфигурация → вставь скопированные значения:</p>
+          <div class="howto-head"><span class="howto-num">05</span><h3 data-i18n="howto.step5">РќР°СЃС‚СЂРѕР№ РїСЂРёР»РѕР¶РµРЅРёРµ</h3></div>
+          <p data-i18n="howto.step5d">РћС‚РєСЂРѕР№ РЅСѓР¶РЅРѕРµ РїСЂРёР»РѕР¶РµРЅРёРµ в†’ РЅРѕРІР°СЏ РєРѕРЅС„РёРіСѓСЂР°С†РёСЏ в†’ РІСЃС‚Р°РІСЊ СЃРєРѕРїРёСЂРѕРІР°РЅРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ:</p>
           <ul class="howto-list">
             <li data-i18n="howto.s1"><strong>Mode / Connection Type:</strong> SSL/TLS (SNI)</li>
-            <li data-i18n="howto.s2"><strong>SNI Host / SNI:</strong> поддомен из теста</li>
-            <li data-i18n="howto.s3"><strong>Payload:</strong> готовая строка из окна Payload</li>
-            <li data-i18n="howto.s4"><strong>Proxy / Server:</strong> ВАШ SSH или V2Ray-сервер (нужно поднять отдельно — например на VPS за $3/мес)</li>
-            <li data-i18n="howto.s5"><strong>Port:</strong> 443 (HTTPS) или 22 (SSH)</li>
+            <li data-i18n="howto.s2"><strong>SNI Host / SNI:</strong> РїРѕРґРґРѕРјРµРЅ РёР· С‚РµСЃС‚Р°</li>
+            <li data-i18n="howto.s3"><strong>Payload:</strong> РіРѕС‚РѕРІР°СЏ СЃС‚СЂРѕРєР° РёР· РѕРєРЅР° Payload</li>
+            <li data-i18n="howto.s4"><strong>Proxy / Server:</strong> Р’РђРЁ SSH РёР»Рё V2Ray-СЃРµСЂРІРµСЂ (РЅСѓР¶РЅРѕ РїРѕРґРЅСЏС‚СЊ РѕС‚РґРµР»СЊРЅРѕ вЂ” РЅР°РїСЂРёРјРµСЂ РЅР° VPS Р·Р° $3/РјРµСЃ)</li>
+            <li data-i18n="howto.s5"><strong>Port:</strong> 443 (HTTPS) РёР»Рё 22 (SSH)</li>
           </ul>
         </div>
         <div class="howto-card big">
-          <div class="howto-head"><span class="howto-num">06</span><h3 data-i18n="howto.step6">Подключись и тестируй</h3></div>
-          <p data-i18n="howto.step6d">Жми <strong>Connect</strong>. Если коннекта нет за 15 секунд — попробуй <strong>следующий хост из ТОП-10</strong> (он отсортирован по убыванию шансов). Используй <strong>Экспорт → Payloads (.txt)</strong> чтобы получить готовые конфиги для всех рабочих хостов сразу.</p>
+          <div class="howto-head"><span class="howto-num">06</span><h3 data-i18n="howto.step6">РџРѕРґРєР»СЋС‡РёСЃСЊ Рё С‚РµСЃС‚РёСЂСѓР№</h3></div>
+          <p data-i18n="howto.step6d">Р–РјРё <strong>Connect</strong>. Р•СЃР»Рё РєРѕРЅРЅРµРєС‚Р° РЅРµС‚ Р·Р° 15 СЃРµРєСѓРЅРґ вЂ” РїРѕРїСЂРѕР±СѓР№ <strong>СЃР»РµРґСѓСЋС‰РёР№ С…РѕСЃС‚ РёР· РўРћРџ-10</strong> (РѕРЅ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅ РїРѕ СѓР±С‹РІР°РЅРёСЋ С€Р°РЅСЃРѕРІ). РСЃРїРѕР»СЊР·СѓР№ <strong>Р­РєСЃРїРѕСЂС‚ в†’ Payloads (.txt)</strong> С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РіРѕС‚РѕРІС‹Рµ РєРѕРЅС„РёРіРё РґР»СЏ РІСЃРµС… СЂР°Р±РѕС‡РёС… С…РѕСЃС‚РѕРІ СЃСЂР°Р·Сѓ.</p>
         </div>
         <div class="howto-card big">
-          <div class="howto-head"><span class="howto-num">07</span><h3 data-i18n="howto.step7">Что нужно знать</h3></div>
+          <div class="howto-head"><span class="howto-num">07</span><h3 data-i18n="howto.step7">Р§С‚Рѕ РЅСѓР¶РЅРѕ Р·РЅР°С‚СЊ</h3></div>
           <ul class="howto-list">
-            <li data-i18n="howto.note1">Программа <strong>не может на 100% гарантировать</strong> что хост работает у твоего оператора — тестировать нужно вживую</li>
-            <li data-i18n="howto.note2">Чем больше Score и подтверждений (SNI Routing, Domain Fronting) — тем выше шанс</li>
-            <li data-i18n="howto.note3">Хосты на <strong>Cloudflare / Google / AWS</strong> чаще всего в whitelist операторов</li>
-            <li data-i18n="howto.note4">Нужен <strong>свой SSH/V2Ray сервер</strong> — без него туннель не построится</li>
+            <li data-i18n="howto.note1">РџСЂРѕРіСЂР°РјРјР° <strong>РЅРµ РјРѕР¶РµС‚ РЅР° 100% РіР°СЂР°РЅС‚РёСЂРѕРІР°С‚СЊ</strong> С‡С‚Рѕ С…РѕСЃС‚ СЂР°Р±РѕС‚Р°РµС‚ Сѓ С‚РІРѕРµРіРѕ РѕРїРµСЂР°С‚РѕСЂР° вЂ” С‚РµСЃС‚РёСЂРѕРІР°С‚СЊ РЅСѓР¶РЅРѕ РІР¶РёРІСѓСЋ</li>
+            <li data-i18n="howto.note2">Р§РµРј Р±РѕР»СЊС€Рµ Score Рё РїРѕРґС‚РІРµСЂР¶РґРµРЅРёР№ (SNI Routing, Domain Fronting) вЂ” С‚РµРј РІС‹С€Рµ С€Р°РЅСЃ</li>
+            <li data-i18n="howto.note3">РҐРѕСЃС‚С‹ РЅР° <strong>Cloudflare / Google / AWS</strong> С‡Р°С‰Рµ РІСЃРµРіРѕ РІ whitelist РѕРїРµСЂР°С‚РѕСЂРѕРІ</li>
+            <li data-i18n="howto.note4">РќСѓР¶РµРЅ <strong>СЃРІРѕР№ SSH/V2Ray СЃРµСЂРІРµСЂ</strong> вЂ” Р±РµР· РЅРµРіРѕ С‚СѓРЅРЅРµР»СЊ РЅРµ РїРѕСЃС‚СЂРѕРёС‚СЃСЏ</li>
           </ul>
         </div>
       </div>
 
       <div class="warn-card">
-        <strong data-i18n="howto.warnTitle">Важно:</strong>
-        <span data-i18n="howto.warnText">Используйте только в тех сетях, где это разрешено условиями вашего провайдера. Автор не несёт ответственности.</span>
+        <strong data-i18n="howto.warnTitle">Р’Р°Р¶РЅРѕ:</strong>
+        <span data-i18n="howto.warnText">РСЃРїРѕР»СЊР·СѓР№С‚Рµ С‚РѕР»СЊРєРѕ РІ С‚РµС… СЃРµС‚СЏС…, РіРґРµ СЌС‚Рѕ СЂР°Р·СЂРµС€РµРЅРѕ СѓСЃР»РѕРІРёСЏРјРё РІР°С€РµРіРѕ РїСЂРѕРІР°Р№РґРµСЂР°. РђРІС‚РѕСЂ РЅРµ РЅРµСЃС‘С‚ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚Рё.</span>
       </div>
     </section>
 
     <!-- ============ TAB: ABOUT ============ -->
     <section class="tab-panel" id="panel-about">
       <div class="panel-head">
-        <h2 data-i18n="about.title">О проекте</h2>
+        <h2 data-i18n="about.title">Рћ РїСЂРѕРµРєС‚Рµ</h2>
       </div>
       <div class="about-grid">
         <div class="about-card">
-          <h3 data-i18n="about.what">Что это</h3>
-          <p data-i18n="about.whatText">Инструмент для поиска SNI-хостов и их анализа, чтобы использовать с туннелями (HTTP Injector, HA Tunnel, DarkTunnel, HTTP Custom, TLS Tunnel).</p>
+          <h3 data-i18n="about.what">Р§С‚Рѕ СЌС‚Рѕ</h3>
+          <p data-i18n="about.whatText">РРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ РїРѕРёСЃРєР° SNI-С…РѕСЃС‚РѕРІ Рё РёС… Р°РЅР°Р»РёР·Р°, С‡С‚РѕР±С‹ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃ С‚СѓРЅРЅРµР»СЏРјРё (HTTP Injector, HA Tunnel, DarkTunnel, HTTP Custom, TLS Tunnel).</p>
         </div>
         <div class="about-card">
-          <h3 data-i18n="about.sources">Источники данных (9)</h3>
+          <h3 data-i18n="about.sources">РСЃС‚РѕС‡РЅРёРєРё РґР°РЅРЅС‹С… (9)</h3>
           <ul>
-            <li>crt.sh — Certificate Transparency</li>
-            <li>CertSpotter — CT logs (доп.)</li>
-            <li>AlienVault OTX — passive DNS</li>
-            <li>HackerTarget — host search</li>
-            <li>RapidDNS — subdomain DB</li>
+            <li>crt.sh вЂ” Certificate Transparency</li>
+            <li>CertSpotter вЂ” CT logs (РґРѕРї.)</li>
+            <li>AlienVault OTX вЂ” passive DNS</li>
+            <li>HackerTarget вЂ” host search</li>
+            <li>RapidDNS вЂ” subdomain DB</li>
             <li>AnubisDB (jonlu.ca)</li>
-            <li>URLScan.io — public scans</li>
-            <li>Wayback Machine — историч. URL</li>
-            <li>DNS Brute force — 130+ префиксов</li>
+            <li>URLScan.io вЂ” public scans</li>
+            <li>Wayback Machine вЂ” РёСЃС‚РѕСЂРёС‡. URL</li>
+            <li>DNS Brute force вЂ” 130+ РїСЂРµС„РёРєСЃРѕРІ</li>
           </ul>
         </div>
         <div class="about-card">
-          <h3 data-i18n="about.tg">Телеграм</h3>
+          <h3 data-i18n="about.tg">РўРµР»РµРіСЂР°Рј</h3>
           <a class="tg-link" href="https://t.me/baku_root" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
             @baku_root
@@ -446,7 +446,7 @@ zoom.us"></textarea>
     <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-left">
-        <span class="copyright">© 2026 <strong>44Day Team</strong> · <span data-i18n="footer.rights">все права защищены</span></span>
+        <span class="copyright">В© 2026 <strong>44Day Team</strong> В· <span data-i18n="footer.rights">РІСЃРµ РїСЂР°РІР° Р·Р°С‰РёС‰РµРЅС‹</span></span>
         <a href="https://t.me/baku_root" target="_blank" rel="noopener" class="tg-foot" title="Telegram">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
           @baku_root
@@ -454,7 +454,7 @@ zoom.us"></textarea>
       </div>
       <div class="footer-right mono">
         <span>v3.4351</span>
-        <span class="sep">·</span>
+        <span class="sep">В·</span>
         <span data-i18n="footer.uptime">UPTIME</span>: <span id="uptime">00:00:00</span>
       </div>
     </footer>
@@ -466,10 +466,10 @@ zoom.us"></textarea>
     <div class="modal-box">
       <div class="modal-head">
         <div>
-          <div class="modal-title" data-i18n="payload.title">PAYLOAD ДЛЯ ТУННЕЛЬНЫХ ПРИЛОЖЕНИЙ</div>
+          <div class="modal-title" data-i18n="payload.title">PAYLOAD Р”Р›РЇ РўРЈРќРќР•Р›Р¬РќР«РҐ РџР РР›РћР–Р•РќРР™</div>
           <div class="modal-sub mono" id="modal-host"></div>
         </div>
-        <button class="modal-close" data-close="1">✕</button>
+        <button class="modal-close" data-close="1">вњ•</button>
       </div>
       <div class="modal-body">
         <div class="payload-tabs">
@@ -484,9 +484,9 @@ zoom.us"></textarea>
           <div class="pf"><label>Mode / Connection</label><div class="pf-row"><code id="pf-mode">SSL/TLS</code><button class="btn-ghost mini" data-copy="pf-mode">copy</button></div></div>
           <div class="pf"><label>Port</label><div class="pf-row"><code id="pf-port">443</code><button class="btn-ghost mini" data-copy="pf-port">copy</button></div></div>
           <div class="pf full"><label>Payload</label><div class="pf-row"><code id="pf-payload"></code><button class="btn-ghost mini" data-copy="pf-payload">copy</button></div></div>
-          <div class="pf full"><label data-i18n="payload.notes">Комментарий</label><div id="pf-note" class="pf-note"></div></div>
+          <div class="pf full"><label data-i18n="payload.notes">РљРѕРјРјРµРЅС‚Р°СЂРёР№</label><div id="pf-note" class="pf-note"></div></div>
         </div>
-        <button id="copy-all-payload" class="btn-primary block" data-i18n="payload.copyAll">СКОПИРОВАТЬ ВСЁ</button>
+        <button id="copy-all-payload" class="btn-primary block" data-i18n="payload.copyAll">РЎРљРћРџРР РћР’РђРўР¬ Р’РЎРЃ</button>
       </div>
     </div>
   </div>
@@ -494,5 +494,6 @@ zoom.us"></textarea>
   <script src="i18n.js"></script>
   <script src="matrix.js"></script>
   <script src="app.js"></script>
+  <script src="shop-cta.js?v=260512235918"></script>
 </body>
 </html>

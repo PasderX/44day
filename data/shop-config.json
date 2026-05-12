@@ -1,0 +1,305 @@
+{
+  "enabled": true,
+  "currency": "AZN",
+  "payments": {
+    "usdt_trc20": "",
+    "usdt_bep20": "",
+    "m10_phone": "",
+    "m10_name": "",
+    "contact_telegram": "@baku_root"
+  },
+  "prices": {
+    "sni": {
+      "zero": {
+        "1d": {
+          "price": 15
+        },
+        "7d": {
+          "price": 40,
+          "old": 60
+        },
+        "30d": {
+          "price": 80
+        }
+      },
+      "whatsapp": {
+        "1d": {
+          "price": 8
+        },
+        "7d": {
+          "price": 20,
+          "old": 30
+        },
+        "30d": {
+          "price": 45
+        }
+      },
+      "telegram": {
+        "1d": {
+          "price": 8
+        },
+        "7d": {
+          "price": 20,
+          "old": 30
+        },
+        "30d": {
+          "price": 45
+        }
+      },
+      "facebook": {
+        "1d": {
+          "price": 10
+        },
+        "7d": {
+          "price": 25,
+          "old": 35
+        },
+        "30d": {
+          "price": 55
+        }
+      },
+      "instagram": {
+        "1d": {
+          "price": 10
+        },
+        "7d": {
+          "price": 25,
+          "old": 35
+        },
+        "30d": {
+          "price": 55
+        }
+      },
+      "tiktok": {
+        "1d": {
+          "price": 12
+        },
+        "7d": {
+          "price": 30
+        },
+        "30d": {
+          "price": 60
+        }
+      }
+    },
+    "http_injector": {
+      "zero": {
+        "1d": {
+          "price": 8
+        },
+        "7d": {
+          "price": 20,
+          "old": 30
+        },
+        "30d": {
+          "price": 45
+        }
+      },
+      "whatsapp": {
+        "1d": {
+          "price": 3
+        },
+        "7d": {
+          "price": 8,
+          "old": 12
+        },
+        "30d": {
+          "price": 18
+        }
+      },
+      "telegram": {
+        "1d": {
+          "price": 3
+        },
+        "7d": {
+          "price": 8,
+          "old": 12
+        },
+        "30d": {
+          "price": 18
+        }
+      },
+      "facebook": {
+        "1d": {
+          "price": 4
+        },
+        "7d": {
+          "price": 10,
+          "old": 15
+        },
+        "30d": {
+          "price": 22
+        }
+      },
+      "instagram": {
+        "1d": {
+          "price": 4
+        },
+        "7d": {
+          "price": 10,
+          "old": 15
+        },
+        "30d": {
+          "price": 22
+        }
+      },
+      "tiktok": {
+        "1d": {
+          "price": 5
+        },
+        "7d": {
+          "price": 12
+        },
+        "30d": {
+          "price": 25
+        }
+      }
+    },
+    "dark_tunnel": {
+      "zero": {
+        "1d": {
+          "price": 8
+        },
+        "7d": {
+          "price": 20,
+          "old": 30
+        },
+        "30d": {
+          "price": 45
+        }
+      },
+      "whatsapp": {
+        "1d": {
+          "price": 3
+        },
+        "7d": {
+          "price": 8,
+          "old": 12
+        },
+        "30d": {
+          "price": 18
+        }
+      },
+      "telegram": {
+        "1d": {
+          "price": 3
+        },
+        "7d": {
+          "price": 8,
+          "old": 12
+        },
+        "30d": {
+          "price": 18
+        }
+      },
+      "facebook": {
+        "1d": {
+          "price": 4
+        },
+        "7d": {
+          "price": 10,
+          "old": 15
+        },
+        "30d": {
+          "price": 22
+        }
+      },
+      "instagram": {
+        "1d": {
+          "price": 4
+        },
+        "7d": {
+          "price": 10,
+          "old": 15
+        },
+        "30d": {
+          "price": 22
+        }
+      },
+      "tiktok": {
+        "1d": {
+          "price": 5
+        },
+        "7d": {
+          "price": 12
+        },
+        "30d": {
+          "price": 25
+        }
+      }
+    },
+    "ha_tunnel": {
+      "zero": {
+        "1d": {
+          "price": 8
+        },
+        "7d": {
+          "price": 20,
+          "old": 30
+        },
+        "30d": {
+          "price": 45
+        }
+      },
+      "whatsapp": {
+        "1d": {
+          "price": 3
+        },
+        "7d": {
+          "price": 8,
+          "old": 12
+        },
+        "30d": {
+          "price": 18
+        }
+      },
+      "telegram": {
+        "1d": {
+          "price": 3
+        },
+        "7d": {
+          "price": 8,
+          "old": 12
+        },
+        "30d": {
+          "price": 18
+        }
+      },
+      "facebook": {
+        "1d": {
+          "price": 4
+        },
+        "7d": {
+          "price": 10,
+          "old": 15
+        },
+        "30d": {
+          "price": 22
+        }
+      },
+      "instagram": {
+        "1d": {
+          "price": 4
+        },
+        "7d": {
+          "price": 10,
+          "old": 15
+        },
+        "30d": {
+          "price": 22
+        }
+      },
+      "tiktok": {
+        "1d": {
+          "price": 5
+        },
+        "7d": {
+          "price": 12
+        },
+        "30d": {
+          "price": 25
+        }
+      }
+    }
+  }
+}
