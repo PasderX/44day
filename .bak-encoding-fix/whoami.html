@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <title>whoami вЂ” 44Day Hub</title>
+  <link rel="stylesheet" href="hub.css" />
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="theme-color" content="#00ff88"/>
+  <script src="boot.js?v=260509020715"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #000; color: #00ff66; font-family: 'JetBrains Mono', monospace; padding: 0; min-height: 100vh; }
+    .term { padding: 30px; max-width: 920px; margin: 0 auto; line-height: 1.5; font-size: 14px; }
+    .term pre { color: #00ff66; text-shadow: 0 0 8px rgba(0,255,100,0.5); margin: 0 0 24px; }
+    .line { white-space: pre-wrap; opacity: 0; animation: typeIn .04s forwards; }
+    @keyframes typeIn { to { opacity: 1; } }
+    .prompt { color: #5cd4ff; }
+    .cmd { color: #fff; }
+    .ok { color: #22c55e; }
+    .warn { color: #fbbf24; }
+    .err { color: #ef4444; }
+    .muted { color: #6b7280; }
+    a { color: #5cd4ff; }
+    .cursor::after { content: 'в–Љ'; animation: blink 1s steps(2) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+  <div class="term" id="term">
+    <pre>
+   в–„в–€   в–€в–„    в–€     в–„в–€в–€в–€в–€в–€в–€в–„    в–„в–€в–€в–€в–€в–€в–€в–€в–€   в–„в–€в–€в–€в–€в–€в–€в–€в–€   в–„в–„в–„в–„в–€в–€в–€в–„в–„в–„в–„    в–„в–€  
+  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€   в–€в–€в–€    в–€в–€в–€  в–€в–€в–€    в–€в–€в–€  в–€в–€в–€    в–€в–€в–€  в–„в–€в–€в–Ђв–Ђв–Ђв–€в–€в–€в–Ђв–Ђв–Ђв–€в–€в–„ в–€в–€в–€  
+  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€   в–€в–€в–€    в–€в–Ђ   в–€в–€в–€    в–€в–Ђ   в–€в–€в–€    в–€в–€в–€  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€ в–€в–€в–€в–Њ 
+  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€  в–„в–€в–€в–€в–„в–„в–„      в–€в–€в–€         в–€в–€в–€    в–€в–€в–€  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€ в–€в–€в–€в–Њ 
+  в–Ђв–€в–€в–€в–€в–€в–€в–€в–€в–€в–€в–€   в–Ђв–Ђв–€в–€в–€в–Ђв–Ђв–Ђ      в–Ђв–€в–€в–€в–€в–€в–€в–€в–€в–€в–€в–€ в–Ђв–€в–€в–€в–€в–€в–€в–€в–€в–€в–€в–€  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€ в–€в–€в–€в–Њ 
+    в–€в–€в–€   в–€в–€в–€   в–€в–€в–€           в–Ђв–Ђв–€в–€в–€в–€в–€в–€в–€в–€в–€в–„  в–€в–€в–€    в–€в–€в–€  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€ в–€в–€в–€  
+    в–€в–€в–€   в–€в–€в–€   в–€в–€в–€   в–„в–€    в–€в–€в–€    в–€в–€в–€    в–€в–€в–€  в–€в–€в–€    в–€в–€в–€  в–€в–€в–€   в–€в–€в–€   в–€в–€в–€ в–€в–€в–€  
+    в–Ђ     в–€в–€в–€   в–€в–Ђ  в–„в–€в–€в–€в–€в–€в–€в–€в–€в–Ђ     в–€в–€в–€    в–€в–€в–€   в–€в–Ђ     в–€в–€в–€    в–€в–Ђ   в–Ђв–€   в–€в–Ђ  в–€в–Ђ 
+                                в–Ђв–Ђв–Ђв–Ђв–Ђв–Ђв–Ђв–Ђ                              </pre>
+    <div id="output"></div>
+    <div class="line"><span class="prompt">root@44day:~$</span> <span class="cursor"></span></div>
+  </div>
+
+  <script>
+  const lines = [
+    { t: '<span class="prompt">root@44day:~$</span> <span class="cmd">whoami</span>' },
+    { t: '<span class="ok">user44</span>' },
+    { t: '' },
+    { t: '<span class="prompt">root@44day:~$</span> <span class="cmd">cat /etc/identity</span>' },
+    { t: 'РРјСЏ:        <span class="ok">44Day Team</span>' },
+    { t: 'Telegram:   <a href="https://t.me/baku_root" target="_blank">@baku_root</a>' },
+    { t: 'Р›РѕРєР°С†РёСЏ:    <span class="ok">Baku, Azerbaijan</span>' },
+    { t: 'РџСЂРѕС„РёР»СЊ:    cracks В· scripts В· tools В· cybersec В· free internet' },
+    { t: 'РџСЂРёРЅС†РёРїС‹:   <span class="warn">РѕР±СѓС‡РµРЅРёРµ в†’ РїСЂР°РєС‚РёРєР° в†’ Р·Р°С‰РёС‚Р°</span>' },
+    { t: '' },
+    { t: '<span class="prompt">root@44day:~$</span> <span class="cmd">uname -a</span>' },
+    { t: '<span class="muted">Linux 44day 6.6.0-arch1-1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux</span>' },
+    { t: '' },
+    { t: '<span class="prompt">root@44day:~$</span> <span class="cmd">echo $MISSION</span>' },
+    { t: 'Р”РµР»РёС‚СЊСЃСЏ Р·РЅР°РЅРёСЏРјРё. Р—Р°С‰РёС‰Р°С‚СЊ СЃР»Р°Р±С‹С…. Р›РѕРјР°С‚СЊ С‚РѕР»СЊРєРѕ С‚Рѕ, С‡С‚Рѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СЃР»РѕРјР°РЅРѕ.' },
+    { t: '' },
+    { t: '<span class="prompt">root@44day:~$</span> <span class="cmd">ls -la achievements/</span>' },
+    { t: '<span class="ok">drwxr-xr-x</span>  100+ bypass-vpn-azerbaijan.txt' },
+    { t: '<span class="ok">drwxr-xr-x</span>  500+ helped-users.log' },
+    { t: '<span class="ok">drwxr-xr-x</span>  в€ћ    knowledge-shared.db' },
+    { t: '' },
+    { t: '<span class="prompt">root@44day:~$</span> <span class="cmd">history | tail -3</span>' },
+    { t: '<span class="muted">996</span>  curl https://44day.local/' },
+    { t: '<span class="muted">997</span>  ./find_sni.sh' },
+    { t: '<span class="muted">998</span>  echo "join us"' },
+    { t: '' },
+    { t: '<span class="prompt">root@44day:~$</span> <span class="cmd">exit</span>' },
+    { t: '<span class="warn">Bye, hacker. <a href="/">Return to hub в†’</a></span>' },
+  ];
+  const out = document.getElementById('output');
+  let i = 0;
+  function nextLine() {
+    if (i >= lines.length) return;
+    const div = document.createElement('div');
+    div.className = 'line';
+    div.style.animationDelay = '0s';
+    div.innerHTML = lines[i].t || '&nbsp;';
+    out.appendChild(div);
+    i++;
+    setTimeout(nextLine, 200 + Math.random() * 80);
+  }
+  setTimeout(nextLine, 400);
+  </script>
+  <script src="shop-cta.js?v=260512235918"></script>
+</body>
+</html>

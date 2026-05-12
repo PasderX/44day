@@ -3880,3 +3880,132 @@ img, svg { display: block; max-width: 100%; }
   }
 }
 
+/* =====================================================================
+   ★★★ MOBILE OVERHAUL — comfortable phone layout ★★★
+   ===================================================================== */
+
+/* ---- Tablet & below (<= 900px) ---- */
+@media (max-width: 900px) {
+  /* Topbar: smaller paddings, allow wrapping for buttons */
+  .topbar-inner {
+    padding: 0 12px;
+    gap: 8px;
+    height: 50px;
+  }
+  /* Hide search trigger label, keep only icon */
+  .search-trigger {
+    min-width: 0;
+    width: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+  .search-trigger .st-text,
+  .search-trigger kbd { display: none; }
+  .search-trigger .st-icon { margin: 0; }
+
+  /* Shop CTA: icon-only on tablets/phones */
+  .shop-cta-btn { padding: 6px 10px; }
+  .shop-cta-btn .shop-cta-text {
+    font-size: 11px;
+    letter-spacing: 0.2px;
+  }
+}
+
+/* ---- Phone (<= 720px): main responsive pass ---- */
+@media (max-width: 720px) {
+  /* Topbar: hide secondary items, keep only essentials */
+  #music-player-mount { display: none; }
+  .theme-switch { display: none; }
+  /* admin icon hidden — admins use footer link */
+  .topbar-inner > a.icon-btn[href="/admin"] { display: none; }
+
+  /* Shop CTA: icon only (no text on tiny screens) */
+  .shop-cta-btn .shop-cta-text { display: none; }
+  .shop-cta-btn { padding: 6px 8px; min-width: 32px; justify-content: center; }
+
+  /* Marquee: a tiny bit smaller */
+  .shop-marquee { height: 24px; line-height: 24px; }
+
+  /* Main content padding */
+  .main { padding: 18px 12px 90px !important; }
+
+  /* ---- Bring back left rail as MOBILE BOTTOM NAV ---- */
+  .home-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .home-side-left {
+    display: flex !important;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    top: auto;
+    z-index: 70;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-top: 1px solid var(--border);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+  .home-side-left::-webkit-scrollbar { display: none; }
+  .home-side-left .rail-divider { display: none; }
+  .home-side-left .rail-btn {
+    width: 44px; height: 44px;
+    flex: 0 0 44px;
+    transform: none !important;
+  }
+  .home-side-left .rail-btn:hover { transform: none !important; }
+  :root[data-theme="light"] .home-side-left {
+    background: rgba(232, 228, 216, 0.94);
+  }
+
+  /* whoami right rail stays hidden as before */
+  .home-side-right { display: none; }
+
+  /* Scroll-top button — lift above bottom nav */
+  #scroll-top { bottom: 70px !important; right: 12px !important; }
+
+  /* Footer: tighter */
+  .footer { padding-bottom: 80px; }  /* breathing room for bottom nav */
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 12px;
+  }
+  .footer-disclaimer { padding: 12px; }
+  .disc-text { font-size: 12.5px; line-height: 1.55; }
+
+  /* Headings / typography */
+  .section-h { font-size: 14px; }
+  .prompt-line { font-size: 13px; }
+
+  /* Item rows: stack stats below title */
+  .item-row .i-title { font-size: 14px; }
+  .item-row .i-desc { font-size: 12px; }
+
+  /* Cat list: tighter rows */
+  .cat-row { padding: 12px; }
+  .cat-row .c-title { font-size: 14px; }
+  .cat-row .c-desc  { font-size: 12px; }
+
+  /* Article page */
+  .article-shell { padding: 18px 12px 90px; }
+
+  /* Operator filter chips — wrap & smaller */
+  .op-chip { padding: 5px 9px; font-size: 11px; }
+
+  /* Subcategory chips */
+  .chip { padding: 5px 9px; font-size: 11px; }
+}
+
+/* ---- Tiny phones (<= 380px) ---- */
+@media (max-width: 380px) {
+  .brand { font-size: 13px; }
+  .topbar-inner { gap: 6px; padding: 0 8px; }
+  .shop-mq-item { font-size: 9.5px; padding: 0 10px; }
+  .home-side-left .rail-btn { width: 40px; height: 40px; flex: 0 0 40px; }
+}
