@@ -90,10 +90,19 @@
       : (it.iconUrl ? `<img src="${esc(it.iconUrl)}" alt="" loading="lazy"/>` : esc(it.icon || '·'));
 
     const src = detectSource(it.downloadUrl);
-    const srcBadge = src && !isArticle ? `<span class="tag-src ${src.cls}">${esc(src.label)}</span>` : '';
+    // GitHub/site badge — clickable
+    const srcBadge = src && !isArticle && it.downloadUrl
+      ? `<a class="tag-src ${src.cls}" href="${esc(it.downloadUrl)}" target="_blank" rel="noopener" data-track="${esc(it.id)}" onclick="event.stopPropagation()">${esc(src.label)}</a>`
+      : '';
     const hotBadge = isHot ? `<span class="tag-hot">HOT</span>` : '';
     const statusBadge = it.status ? `<span class="tag-status ${esc(it.status)}">${esc(it.status)}</span>` : '';
     const formatBadge = it.format ? `<span class="tag-format">${esc(it.format)}</span>` : '';
+
+    // Primary destination on name-click — article page for articles, downloadUrl for tools
+    const primaryHref = isArticle
+      ? `/article/${esc(it.id)}`
+      : (it.downloadUrl ? esc(it.downloadUrl) : (it.modUrl ? esc(it.modUrl) : ''));
+    const primaryTarget = isArticle ? '' : ' target="_blank" rel="noopener"';
 
     let actions = '';
     if (isArticle) {
@@ -108,11 +117,16 @@
       actions = orig + mod;
     }
 
+    // Name span — clickable when there's a destination
+    const nameHtml = primaryHref
+      ? `<a class="i-name-link" href="${primaryHref}"${primaryTarget} data-track="${esc(it.id)}">${esc(name)}</a>`
+      : `<span>${esc(name)}</span>`;
+
     return `
     <li class="item-row" data-id="${esc(it.id)}">
       <div class="i-icon">${iconHtml}</div>
       <div class="i-meta">
-        <div class="i-name"><span>${esc(name)}</span>${formatBadge}${statusBadge}${hotBadge}${srcBadge}</div>
+        <div class="i-name">${nameHtml}${formatBadge}${statusBadge}${hotBadge}${srcBadge}</div>
         <div class="i-desc">${esc(desc)}</div>
       </div>
       <div class="i-stat">${isArticle ? fmtNum(dlCount) : '↓ ' + fmtNum(dlCount)}</div>
