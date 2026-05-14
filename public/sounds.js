@@ -38,15 +38,20 @@
 
   window.snd = (name) => { try { (SFX[name] || (() => {}))(); } catch (_) {} };
 
-  // hover-tick on rail buttons & topbar
+  // hover-tick — fires ONCE when cursor truly enters an element from outside.
+  // Previous version used `mouseover` which bubbles from child SVG/span moves,
+  // causing 5–10 beeps/sec. Fix: with `mouseover`, the related target is the
+  // element we came FROM. If that element is INSIDE the same button, we're
+  // just moving between internal parts — skip the sound.
+  const HOVER_SEL = '.rail-btn, .theme-btn, .lang-btn, .search-trigger, .mp-trigger, .aa-btn';
   document.addEventListener('mouseover', (e) => {
-    const t = e.target.closest && e.target.closest('.rail-btn, .theme-btn, .lang-btn, .search-trigger, .mp-trigger, .aa-btn');
-    if (t && !t.dataset.sndHover) { t.dataset.sndHover = '1'; window.snd('tick'); }
+    const t = e.target.closest && e.target.closest(HOVER_SEL);
+    if (!t) return;
+    // If we came from somewhere inside the same button, ignore.
+    if (e.relatedTarget && t.contains(e.relatedTarget)) return;
+    window.snd('tick');
   });
-  document.addEventListener('mouseout', (e) => {
-    const t = e.target.closest && e.target.closest('.rail-btn, .theme-btn, .lang-btn, .search-trigger, .mp-trigger, .aa-btn');
-    if (t) delete t.dataset.sndHover;
-  });
+
   // click feedback
   document.addEventListener('click', (e) => {
     const t = e.target.closest && e.target.closest('.rail-btn, .theme-btn, .lang-btn, .search-trigger, .mp-trigger, .item-row, .cat-row, .read-btn');

@@ -47,20 +47,20 @@
 
 /* light theme — простая инверсия (не ломает minimal-стиль) */
 :root[data-theme="light"] {
-  --bg:           #e8e4d8;   /* warm matte cream — main bg */
-  --bg-elev:     #efeae0;   /* cards / elevated */
-  --panel:       #efeae0;
-  --panel-2:     #e0dccf;
-  --border:      #d0cab9;
-  --border-soft: #c3bda9;
-  --border-hi:   #8e8773;
-  --text:        #2a2925;   /* warm dark, not pure black */
-  --text-dim:    #4a4843;
-  --muted:       #807c72;
-  --muted-2:     #a39e90;
-  --acc:         #138a3d;   /* slightly darker green for AA contrast on cream */
-  --acc-bright:  #0e6b2d;
-  --acc-glow:    rgba(19, 138, 61, 0.13);
+  --bg:           #d6cfb8;   /* warm parchment — dimmer, easier on eyes */
+  --bg-elev:     #dcd5be;   /* cards / elevated, slight contrast */
+  --panel:       #dcd5be;
+  --panel-2:     #cdc5ad;
+  --border:      #b8b099;
+  --border-soft: #aba38a;
+  --border-hi:   #7e7762;
+  --text:        #2d2a22;   /* warm dark, not pure black */
+  --text-dim:    #4d4a3f;
+  --muted:       #7a7565;
+  --muted-2:     #9a9382;
+  --acc:         #137a36;   /* darker green — better contrast on parchment */
+  --acc-bright:  #0c5a24;
+  --acc-glow:    rgba(19, 122, 54, 0.13);
 }
 
 /* ---------- Reset ---------- */
@@ -102,7 +102,7 @@ img, svg { display: block; max-width: 100%; }
   -webkit-backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--border);
 }
-:root[data-theme="light"] .topbar { background: rgba(232,228,216,0.88); }
+:root[data-theme="light"] .topbar { background: rgba(214,207,184,0.92); }
 
 .topbar-inner {
   max-width: var(--max-w);
@@ -655,6 +655,97 @@ img, svg { display: block; max-width: 100%; }
 .article-content li { margin: 4px 0; }
 .article-content a { color: var(--acc); border-bottom: 1px dotted var(--acc); }
 .article-content a:hover { color: var(--acc-bright); border-color: var(--acc-bright); }
+
+/* ---- Custom article blocks (::github / ::download / ::warn / ::tip) ---- */
+.art-code { position: relative; }
+.art-code-copy {
+  position: absolute; top: 8px; right: 8px;
+  background: rgba(0,255,136,0.08);
+  border: 1px solid rgba(0,255,136,0.3);
+  color: var(--acc);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .15s, background .15s;
+}
+.art-code:hover .art-code-copy { opacity: 1; }
+.art-code-copy:hover { background: rgba(0,255,136,0.18); }
+.art-code-copy.is-ok { background: rgba(0,255,136,0.25); border-color: var(--acc); }
+
+.art-gh-card {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  margin: 14px 0;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(0,255,136,0.04), rgba(0,255,136,0.09));
+  border: 1px solid var(--border) !important;
+  border-radius: 10px;
+  text-decoration: none !important;
+  color: var(--text) !important;
+  transition: transform .15s, border-color .15s, box-shadow .15s, background .15s;
+}
+.art-gh-card:hover {
+  border-color: var(--acc) !important;
+  background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,255,136,0.16));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(0,255,136,0.18);
+}
+.art-gh-icon { color: var(--text); flex-shrink: 0; }
+.art-gh-card:hover .art-gh-icon { color: var(--acc); }
+.art-gh-body { flex: 1; min-width: 0; }
+.art-gh-name { font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--acc); }
+.art-gh-desc { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+.art-gh-arrow { font-size: 22px; color: var(--acc); flex-shrink: 0; transition: transform .15s; }
+.art-gh-card:hover .art-gh-arrow { transform: translateX(3px); }
+
+.art-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 6px 8px 0;
+  padding: 9px 16px;
+  background: var(--acc);
+  color: #000 !important;
+  border: 0 !important;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none !important;
+  letter-spacing: 0.3px;
+  transition: transform .15s, box-shadow .15s, background .15s;
+}
+.art-dl-btn:hover {
+  background: var(--acc-bright);
+  color: #000 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0,255,136,0.4);
+}
+
+.art-callout {
+  margin: 14px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 3px solid;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.art-callout.warn {
+  background: rgba(255,170,40,0.08);
+  border-left-color: #ffaa28;
+  color: var(--text);
+}
+.art-callout.warn::before { content: "⚠ "; font-weight: 700; color: #ffaa28; }
+.art-callout.tip {
+  background: rgba(0,255,136,0.06);
+  border-left-color: var(--acc);
+  color: var(--text);
+}
+.art-callout.tip::before { content: "💡 "; }
 
 /* reading progress */
 #reading-progress {
@@ -1839,6 +1930,49 @@ img, svg { display: block; max-width: 100%; }
   gap: 14px;
 }
 
+/* whoami widget — light theme overrides */
+:root[data-theme="light"] .wa-widget {
+  background: var(--bg-elev);
+  border-color: var(--border);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08);
+}
+:root[data-theme="light"] .wa-bar {
+  background: var(--panel-2);
+  border-bottom-color: var(--border);
+}
+:root[data-theme="light"] .wa-title { color: var(--text-dim); }
+:root[data-theme="light"] .wa-btn {
+  background: var(--bg);
+  border-color: var(--border-soft);
+  color: var(--text);
+}
+:root[data-theme="light"] .wa-btn:hover {
+  background: var(--bg-elev);
+  border-color: var(--acc);
+  color: var(--acc-bright);
+}
+:root[data-theme="light"] .wa-actions { border-top-color: var(--border); }
+/* Inline colors from whoami-widget.js are tuned for dark theme — override
+   for parchment readability. Need !important to beat inline style="color:..." */
+:root[data-theme="light"] .wa-prov[style*="color"] {
+  color: var(--acc-bright) !important;
+  font-weight: 700;
+}
+:root[data-theme="light"] .wa-v[style*="color:#ff"] {
+  color: #b3261e !important; /* readable red on parchment */
+}
+
+/* Tooltip — keep dark background in light theme too (terminal feel),
+   but force a BRIGHT green text since the default --acc-bright is dark
+   on light theme (unreadable on a black tooltip). */
+:root[data-theme="light"] [data-tip]::after {
+  color: #00ff88;
+  border-color: #00ff88;
+  text-shadow: 0 0 4px rgba(0,255,136,.3);
+}
+:root[data-theme="light"] [data-tip]::before { border-top-color: #00ff88; }
+:root[data-theme="light"] [data-tip-pos="bottom"]::before { border-top-color: transparent; border-bottom-color: #00ff88; }
+
 /* ============== whoami widget — COMPACT (sidebar) ============== */
 .wa-widget.compact {
   margin: 0;
@@ -2999,16 +3133,23 @@ img, svg { display: block; max-width: 100%; }
 }
 .op-card { align-items: center; text-align: center; padding: 22px 14px; }
 .op-card-logo {
-  width: 56px; height: 56px;
+  width: 64px; height: 64px;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  font-family: var(--font-mono);
-  font-size: 24px; font-weight: 800;
-  margin-bottom: 4px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  margin-bottom: 6px;
+  overflow: hidden;
+  transition: transform .15s, border-color .15s;
 }
-.op-card-logo.bakcell { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #000; }
-.op-card-logo.azercell { background: linear-gradient(135deg, #1e88e5, #0d47a1); color: #fff; }
-.op-card-logo.nar { background: linear-gradient(135deg, #ff5252, #c62828); color: #fff; }
+.op-card:hover .op-card-logo { transform: scale(1.05); border-color: var(--acc); }
+.op-card-logo img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  display: block;
+}
+:root[data-theme="light"] .op-card-logo { background: rgba(0,0,0,0.04); }
 .op-card-name { font-weight: 700; font-size: 16px; }
 .op-card-tag { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); }
 
@@ -3923,8 +4064,9 @@ img, svg { display: block; max-width: 100%; }
   .shop-cta-btn .shop-cta-text { display: none; }
   .shop-cta-btn { padding: 6px 8px; min-width: 32px; justify-content: center; }
 
-  /* Marquee: a tiny bit smaller */
-  .shop-marquee { height: 24px; line-height: 24px; }
+  /* Marquee: a tiny bit smaller on mobile but still tall enough for logos */
+  .shop-marquee { height: 28px !important; line-height: 28px !important; }
+  .shop-mq-logo { height: 18px !important; }
 
   /* Main content padding */
   .main { padding: 18px 12px 90px !important; }
@@ -3959,7 +4101,7 @@ img, svg { display: block; max-width: 100%; }
   }
   .home-side-left .rail-btn:hover { transform: none !important; }
   :root[data-theme="light"] .home-side-left {
-    background: rgba(232, 228, 216, 0.94);
+    background: rgba(214, 207, 184, 0.94);
   }
 
   /* whoami right rail stays hidden as before */
@@ -4000,6 +4142,49 @@ img, svg { display: block; max-width: 100%; }
 
   /* Subcategory chips */
   .chip { padding: 5px 9px; font-size: 11px; }
+
+  /* ---- Collapsible disclaimer on mobile ---- */
+  .footer-disclaimer .disc-text {
+    max-height: 4.5em; /* ~3 lines peek */
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 6px;
+    -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 60%, transparent 100%);
+    transition: max-height .25s ease;
+  }
+  .footer-disclaimer.is-open .disc-text {
+    max-height: 800px;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .disc-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 0 2px;
+    padding: 5px 10px;
+    background: rgba(0,255,136,0.08);
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 6px;
+    color: var(--acc-bright);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .disc-toggle:hover, .disc-toggle:focus {
+    background: rgba(0,255,136,0.14);
+    border-color: rgba(0,255,136,0.5);
+    outline: none;
+  }
+  .disc-toggle .dt-arrow { font-size: 10px; line-height: 1; transition: transform .15s; }
+}
+
+/* Hide collapse button on desktop — full disclaimer always visible */
+@media (min-width: 721px) {
+  .disc-toggle { display: none !important; }
 }
 
 /* ---- Tiny phones (<= 380px) ---- */

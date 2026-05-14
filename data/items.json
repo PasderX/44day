@@ -276,8 +276,11 @@
       "downloadUrl": "https://f-droid.org/en/packages/com.termux/",
       "modUrl": "https://github.com/termux/termux-app/releases",
       "rating": 4.7,
-      "downloads": 0,
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-12": 1
+      }
     },
     {
       "id": "and-acode",
@@ -295,8 +298,11 @@
       "downloadUrl": "https://play.google.com/store/apps/details?id=com.foxdebug.acode",
       "modUrl": "",
       "rating": 4.5,
-      "downloads": 0,
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "downloads": 1,
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "daily": {
+        "2026-05-12": 1
+      }
     },
     {
       "id": "and-zanti",

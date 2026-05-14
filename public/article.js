@@ -5,21 +5,54 @@
   const id = location.pathname.split('/').pop();
 
   // tiny markdown renderer (subset: # / ## / ### / ``` / `code` / **bold** / *em* / [link](url) / lists / blockquote)
+  // + custom blocks:  ::github user/repo | desc   ::download URL | label   ::warn text   ::tip text
   function md(src) {
     if (!src) return '';
     src = src.replace(/\r\n/g, '\n');
 
-    // fenced code
     const blocks = [];
-    src = src.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => {
-      blocks.push(`<pre><code class="lang-${lang || 'txt'}">${esc(code)}</code></pre>`);
+    const stash = (html) => {
+      blocks.push(html);
       return `\u0000B${blocks.length - 1}\u0000`;
-    });
+    };
+
+    // fenced code
+    src = src.replace(/```(\w*)\n([\s\S]*?)```/g, (_, lang, code) => stash(
+      `<pre class="art-code"><button class="art-code-copy" data-tip="скопировать" type="button">copy</button><code class="lang-${lang || 'txt'}">${esc(code)}</code></pre>`
+    ));
+
+    // ::github user/repo | description
+    src = src.replace(/^::github\s+([\w.\-]+\/[\w.\-]+)\s*(?:\|\s*(.+))?$/gm, (_, repo, desc) => stash(
+      `<a class="art-gh-card" href="https://github.com/${repo}" target="_blank" rel="noopener">` +
+        `<svg class="art-gh-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.7-5.5 6 .5.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>` +
+        `<div class="art-gh-body"><div class="art-gh-name">${esc(repo)}</div>` +
+        `<div class="art-gh-desc">${esc(desc || 'GitHub репозиторий')}</div></div>` +
+        `<span class="art-gh-arrow">→</span></a>`
+    ));
+
+    // ::download URL | label
+    src = src.replace(/^::download\s+(\S+)\s*(?:\|\s*(.+))?$/gm, (_, url, label) => stash(
+      `<a class="art-dl-btn" href="${url}" target="_blank" rel="noopener">⬇ ${esc(label || 'Скачать')}</a>`
+    ));
+
+    // ::warn ... / ::tip ... (single-line callout)
+    src = src.replace(/^::warn\s+(.+)$/gm, (_, text) => stash(
+      `<div class="art-callout warn">${esc(text)}</div>`
+    ));
+    src = src.replace(/^::tip\s+(.+)$/gm, (_, text) => stash(
+      `<div class="art-callout tip">${esc(text)}</div>`
+    ));
 
     const lines = src.split('\n');
     const out = [];
     let inList = null;
     for (let line of lines) {
+      // standalone block placeholder — emit as-is (don't wrap in <p>)
+      if (/^\u0000B\d+\u0000$/.test(line.trim())) {
+        if (inList) { out.push(`</${inList}>`); inList = null; }
+        out.push(line);
+        continue;
+      }
       // headings
       const h = line.match(/^(#{1,3})\s+(.+)$/);
       if (h) {
@@ -102,6 +135,21 @@
 
     // markdown content
     document.getElementById('art-content').innerHTML = md(content) || `<p class="dim">${esc(desc)}</p>`;
+
+    // wire copy buttons inside <pre> code blocks
+    document.querySelectorAll('.art-code-copy').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const code = btn.parentNode.querySelector('code');
+        if (!code) return;
+        navigator.clipboard.writeText(code.textContent).then(() => {
+          const old = btn.textContent;
+          btn.textContent = '✓ ok';
+          btn.classList.add('is-ok');
+          if (window.snd) window.snd('pop');
+          setTimeout(() => { btn.textContent = old; btn.classList.remove('is-ok'); }, 1200);
+        }).catch(() => {});
+      });
+    });
 
     // likes + share
     renderActions(it);
