@@ -34,13 +34,14 @@
     return it[key] || '';
   }
 
-  function tagLabel() {
-    return window.t ? (window.t('home.featured') || 'top 5') : 'top 5';
+  // Safe translate: return fallback if key returns itself (missing key)
+  function tt(key, fallback) {
+    if (!window.t) return fallback;
+    const v = window.t(key);
+    return (!v || v === key) ? fallback : v;
   }
-
-  function readLabel() {
-    return window.t ? (window.t('action.read') || 'читать') : 'читать';
-  }
+  function tagLabel()  { return tt('home.featured', 'рекомендуем'); }
+  function readLabel() { return tt('btn.read', 'читать'); }
 
   function buildSlide(it, i) {
     const title = field(it, 'name') || it.id;

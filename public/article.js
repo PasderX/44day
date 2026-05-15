@@ -43,6 +43,23 @@
       `<div class="art-callout tip">${esc(text)}</div>`
     ));
 
+    // GitHub-flavor tables:
+    //   | h1 | h2 |
+    //   |----|----|
+    //   | a  | b  |
+    src = src.replace(
+      /^\|(.+)\|\n\|\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)+\|\n((?:\|.+\|\n?)+)/gm,
+      (_, head, body) => {
+        const cells = (row) => row.trim().replace(/^\||\|$/g, '').split('|').map((s) => s.trim());
+        const ths = cells(head).map((c) => `<th>${inline(c)}</th>`).join('');
+        const trs = body.trim().split('\n').map((r) => {
+          const tds = cells(r).map((c) => `<td>${inline(c)}</td>`).join('');
+          return `<tr>${tds}</tr>`;
+        }).join('');
+        return stash(`<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`);
+      }
+    );
+
     const lines = src.split('\n');
     const out = [];
     let inList = null;
@@ -103,12 +120,12 @@
 
   async function load() {
     try {
-      const r = await fetch('/api/items/' + encodeURIComponent(id));
+      const r = await fetch('/api/items/' + encodeURIComponent(id), { credentials: 'same-origin' });
       const data = await r.json();
       if (!r.ok) throw new Error(data.error || 'http_' + r.status);
       const it = data.item;
       if (!it || it.type !== 'article') throw new Error('not_article');
-      render(it);
+      render(it, data);
       // bump view
       fetch(`/api/items/${encodeURIComponent(id)}/track`, { method: 'POST' }).catch(() => {});
     } catch (e) {
@@ -117,7 +134,32 @@
     }
   }
 
-  function render(it) {
+  function lockOverlayHtml() {
+    const next = encodeURIComponent(location.pathname);
+    return `
+      <div class="art-lock">
+        <div class="art-lock-fade"></div>
+        <div class="art-lock-card">
+          <div class="art-lock-icon">🔒</div>
+          <h3 class="art-lock-title">это закрытая статья</h3>
+          <p class="art-lock-text">
+            Полный гайд, GitHub-ссылки и кнопки скачивания доступны только
+            <strong>зарегистрированным пользователям</strong>. Регистрация бесплатная и занимает 20 секунд.
+          </p>
+          <div class="art-lock-actions">
+            <a class="art-lock-btn primary" href="/register">🎁 создать аккаунт</a>
+            <a class="art-lock-btn ghost" href="/login?next=${next}">войти</a>
+          </div>
+          <ul class="art-lock-perks">
+            <li>🔓 доступ ко всем закрытым гайдам</li>
+            <li>🔥 streak и достижения</li>
+            <li>⭐ синк избранного между устройствами</li>
+          </ul>
+        </div>
+      </div>`;
+  }
+
+  function render(it, data) {
     const title = window.tField(it, 'name') || it.id;
     const content = window.tField(it, 'content') || '';
     const desc = window.tField(it, 'description') || '';
@@ -133,8 +175,12 @@
     const back = document.getElementById('article-back');
     if (back && it.category) back.href = '/section/' + it.category;
 
-    // markdown content
-    document.getElementById('art-content').innerHTML = md(content) || `<p class="dim">${esc(desc)}</p>`;
+    // markdown content (+ lock overlay if needed)
+    const cont = document.getElementById('art-content');
+    const baseHtml = md(content) || `<p class="dim">${esc(desc)}</p>`;
+    const isLocked = data && data.locked;
+    cont.classList.toggle('is-locked', !!isLocked);
+    cont.innerHTML = baseHtml + (isLocked ? lockOverlayHtml() : '');
 
     // wire copy buttons inside <pre> code blocks
     document.querySelectorAll('.art-code-copy').forEach((btn) => {

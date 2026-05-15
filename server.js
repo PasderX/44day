@@ -8,6 +8,7 @@ const http = require('http');
 const tls = require('tls');
 const net = require('net');
 const crypto = require('crypto');
+const auth = require('./auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,6 +31,9 @@ app.get('/favorites', (_req, res) => res.sendFile(path.join(__dirname, 'public',
 app.get('/whoami', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'whoami.html')));
 app.get('/shop', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'shop.html')));
 app.get('/shop/order/:id', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'shop-order.html')));
+app.get('/login', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
+app.get('/register', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'register.html')));
+app.get('/profile', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'profile.html')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -112,12 +116,45 @@ app.get('/api/items', (req, res) => {
   }
   res.json({ items: out.map(stripContent) });
 });
-// Full single item (with content for articles)
+// Full single item (with content for articles).
+// For locked items the content is truncated for guests and non-unlocked users.
 app.get('/api/items/:id', (req, res) => {
   const { items } = loadItems();
   const it = items.find((x) => x.id === req.params.id);
   if (!it) return res.status(404).json({ error: 'not_found' });
-  res.json({ item: it });
+
+  const user = auth.currentUser(req);
+  const locked = it.access === 'registered' || it.access === 'pro';
+  const unlocked = user && (
+    (user.unlocked || []).includes(it.id)
+    || (it.access === 'registered')
+    || user.role === 'admin'
+  );
+
+  // Free or unlocked → full content
+  if (!locked || (user && unlocked)) {
+    return res.json({ item: it, locked: false, user: auth.publicUser(user) });
+  }
+
+  // Locked & guest → return preview (first ~30%) + locked flag
+  const preview = (s) => {
+    if (!s) return '';
+    const cut = Math.max(300, Math.floor(s.length * 0.30));
+    return s.slice(0, cut) + '\n\n…';
+  };
+  const trimmed = {
+    ...it,
+    content: preview(it.content),
+    content_az: preview(it.content_az),
+    downloadUrl: undefined,
+    modUrl: undefined,
+  };
+  res.json({
+    item: trimmed,
+    locked: true,
+    requiredAccess: it.access || 'registered',
+    user: auth.publicUser(user),
+  });
 });
 
 // admin login
@@ -138,6 +175,137 @@ app.post('/api/admin/logout', (req, res) => {
   res.json({ ok: true });
 });
 app.get('/api/admin/check', (req, res) => res.json({ authed: isAuthed(req) }));
+
+// =================== USER AUTH ===================
+// in-memory rate-limit (ip -> { count, resetAt })
+const authRateLimit = new Map();
+function rateLimit(req, res, max = 8, windowMs = 60 * 1000) {
+  const ip = (req.headers['x-forwarded-for'] || req.ip || 'unknown').toString().split(',')[0].trim();
+  const now = Date.now();
+  const rec = authRateLimit.get(ip);
+  if (!rec || rec.resetAt < now) {
+    authRateLimit.set(ip, { count: 1, resetAt: now + windowMs });
+    return true;
+  }
+  rec.count++;
+  if (rec.count > max) {
+    res.status(429).json({ error: 'rate_limited', retryAfter: Math.ceil((rec.resetAt - now) / 1000) });
+    return false;
+  }
+  return true;
+}
+
+// register
+app.post('/api/auth/register', (req, res) => {
+  if (!rateLimit(req, res)) return;
+  const { username, email, password } = req.body || {};
+  if (!username || !auth.RE_USERNAME.test(username)) {
+    return res.status(400).json({ error: 'bad_username', message: 'Логин: 3-20 латинских букв/цифр/_' });
+  }
+  if (!email || !auth.RE_EMAIL.test(email)) {
+    return res.status(400).json({ error: 'bad_email', message: 'Неверный email' });
+  }
+  if (!password || password.length < 6) {
+    return res.status(400).json({ error: 'bad_password', message: 'Пароль минимум 6 символов' });
+  }
+  const db = auth.loadUsers();
+  const u = (s) => (s || '').toLowerCase();
+  if (db.users.find((x) => u(x.username) === u(username))) {
+    return res.status(409).json({ error: 'username_taken', message: 'Логин занят' });
+  }
+  if (db.users.find((x) => u(x.email) === u(email))) {
+    return res.status(409).json({ error: 'email_taken', message: 'Email уже зарегистрирован' });
+  }
+  const now = new Date().toISOString();
+  const newUser = {
+    id: auth.newUserId(),
+    username: username.trim(),
+    email: email.toLowerCase().trim(),
+    passwordHash: auth.hashPassword(password),
+    role: 'user',
+    createdAt: now,
+    lastSeen: now,
+    streak: 1,
+    unlocked: [],     // ids of unlocked PRO items
+    achievements: [{
+      id: 'welcome',
+      icon: '🎁',
+      name: 'Welcome bonus',
+      at: now,
+    }],
+    avatar: null,
+  };
+  db.users.push(newUser);
+  auth.saveUsers(db);
+
+  const token = auth.makeToken(newUser.id);
+  auth.setSessionCookie(res, token);
+  res.json({ ok: true, user: auth.publicUser(newUser) });
+});
+
+// login
+app.post('/api/auth/login', (req, res) => {
+  if (!rateLimit(req, res, 10)) return;
+  const { login, password } = req.body || {};
+  if (!login || !password) {
+    return res.status(400).json({ error: 'missing_fields' });
+  }
+  const db = auth.loadUsers();
+  const id = (login || '').toLowerCase().trim();
+  const user = db.users.find(
+    (x) => x.username.toLowerCase() === id || (x.email || '').toLowerCase() === id
+  );
+  if (!user || user.banned) {
+    return res.status(401).json({ error: 'invalid_credentials', message: 'Неверный логин или пароль' });
+  }
+  if (!auth.verifyPassword(password, user.passwordHash)) {
+    return res.status(401).json({ error: 'invalid_credentials', message: 'Неверный логин или пароль' });
+  }
+  auth.touchUser(user.id);
+  const token = auth.makeToken(user.id);
+  auth.setSessionCookie(res, token);
+  // re-read to pick up streak/achievement updates
+  const fresh = auth.loadUsers().users.find((x) => x.id === user.id) || user;
+  res.json({ ok: true, user: auth.publicUser(fresh) });
+});
+
+// logout
+app.post('/api/auth/logout', (_req, res) => {
+  auth.clearSessionCookie(res);
+  res.json({ ok: true });
+});
+
+// who am I
+app.get('/api/auth/me', (req, res) => {
+  const user = auth.currentUser(req);
+  if (!user) return res.json({ user: null });
+  auth.touchUser(user.id);
+  const fresh = auth.loadUsers().users.find((x) => x.id === user.id) || user;
+  res.json({ user: auth.publicUser(fresh) });
+});
+
+// unlock pro item (placeholder for future paid flow — currently uses earned points)
+app.post('/api/auth/unlock/:itemId', auth.requireUser, (req, res) => {
+  const db = auth.loadUsers();
+  const u = db.users.find((x) => x.id === req.user.id);
+  if (!u) return res.status(404).json({ error: 'no_user' });
+  const itemId = req.params.itemId;
+  u.unlocked = u.unlocked || [];
+  if (!u.unlocked.includes(itemId)) u.unlocked.push(itemId);
+  auth.saveUsers(db);
+  res.json({ ok: true, unlocked: u.unlocked });
+});
+
+// update profile (avatar emoji, etc.)
+app.put('/api/auth/profile', auth.requireUser, (req, res) => {
+  const { avatar } = req.body || {};
+  const db = auth.loadUsers();
+  const u = db.users.find((x) => x.id === req.user.id);
+  if (!u) return res.status(404).json({ error: 'no_user' });
+  if (typeof avatar === 'string' && avatar.length <= 4) u.avatar = avatar;
+  auth.saveUsers(db);
+  res.json({ ok: true, user: auth.publicUser(u) });
+});
 
 // admin CRUD
 app.post('/api/items', requireAuth, (req, res) => {
