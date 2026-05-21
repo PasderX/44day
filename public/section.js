@@ -97,16 +97,24 @@
     const hotBadge = isHot ? `<span class="tag-hot">HOT</span>` : '';
     const statusBadge = it.status ? `<span class="tag-status ${esc(it.status)}">${esc(it.status)}</span>` : '';
     const formatBadge = it.format ? `<span class="tag-format">${esc(it.format)}</span>` : '';
+    // PRO/locked badge (server marks unauth-accessible items with locked:true)
+    const isLocked = it.locked === true || it.access === 'registered' || it.access === 'pro';
+    const lockBadge = isLocked ? `<span class="tag-lock" title="доступно после входа">🔒 PRO</span>` : '';
 
     // Primary destination on name-click — article page for articles, downloadUrl for tools
     const primaryHref = isArticle
       ? `/article/${esc(it.id)}`
-      : (it.downloadUrl ? esc(it.downloadUrl) : (it.modUrl ? esc(it.modUrl) : ''));
-    const primaryTarget = isArticle ? '' : ' target="_blank" rel="noopener"';
+      : (isLocked && !it.downloadUrl ? '/login?next=' + encodeURIComponent(location.pathname)
+          : (it.downloadUrl ? esc(it.downloadUrl) : (it.modUrl ? esc(it.modUrl) : '')));
+    const primaryTarget = isArticle || (isLocked && !it.downloadUrl) ? '' : ' target="_blank" rel="noopener"';
 
     let actions = '';
     if (isArticle) {
       actions = `<a class="dl-btn primary" href="/article/${esc(it.id)}" data-track="${esc(it.id)}" data-article="1">${window.t('btn.read')}</a>`;
+    } else if (isLocked && !it.downloadUrl) {
+      // Guest sees locked tool — show "войти" CTA instead of download buttons
+      const next = encodeURIComponent(location.pathname);
+      actions = `<a class="dl-btn primary lock" href="/login?next=${next}">🔒 войти</a>`;
     } else {
       const orig = it.downloadUrl
         ? `<a class="dl-btn primary" href="${esc(it.downloadUrl)}" target="_blank" rel="noopener" data-track="${esc(it.id)}">${window.t('btn.original')}</a>`
@@ -126,7 +134,7 @@
     <li class="item-row" data-id="${esc(it.id)}">
       <div class="i-icon">${iconHtml}</div>
       <div class="i-meta">
-        <div class="i-name">${nameHtml}${formatBadge}${statusBadge}${hotBadge}${srcBadge}</div>
+        <div class="i-name">${nameHtml}${lockBadge}${formatBadge}${statusBadge}${hotBadge}${srcBadge}</div>
         <div class="i-desc">${esc(desc)}</div>
       </div>
       <div class="i-stat">${isArticle ? fmtNum(dlCount) : '↓ ' + fmtNum(dlCount)}</div>

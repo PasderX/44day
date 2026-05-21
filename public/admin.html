@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="/" />
-  <title>admin � 44day_</title>
+  <title>admin — 44day_</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
         <button class="theme-btn is-active" data-theme="dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
         <button class="theme-btn" data-theme="light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
       </div>
-      <a href="/" class="nav-link" title="�� ����">< site</a>
+      <a href="/" class="nav-link" title="на сайт">< site</a>
     </div>
   </header>
 
@@ -33,9 +33,9 @@
     <section id="login">
       <div class="admin-login">
         <h1>ADMIN</h1>
-        <input id="login-pass" type="password" placeholder="������..." autocomplete="off"/>
+        <input id="login-pass" type="password" placeholder="пароль..." autocomplete="off"/>
         <div id="login-error" class="admin-error"></div>
-        <button id="login-btn" class="btn-primary">�����</button>
+        <button id="login-btn" class="btn-primary">войти</button>
       </div>
     </section>
 
@@ -50,129 +50,129 @@
 
       <!-- TABS -->
       <nav class="admin-tabs">
-        <button class="ad-tab active" data-tab="items">������</button>
-        <button class="ad-tab" data-tab="categories">���������</button>
-        <button class="ad-tab" data-tab="config">���������</button>
-        <button class="ad-tab" data-tab="stats">����������</button>
-        <button class="ad-tab ad-tab-shop" data-tab="shop">?? �������</button>
+        <button class="ad-tab active" data-tab="items">записи</button>
+        <button class="ad-tab" data-tab="categories">категории</button>
+        <button class="ad-tab" data-tab="config">настройки</button>
+        <button class="ad-tab" data-tab="stats">статистика</button>
+        <button class="ad-tab ad-tab-shop" data-tab="shop">🛒 магазин</button>
         <div class="ad-tabs-spacer"></div>
-        <button id="logout-btn" class="btn-ghost">�����</button>
+        <button id="logout-btn" class="btn-ghost">выйти</button>
       </nav>
 
       <!-- =========== TAB: ITEMS =========== -->
       <div class="ad-panel active" data-panel="items">
         <div class="admin-toolbar">
-          <h2>������ ��������</h2>
+          <h2>записи каталога</h2>
           <div class="right">
-            <button id="add-btn" class="btn-primary">+ ��������</button>
+            <button id="add-btn" class="btn-primary">+ добавить</button>
           </div>
         </div>
 
         <div id="form-wrap" class="admin-form" style="display:none">
-          <h3 id="form-title">����� ������</h3>
+          <h3 id="form-title">новая запись</h3>
           <div class="grid">
             <div>
-              <label>���</label>
+              <label>тип</label>
               <select id="f-type">
-                <option value="software">��������� / crack / config</option>
-                <option value="article">������</option>
+                <option value="software">программа / crack / config</option>
+                <option value="article">статья</option>
               </select>
             </div>
             <div>
-              <label>���������</label>
+              <label>категория</label>
               <select id="f-category"></select>
             </div>
             <div>
-              <label>������������ (id)</label>
+              <label>подкатегория (id)</label>
               <input id="f-subcategory" type="text" placeholder="tunnels / vpn / azercell ..."/>
             </div>
             <div>
-              <label>��������(�)</label>
-              <input id="f-operator" type="text" placeholder="bakcell, azercell, nar � ����� �������"/>
+              <label>оператор(ы)</label>
+              <input id="f-operator" type="text" placeholder="bakcell, azercell, nar — через запятую"/>
             </div>
             <div>
-              <label>������ (emoji)</label>
-              <input id="f-icon" type="text" placeholder="??" maxlength="4"/>
+              <label>иконка (emoji)</label>
+              <input id="f-icon" type="text" placeholder="⚙" maxlength="4"/>
             </div>
             <div>
-              <label>�������� (ru)</label>
+              <label>название (ru)</label>
               <input id="f-name" type="text"/>
             </div>
             <div>
-              <label>�������� (az)</label>
-              <input id="f-name-az" type="text" placeholder="Az?rbaycan dilind?..."/>
+              <label>название (az)</label>
+              <input id="f-name-az" type="text" placeholder="Azərbaycan dilində..."/>
             </div>
             <div class="row-software">
-              <label>������</label>
+              <label>версия</label>
               <input id="f-version" type="text" placeholder="1.0.0"/>
             </div>
             <div class="row-software">
-              <label>������</label>
+              <label>размер</label>
               <input id="f-size" type="text" placeholder="120 MB"/>
             </div>
             <div class="row-software">
-              <label>������� (0-5)</label>
+              <label>рейтинг (0-5)</label>
               <input id="f-rating" type="number" step="0.1" min="0" max="5"/>
             </div>
             <div class="row-software">
-              <label>������ (working / dead / unknown)</label>
+              <label>статус (working / dead / unknown)</label>
               <input id="f-status" type="text" placeholder="working"/>
             </div>
             <div class="row-software">
-              <label>������ (.ehi / .hat / ...)</label>
+              <label>формат (.ehi / .hat / ...)</label>
               <input id="f-format" type="text" placeholder=".ehi"/>
             </div>
             <div class="row-software">
-              <label>��������� (Azercell / Bakcell / Nar)</label>
+              <label>оператор (Azercell / Bakcell / Nar)</label>
               <input id="f-provider" type="text"/>
             </div>
             <div class="full row-software">
-              <label>�������� � ������ (Google Play / GitHub / official site)</label>
+              <label>основная ссылка (Google Play / GitHub / official site)</label>
               <input id="f-url" type="text" placeholder="https://play.google.com/..."/>
             </div>
             <div class="full row-software">
-              <label>mod-������ � ������ ������ �� APK / �����</label>
+              <label>mod-ссылка — прямая ссылка на APK / архив</label>
               <input id="f-mod" type="text" placeholder="https://..."/>
             </div>
             <div class="row-article" style="display:none">
-              <label>����� ������</label>
-              <input id="f-reading" type="text" placeholder="5 ���"/>
+              <label>время чтения</label>
+              <input id="f-reading" type="text" placeholder="5 мин"/>
             </div>
             <div class="full">
-              <label>���� (����� �������)</label>
+              <label>теги (через запятую)</label>
               <input id="f-tags" type="text" placeholder="vpn, free, opensource"/>
             </div>
             <div class="full">
-              <label>�������� (ru)</label>
+              <label>описание (ru)</label>
               <textarea id="f-desc" rows="2"></textarea>
             </div>
             <div class="full">
-              <label>�������� (az)</label>
-              <textarea id="f-desc-az" rows="2" placeholder="Q?sa t?svir..."></textarea>
+              <label>описание (az)</label>
+              <textarea id="f-desc-az" rows="2" placeholder="Qısa təsvir..."></textarea>
             </div>
             <div class="full row-article" style="display:none">
-              <label>���������� (ru) � markdown</label>
+              <label>содержимое (ru) — markdown</label>
               <textarea id="f-content" rows="10"></textarea>
             </div>
             <div class="full row-article" style="display:none">
-              <label>���������� (az) � markdown</label>
+              <label>содержимое (az) — markdown</label>
               <textarea id="f-content-az" rows="10"></textarea>
             </div>
           </div>
           <div class="actions">
-            <button id="save-btn" class="btn-primary">���������</button>
-            <button id="cancel-btn" class="btn-ghost">������</button>
+            <button id="save-btn" class="btn-primary">сохранить</button>
+            <button id="cancel-btn" class="btn-ghost">отмена</button>
           </div>
         </div>
 
         <div class="admin-toolbar">
-          <input id="filter-cat" placeholder="������ �� ��������..."/>
-          <select id="filter-by-cat"><option value="">��� ���������</option></select>
+          <input id="filter-cat" placeholder="поиск по записям..."/>
+          <select id="filter-by-cat"><option value="">все категории</option></select>
         </div>
 
         <table class="admin-table">
           <thead>
-            <tr><th>#</th><th>��������</th><th>���������</th><th>���</th><th>v</th><th>?</th><th></th></tr>
+            <tr><th>#</th><th>название</th><th>категория</th><th>тип</th><th>v</th><th>↓</th><th></th></tr>
           </thead>
           <tbody id="items-body"></tbody>
         </table>
@@ -181,146 +181,146 @@
       <!-- =========== TAB: CATEGORIES =========== -->
       <div class="ad-panel" data-panel="categories">
         <div class="admin-toolbar">
-          <h2>���������</h2>
+          <h2>категории</h2>
           <div class="right">
-            <button id="add-cat-btn" class="btn-primary">+ �������� ���������</button>
+            <button id="add-cat-btn" class="btn-primary">+ добавить категорию</button>
           </div>
         </div>
 
         <div id="cat-form-wrap" class="admin-form" style="display:none">
-          <h3 id="cat-form-title">����� ���������</h3>
+          <h3 id="cat-form-title">новая категория</h3>
           <div class="grid">
             <div>
-              <label>id (slug, ��������)</label>
+              <label>id (slug, латиницей)</label>
               <input id="cf-id" type="text" placeholder="security"/>
             </div>
             <div>
-              <label>������ (emoji)</label>
-              <input id="cf-icon" type="text" placeholder="??" maxlength="4"/>
+              <label>иконка (emoji)</label>
+              <input id="cf-icon" type="text" placeholder="🔒" maxlength="4"/>
             </div>
             <div>
-              <label>����</label>
+              <label>цвет</label>
               <input id="cf-color" type="color" value="#4ade80"/>
             </div>
             <div>
-              <label>external url (��� ������ ������)</label>
-              <input id="cf-external" type="text" placeholder="(������ ������)"/>
+              <label>external url (для прямых ссылок)</label>
+              <input id="cf-external" type="text" placeholder="(оставь пустым)"/>
             </div>
             <div>
-              <label>�������� (ru)</label>
+              <label>название (ru)</label>
               <input id="cf-name" type="text"/>
             </div>
             <div>
-              <label>�������� (az)</label>
+              <label>название (az)</label>
               <input id="cf-name-az" type="text"/>
             </div>
             <div class="full">
-              <label>�������� (ru)</label>
+              <label>описание (ru)</label>
               <input id="cf-desc" type="text"/>
             </div>
             <div class="full">
-              <label>�������� (az)</label>
+              <label>описание (az)</label>
               <input id="cf-desc-az" type="text"/>
             </div>
           </div>
           <div class="actions">
-            <button id="cat-save-btn" class="btn-primary">���������</button>
-            <button id="cat-cancel-btn" class="btn-ghost">������</button>
+            <button id="cat-save-btn" class="btn-primary">сохранить</button>
+            <button id="cat-cancel-btn" class="btn-ghost">отмена</button>
           </div>
         </div>
 
         <table class="admin-table">
-          <thead><tr><th>������</th><th>id</th><th>��������</th><th>����</th><th>�������</th><th></th></tr></thead>
+          <thead><tr><th>иконка</th><th>id</th><th>название</th><th>цвет</th><th>записей</th><th></th></tr></thead>
           <tbody id="cats-body"></tbody>
         </table>
       </div>
 
       <!-- =========== TAB: CONFIG =========== -->
       <div class="ad-panel" data-panel="config">
-        <div class="admin-toolbar"><h2>��������� �����</h2></div>
+        <div class="admin-toolbar"><h2>настройки сайта</h2></div>
         <div class="admin-form" style="display:block">
           <div class="grid">
             <div>
-              <label>��� �����</label>
+              <label>имя сайта</label>
               <input id="cfg-siteName" type="text"/>
             </div>
             <div>
-              <label>���� �������</label>
+              <label>цвет акцента</label>
               <input id="cfg-accent" type="color" value="#4ade80"/>
             </div>
             <div>
-              <label>���� �� ���������</label>
+              <label>тема по умолчанию</label>
               <select id="cfg-theme"><option value="dark">Dark</option><option value="light">Light</option></select>
             </div>
             <div>
-              <label>���� �� ���������</label>
+              <label>язык по умолчанию</label>
               <select id="cfg-lang"><option value="ru">RU</option><option value="az">AZ</option></select>
             </div>
             <div class="full">
-              <label>������� ������ (������ ������ ����� �� ������)</label>
-              <input id="cfg-password" type="password" placeholder="����� ������"/>
+              <label>сменить пароль (оставь пустым если не меняешь)</label>
+              <input id="cfg-password" type="password" placeholder="новый пароль"/>
             </div>
           </div>
           <div class="actions">
-            <button id="cfg-save-btn" class="btn-primary">���������</button>
+            <button id="cfg-save-btn" class="btn-primary">сохранить</button>
           </div>
         </div>
       </div>
 
       <!-- =========== TAB: STATS =========== -->
       <div class="ad-panel" data-panel="stats">
-        <div class="admin-toolbar"><h2>����������</h2></div>
+        <div class="admin-toolbar"><h2>статистика</h2></div>
         <div class="stats-grid">
-          <div class="stat-card"><div class="stat-num" id="stat-items">�</div><div class="stat-lbl">�������</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-soft">�</div><div class="stat-lbl">��������</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-art">�</div><div class="stat-lbl">������</div></div>
-          <div class="stat-card"><div class="stat-num" id="stat-dl">�</div><div class="stat-lbl">����������</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-items">·</div><div class="stat-lbl">записей</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-soft">·</div><div class="stat-lbl">программ</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-art">·</div><div class="stat-lbl">статей</div></div>
+          <div class="stat-card"><div class="stat-num" id="stat-dl">·</div><div class="stat-lbl">скачиваний</div></div>
         </div>
         <div class="stats-block">
-          <h3>���������� �� 14 ����</h3>
+          <h3>активность за 14 дней</h3>
           <div id="stat-timeline" class="timeline"></div>
         </div>
         <div class="stats-block">
-          <h3>���-10 �� �����������</h3>
-          <table class="admin-table"><thead><tr><th>#</th><th>��������</th><th>���</th><th>v</th></tr></thead><tbody id="stat-top"></tbody></table>
+          <h3>топ-10 по скачиваниям</h3>
+          <table class="admin-table"><thead><tr><th>#</th><th>название</th><th>тип</th><th>↓</th></tr></thead><tbody id="stat-top"></tbody></table>
         </div>
       </div>
 
       <!-- =========== TAB: SHOP =========== -->
       <div class="ad-panel" data-panel="shop">
         <div class="admin-toolbar">
-          <h2>?? �������</h2>
+          <h2>🛒 магазин</h2>
           <div class="right">
-            <span id="shop-enabled-pill" class="shop-enabled-pill">�</span>
-            <button id="shop-toggle-enabled" class="btn-ghost">�����������</button>
+            <span id="shop-enabled-pill" class="shop-enabled-pill">·</span>
+            <button id="shop-toggle-enabled" class="btn-ghost">переключить</button>
           </div>
         </div>
 
         <!-- sub-tabs -->
         <div class="shop-subtabs">
-          <button class="shop-subtab active" data-shop-tab="orders">?? ������ <span id="ord-count" class="cnt"></span></button>
-          <button class="shop-subtab" data-shop-tab="products">?? ������ <span id="prd-count" class="cnt"></span></button>
-          <button class="shop-subtab" data-shop-tab="prices">?? ���� / ������</button>
-          <button class="shop-subtab" data-shop-tab="payments">?? ���������</button>
+          <button class="shop-subtab active" data-shop-tab="orders">📦 заказы <span id="ord-count" class="cnt"></span></button>
+          <button class="shop-subtab" data-shop-tab="products">🎁 товары <span id="prd-count" class="cnt"></span></button>
+          <button class="shop-subtab" data-shop-tab="prices">💰 цены / наценка</button>
+          <button class="shop-subtab" data-shop-tab="payments">💳 реквизиты</button>
         </div>
 
         <!-- ORDERS sub-panel -->
         <div class="shop-subpanel active" data-shop-panel="orders">
-          <div id="orders-list" class="orders-list">��������</div>
+          <div id="orders-list" class="orders-list">загрузка…</div>
         </div>
 
         <!-- PRODUCTS sub-panel -->
         <div class="shop-subpanel" data-shop-panel="products">
           <div class="admin-toolbar inner">
-            <p class="muted">����� �������� ����� � �������, ������� �� ������ ���������. ����� ������ ������ ������ �� ������ ������ ����� > �������� �������������.</p>
-            <button id="prd-add-btn" class="btn-primary">+ �������� �����</button>
+            <p class="muted">здесь хранятся товары — ассеты, которые ты будешь продавать. После приёма заказа админ выбирает товар и нажимает «выдать пользователю».</p>
+            <button id="prd-add-btn" class="btn-primary">+ добавить товар</button>
           </div>
 
           <div id="prd-form-wrap" class="admin-form" style="display:none">
-            <h3 id="prd-form-title">����� �����</h3>
+            <h3 id="prd-form-title">новый товар</h3>
             <div class="grid">
               <div>
-                <label>��������</label>
+                <label>оператор</label>
                 <select id="prd-operator">
                   <option value="bakcell">Bakcell</option>
                   <option value="azercell">Azercell</option>
@@ -328,97 +328,97 @@
                 </select>
               </div>
               <div>
-                <label>���</label>
+                <label>тип</label>
                 <select id="prd-type">
-                  <option value="sni">SNI ����</option>
-                  <option value="http_injector">HTTP Injector ������</option>
-                  <option value="dark_tunnel">Dark Tunnel ������</option>
-                  <option value="ha_tunnel">HA Tunnel ������</option>
+                  <option value="sni">SNI хост</option>
+                  <option value="http_injector">HTTP Injector конфиг</option>
+                  <option value="dark_tunnel">Dark Tunnel конфиг</option>
+                  <option value="ha_tunnel">HA Tunnel конфиг</option>
                 </select>
               </div>
               <div>
-                <label>����� (��� ������ ������ ��������)</label>
+                <label>тариф (для какого пакета подходит)</label>
                 <select id="prd-tariff">
-                  <option value="zero">0 ������</option>
-                  <option value="whatsapp">���������� WhatsApp</option>
-                  <option value="telegram">���������� Telegram</option>
-                  <option value="facebook">���������� Facebook</option>
-                  <option value="instagram">���������� Instagram</option>
-                  <option value="tiktok">���������� TikTok</option>
+                  <option value="zero">0 баланса</option>
+                  <option value="whatsapp">безлимитный WhatsApp</option>
+                  <option value="telegram">безлимитный Telegram</option>
+                  <option value="facebook">безлимитный Facebook</option>
+                  <option value="instagram">безлимитный Instagram</option>
+                  <option value="tiktok">безлимитный TikTok</option>
                 </select>
               </div>
               <div>
-                <label>�������� (��� ����������)</label>
-                <input id="prd-title" type="text" placeholder="����. SNI Bakcell WhatsApp #042"/>
+                <label>название (для админа)</label>
+                <input id="prd-title" type="text" placeholder="напр. SNI Bakcell WhatsApp #042"/>
               </div>
               <div class="full">
-                <label>���������� (����-������ ��� base64 ����� �������)</label>
-                <textarea id="prd-payload" placeholder="��� SNI: media-cpt1-1.cdn.whatsapp.net&#10;��� �������: ������ base64 ����� ��� ��������� ������ ����"></textarea>
+                <label>содержимое (хост-строка или base64 конфиг целиком)</label>
+                <textarea id="prd-payload" placeholder="для SNI: media-cpt1-1.cdn.whatsapp.net&#10;для конфига: вставь base64 целиком или загрузи файлом ниже"></textarea>
               </div>
               <div>
-                <label>��� ����� (��� ��������)</label>
+                <label>имя файла (для конфигов)</label>
                 <input id="prd-payload-filename" type="text" placeholder="config.ehi"/>
               </div>
               <div>
-                <label>��������� ���� (���.)</label>
+                <label>загрузить файл (опц.)</label>
                 <input id="prd-file" type="file"/>
               </div>
               <div class="full">
-                <label>������� ��� ���������� (����������)</label>
-                <textarea id="prd-note" placeholder="����. ���������� ���� � HTTP Injector, ����� Start"></textarea>
+                <label>заметка для покупателя (отображается)</label>
+                <textarea id="prd-note" placeholder="напр. импортируй файл в HTTP Injector, нажми Start"></textarea>
               </div>
             </div>
             <div class="form-actions">
-              <button id="prd-save" class="btn-primary">���������</button>
-              <button id="prd-cancel" class="btn-ghost">������</button>
+              <button id="prd-save" class="btn-primary">сохранить</button>
+              <button id="prd-cancel" class="btn-ghost">отмена</button>
             </div>
           </div>
 
-          <div id="products-list" class="products-list">��������</div>
+          <div id="products-list" class="products-list">загрузка…</div>
         </div>
 
         <!-- PRICES sub-panel -->
         <div class="shop-subpanel" data-shop-panel="prices">
           <div class="admin-toolbar inner">
-            <p class="muted">������� ���. ������ ������ = <b>������� ����</b> / <b>������ (�����������)</b>. ���� ������ ������ ������� � �� ����� ������������ ������. ������ ������ ���� ������ ����� ������ �� ����.</p>
+            <p class="muted">матрица цен. Каждая ячейка = <b>цена клиенту</b> / <b>наценка (опционально)</b>. Если ячейка пустая значит товар не будет показываться в магазе. Скидку можно задать через знак минус в цене.</p>
             <div class="right">
-              <button id="prices-reset" class="btn-ghost">�������� � ��������</button>
-              <button id="prices-save" class="btn-primary">?? ��������� ��� ����</button>
+              <button id="prices-reset" class="btn-ghost">сбросить к дефолтным</button>
+              <button id="prices-save" class="btn-primary">💾 сохранить все цены</button>
             </div>
           </div>
-          <div id="prices-matrix" class="prices-matrix">��������</div>
+          <div id="prices-matrix" class="prices-matrix">загрузка…</div>
         </div>
 
         <!-- PAYMENTS sub-panel -->
         <div class="shop-subpanel" data-shop-panel="payments">
           <div class="admin-toolbar inner">
-            <p class="muted">��������� ��� ����� ��������. ��� ������ ����� �������� ����������� �� �������� ������.</p>
+            <p class="muted">реквизиты для приёма платежей. Эти данные будут показаны покупателю на странице заказа.</p>
           </div>
           <div class="payments-form">
             <div class="grid">
               <div class="full">
-                <label>USDT ����� (TRC-20)</label>
+                <label>USDT адрес (TRC-20)</label>
                 <input id="pay-usdt-trc20" type="text" placeholder="TXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"/>
               </div>
               <div class="full">
-                <label>USDT ����� (BEP-20, ���.)</label>
+                <label>USDT адрес (BEP-20, опц.)</label>
                 <input id="pay-usdt-bep20" type="text" placeholder="0x..."/>
               </div>
               <div>
-                <label>m10 / Birbank � �����</label>
+                <label>m10 / Birbank — номер</label>
                 <input id="pay-m10-phone-input" type="text" placeholder="+994 50 123 45 67"/>
               </div>
               <div>
-                <label>m10 � ��� ����������</label>
+                <label>m10 — имя получателя</label>
                 <input id="pay-m10-name-input" type="text" placeholder="Vaqif M."/>
               </div>
               <div class="full">
-                <label>Telegram ��� ����� (������������ �����������)</label>
+                <label>Telegram для связи (отображается покупателю)</label>
                 <input id="pay-contact-tg" type="text" placeholder="@baku_root"/>
               </div>
             </div>
             <div class="form-actions">
-              <button id="payments-save" class="btn-primary">?? ��������� ���������</button>
+              <button id="payments-save" class="btn-primary">💾 сохранить реквизиты</button>
             </div>
           </div>
         </div>

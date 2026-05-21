@@ -118,7 +118,7 @@ function publicUser(u) {
   if (!u) return null;
   const {
     id, username, email, createdAt, lastSeen, streak,
-    achievements, unlocked, role, avatar
+    achievements, unlocked, role, avatar, emailVerified
   } = u;
   return {
     id, username, email, createdAt, lastSeen, streak,
@@ -126,11 +126,74 @@ function publicUser(u) {
     unlocked: unlocked || [],
     role: role || 'user',
     avatar: avatar || null,
+    emailVerified: emailVerified === true,
   };
 }
 
 function newUserId() {
   return 'u_' + crypto.randomBytes(8).toString('hex');
+}
+
+// ---------- email verification codes ----------
+const VERIFY_CODE_TTL_MS = 15 * 60 * 1000; // 15 min
+const VERIFY_MAX_ATTEMPTS = 5;
+
+function genVerifyCode() {
+  // 6-digit numeric code, leading zeros allowed
+  return String(crypto.randomInt(0, 1000000)).padStart(6, '0');
+}
+function hashVerifyCode(code) {
+  // HMAC so codes can't be brute-forced even if users.json leaks
+  return crypto.createHmac('sha256', SECRET).update('vcode:' + String(code)).digest('hex');
+}
+function setVerifyCode(userId, code) {
+  const db = loadUsers();
+  const u = db.users.find((x) => x.id === userId);
+  if (!u) return false;
+  u.verifyCodeHash = hashVerifyCode(code);
+  u.verifyCodeExpiresAt = Date.now() + VERIFY_CODE_TTL_MS;
+  u.verifyAttempts = 0;
+  saveUsers(db);
+  return true;
+}
+function checkVerifyCode(userId, code) {
+  const db = loadUsers();
+  const u = db.users.find((x) => x.id === userId);
+  if (!u) return { ok: false, error: 'no_user' };
+  if (u.emailVerified) return { ok: false, error: 'already_verified' };
+  if (!u.verifyCodeHash || !u.verifyCodeExpiresAt) {
+    return { ok: false, error: 'no_code' };
+  }
+  if (Date.now() > u.verifyCodeExpiresAt) {
+    return { ok: false, error: 'expired' };
+  }
+  u.verifyAttempts = (u.verifyAttempts || 0) + 1;
+  if (u.verifyAttempts > VERIFY_MAX_ATTEMPTS) {
+    // wipe code so spammer must request new one
+    u.verifyCodeHash = null;
+    u.verifyCodeExpiresAt = null;
+    saveUsers(db);
+    return { ok: false, error: 'too_many_attempts' };
+  }
+  const expected = hashVerifyCode(code);
+  const got = u.verifyCodeHash;
+  let match = false;
+  try {
+    if (expected.length === got.length) {
+      match = crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(got));
+    }
+  } catch (_) {}
+  if (!match) {
+    saveUsers(db);
+    return { ok: false, error: 'bad_code', attemptsLeft: VERIFY_MAX_ATTEMPTS - u.verifyAttempts };
+  }
+  // success — mark verified, clear code
+  u.emailVerified = true;
+  u.verifyCodeHash = null;
+  u.verifyCodeExpiresAt = null;
+  u.verifyAttempts = 0;
+  saveUsers(db);
+  return { ok: true, user: u };
 }
 
 // ---------- streak / lastSeen ----------
@@ -180,6 +243,10 @@ module.exports = {
   publicUser,
   newUserId,
   touchUser,
+  genVerifyCode,
+  setVerifyCode,
+  checkVerifyCode,
+  VERIFY_CODE_TTL_MS,
   RE_EMAIL,
   RE_USERNAME,
   COOKIE_NAME,

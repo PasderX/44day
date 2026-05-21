@@ -1,3 +1,20 @@
+// ---- minimal .env loader (no extra deps) ----
+(() => {
+  try {
+    const envPath = require('path').join(__dirname, '.env');
+    if (!require('fs').existsSync(envPath)) return;
+    const txt = require('fs').readFileSync(envPath, 'utf8');
+    txt.split(/\r?\n/).forEach((line) => {
+      const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/i);
+      if (!m) return;
+      let [, k, v] = m;
+      if (v.startsWith('"') && v.endsWith('"')) v = v.slice(1, -1);
+      else if (v.startsWith("'") && v.endsWith("'")) v = v.slice(1, -1);
+      if (process.env[k] === undefined) process.env[k] = v;
+    });
+  } catch (_) {}
+})();
+
 const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
@@ -9,6 +26,8 @@ const tls = require('tls');
 const net = require('net');
 const crypto = require('crypto');
 const auth = require('./auth');
+const captcha = require('./captcha');
+const mailer = require('./mailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -55,6 +74,17 @@ function loadItems() {
 function stripContent(it) {
   const { content, content_az, ...rest } = it;
   return rest;
+}
+// For locked items shown to guests/non-unlocked users — strip download links too
+// (UI still gets `locked: true` flag so it can render a lock badge)
+function stripForGuest(it, user) {
+  const access = it.access;
+  if (access !== 'registered' && access !== 'pro') return it;
+  if (user && (user.role === 'admin' || access === 'registered'
+    || (access === 'pro' && (user.unlocked || []).includes(it.id)))) {
+    return it;
+  }
+  return { ...it, downloadUrl: '', modUrl: '', locked: true };
 }
 // Decide which file an item belongs to (by type)
 function fileFor(item) {
@@ -114,7 +144,8 @@ app.get('/api/items', (req, res) => {
       || (x.description_az || '').toLowerCase().includes(ql)
       || (x.tags || []).some((t) => t.toLowerCase().includes(ql)));
   }
-  res.json({ items: out.map(stripContent) });
+  const user = auth.currentUser(req);
+  res.json({ items: out.map(stripContent).map((x) => stripForGuest(x, user)) });
 });
 // Full single item (with content for articles).
 // For locked items the content is truncated for guests and non-unlocked users.
@@ -195,10 +226,23 @@ function rateLimit(req, res, max = 8, windowMs = 60 * 1000) {
   return true;
 }
 
-// register
-app.post('/api/auth/register', (req, res) => {
+// captcha — fetch a fresh challenge
+app.get('/api/captcha', (_req, res) => {
+  res.json(captcha.generate());
+});
+
+// register — step 1: create user (unverified) + send email code
+app.post('/api/auth/register', async (req, res) => {
   if (!rateLimit(req, res)) return;
-  const { username, email, password } = req.body || {};
+  const { username, email, password, captchaToken, captchaAnswer, hp } = req.body || {};
+
+  // honeypot — bots fill hidden fields, humans don't
+  if (hp) return res.status(400).json({ error: 'bot_detected' });
+
+  if (!captcha.verify(captchaToken, captchaAnswer)) {
+    return res.status(400).json({ error: 'bad_captcha', message: 'Капча неверна или истекла', captcha: captcha.generate() });
+  }
+
   if (!username || !auth.RE_USERNAME.test(username)) {
     return res.status(400).json({ error: 'bad_username', message: 'Логин: 3-20 латинских букв/цифр/_' });
   }
@@ -209,11 +253,26 @@ app.post('/api/auth/register', (req, res) => {
     return res.status(400).json({ error: 'bad_password', message: 'Пароль минимум 6 символов' });
   }
   const db = auth.loadUsers();
-  const u = (s) => (s || '').toLowerCase();
-  if (db.users.find((x) => u(x.username) === u(username))) {
+  const lc = (s) => (s || '').toLowerCase();
+  const existingByName = db.users.find((x) => lc(x.username) === lc(username));
+  if (existingByName) {
     return res.status(409).json({ error: 'username_taken', message: 'Логин занят' });
   }
-  if (db.users.find((x) => u(x.email) === u(email))) {
+  const existingByEmail = db.users.find((x) => lc(x.email) === lc(email));
+  if (existingByEmail) {
+    // Special case: if found user is unverified — let them re-verify with new code
+    if (!existingByEmail.emailVerified) {
+      const code = auth.genVerifyCode();
+      auth.setVerifyCode(existingByEmail.id, code);
+      mailer.sendVerifyCode(existingByEmail.email, code, existingByEmail.username).catch(() => {});
+      return res.json({
+        ok: true,
+        pending: true,
+        userId: existingByEmail.id,
+        email: existingByEmail.email,
+        message: 'Код подтверждения отправлен повторно',
+      });
+    }
     return res.status(409).json({ error: 'email_taken', message: 'Email уже зарегистрирован' });
   }
   const now = new Date().toISOString();
@@ -226,7 +285,7 @@ app.post('/api/auth/register', (req, res) => {
     createdAt: now,
     lastSeen: now,
     streak: 1,
-    unlocked: [],     // ids of unlocked PRO items
+    unlocked: [],
     achievements: [{
       id: 'welcome',
       icon: '🎁',
@@ -234,19 +293,79 @@ app.post('/api/auth/register', (req, res) => {
       at: now,
     }],
     avatar: null,
+    emailVerified: false,
   };
   db.users.push(newUser);
   auth.saveUsers(db);
 
-  const token = auth.makeToken(newUser.id);
+  // generate & send verification code
+  const code = auth.genVerifyCode();
+  auth.setVerifyCode(newUser.id, code);
+  mailer.sendVerifyCode(newUser.email, code, newUser.username).catch((e) => {
+    console.error('[register] mail send failed:', e.message);
+  });
+
+  // DO NOT set session cookie yet — wait for verify
+  res.json({
+    ok: true,
+    pending: true,
+    userId: newUser.id,
+    email: newUser.email,
+    message: 'Код подтверждения отправлен на ' + newUser.email,
+  });
+});
+
+// register — step 2: verify email code → activate account
+app.post('/api/auth/verify-email', (req, res) => {
+  if (!rateLimit(req, res, 20)) return;
+  const { userId, code } = req.body || {};
+  if (!userId || !code) {
+    return res.status(400).json({ error: 'missing_fields' });
+  }
+  const result = auth.checkVerifyCode(userId, String(code).trim());
+  if (!result.ok) {
+    const map = {
+      no_user:           { code: 404, msg: 'Пользователь не найден' },
+      already_verified:  { code: 400, msg: 'Email уже подтверждён' },
+      no_code:           { code: 400, msg: 'Код не запрошен — нажми «выслать новый»' },
+      expired:           { code: 400, msg: 'Код истёк — запроси новый' },
+      bad_code:          { code: 400, msg: `Неверный код${result.attemptsLeft != null ? ` (осталось попыток: ${result.attemptsLeft})` : ''}` },
+      too_many_attempts: { code: 429, msg: 'Слишком много попыток — запроси новый код' },
+    };
+    const m = map[result.error] || { code: 400, msg: 'Ошибка' };
+    return res.status(m.code).json({ error: result.error, message: m.msg });
+  }
+  // success — issue session
+  const token = auth.makeToken(result.user.id);
   auth.setSessionCookie(res, token);
-  res.json({ ok: true, user: auth.publicUser(newUser) });
+  res.json({ ok: true, user: auth.publicUser(result.user) });
+});
+
+// resend verification code
+app.post('/api/auth/resend-code', (req, res) => {
+  if (!rateLimit(req, res, 5)) return; // 5 per minute per IP
+  const { userId } = req.body || {};
+  if (!userId) return res.status(400).json({ error: 'missing_userId' });
+  const db = auth.loadUsers();
+  const u = db.users.find((x) => x.id === userId);
+  if (!u) return res.status(404).json({ error: 'no_user' });
+  if (u.emailVerified) return res.status(400).json({ error: 'already_verified', message: 'Email уже подтверждён' });
+  const code = auth.genVerifyCode();
+  auth.setVerifyCode(u.id, code);
+  mailer.sendVerifyCode(u.email, code, u.username).catch(() => {});
+  res.json({ ok: true, email: u.email, message: 'Новый код отправлен' });
 });
 
 // login
 app.post('/api/auth/login', (req, res) => {
   if (!rateLimit(req, res, 10)) return;
-  const { login, password } = req.body || {};
+  const { login, password, captchaToken, captchaAnswer, hp } = req.body || {};
+
+  if (hp) return res.status(400).json({ error: 'bot_detected' });
+  if (!captcha.verify(captchaToken, captchaAnswer)) {
+    return res.status(400).json({ error: 'bad_captcha', message: 'Капча неверна или истекла', captcha: captcha.generate() });
+  }
+
   if (!login || !password) {
     return res.status(400).json({ error: 'missing_fields' });
   }
@@ -260,6 +379,19 @@ app.post('/api/auth/login', (req, res) => {
   }
   if (!auth.verifyPassword(password, user.passwordHash)) {
     return res.status(401).json({ error: 'invalid_credentials', message: 'Неверный логин или пароль' });
+  }
+  // Block login until email verified — but auto-resend code so user can complete
+  if (user.emailVerified === false) {
+    const code = auth.genVerifyCode();
+    auth.setVerifyCode(user.id, code);
+    mailer.sendVerifyCode(user.email, code, user.username).catch(() => {});
+    return res.status(403).json({
+      error: 'email_not_verified',
+      message: 'Email не подтверждён — мы выслали новый код',
+      pending: true,
+      userId: user.id,
+      email: user.email,
+    });
   }
   auth.touchUser(user.id);
   const token = auth.makeToken(user.id);

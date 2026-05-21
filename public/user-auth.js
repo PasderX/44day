@@ -1,5 +1,6 @@
 // ===== 44day_ — user auth client + header user-pill =====
-// Exposes window.userAuth = { me, login, register, logout, isLoggedIn() }
+// Exposes window.userAuth = { me, login, register, verifyEmail, resendCode,
+//                              fetchCaptcha, logout, isLoggedIn, onChange }
 // Also injects a user pill into .topbar-inner
 
 (() => {
@@ -22,9 +23,14 @@
       const err = new Error((data && data.message) || (data && data.error) || ('http_' + res.status));
       err.code = data && data.error;
       err.status = res.status;
+      err.data = data || {};
       throw err;
     }
     return data;
+  }
+
+  async function fetchCaptcha() {
+    return api('/api/captcha');
   }
 
   async function loadMe() {
@@ -40,10 +46,16 @@
     return state.user;
   }
 
-  async function login(loginField, password) {
+  async function login(loginField, password, opts = {}) {
     const r = await api('/api/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ login: loginField, password }),
+      body: JSON.stringify({
+        login: loginField,
+        password,
+        captchaToken: opts.captchaToken || '',
+        captchaAnswer: opts.captchaAnswer || '',
+        hp: opts.hp || '',
+      }),
     });
     state.user = r.user;
     state.loaded = true;
@@ -52,16 +64,37 @@
     return r.user;
   }
 
-  async function register(username, email, password) {
+  // Returns { pending: true, userId, email } — caller must show verify form.
+  async function register(username, email, password, opts = {}) {
     const r = await api('/api/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({
+        username, email, password,
+        captchaToken: opts.captchaToken || '',
+        captchaAnswer: opts.captchaAnswer || '',
+        hp: opts.hp || '',
+      }),
+    });
+    return r; // { ok, pending, userId, email, message }
+  }
+
+  async function verifyEmail(userId, code) {
+    const r = await api('/api/auth/verify-email', {
+      method: 'POST',
+      body: JSON.stringify({ userId, code }),
     });
     state.user = r.user;
     state.loaded = true;
     emit();
     renderPill();
     return r.user;
+  }
+
+  async function resendCode(userId) {
+    return api('/api/auth/resend-code', {
+      method: 'POST',
+      body: JSON.stringify({ userId }),
+    });
   }
 
   async function logout() {
@@ -223,7 +256,12 @@
   }
 
   // Bootstrap
-  window.userAuth = { me: () => state.user, isLoggedIn, login, register, logout, loadMe, onChange, user };
+  window.userAuth = {
+    me: () => state.user,
+    isLoggedIn, user, onChange,
+    login, register, verifyEmail, resendCode, fetchCaptcha,
+    logout, loadMe,
+  };
 
   // run after DOM ready
   if (document.readyState === 'loading') {

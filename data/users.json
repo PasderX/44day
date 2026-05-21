@@ -7,8 +7,8 @@
       "passwordHash": "scrypt$6ced2effed05e481ca8b5c59c23d2388$8f2174cf97b6c8c1cf576ebffbd48aeefc3f0d7b0df13df5ab56c9ea85d05a74694befe691f4d33d4c5972c5f6c0b4bc20b9e41f443fe2b892f8acdc20b4b768",
       "role": "user",
       "createdAt": "2026-05-15T19:38:57.758Z",
-      "lastSeen": "2026-05-15T19:38:57.758Z",
-      "streak": 1,
+      "lastSeen": "2026-05-21T00:01:21.190Z",
+      "streak": 5,
       "unlocked": [],
       "achievements": [
         {
@@ -16,9 +16,68 @@
           "icon": "🎁",
           "name": "Welcome bonus",
           "at": "2026-05-15T19:38:57.758Z"
+        },
+        {
+          "id": "streak_3",
+          "min": 3,
+          "icon": "🔥",
+          "name": "Серия 3 дня",
+          "at": "2026-05-19T00:24:56.290Z"
         }
       ],
-      "avatar": null
+      "avatar": null,
+      "verifyCodeHash": null,
+      "verifyCodeExpiresAt": null,
+      "verifyAttempts": 0,
+      "emailVerified": true
+    },
+    {
+      "id": "u_ea8826bb8449793a",
+      "username": "SASDSA",
+      "email": "saymonplayan@gmail.com",
+      "passwordHash": "scrypt$41b1c519ab716c33614e00212487fd5a$ff671da1060f1b2f7cd41e372014e3d6b362ca8a9c50fe432b0374f4d1118336e0651375bd6fabeedc900008e333a1bc7561c11925cc53eed7bcbfcde93a2046",
+      "role": "user",
+      "createdAt": "2026-05-19T00:42:04.048Z",
+      "lastSeen": "2026-05-19T00:42:04.048Z",
+      "streak": 1,
+      "unlocked": [],
+      "achievements": [
+        {
+          "id": "welcome",
+          "icon": "🎁",
+          "name": "Welcome bonus",
+          "at": "2026-05-19T00:42:04.048Z"
+        }
+      ],
+      "avatar": null,
+      "emailVerified": false,
+      "verifyCodeHash": "48633f8d886c7c3620879c8879798cb83dc34f667360fb777de18233703a51d2",
+      "verifyCodeExpiresAt": 1779152224142,
+      "verifyAttempts": 0
+    },
+    {
+      "id": "u_a82e5ef01981b2d1",
+      "username": "ASDASD",
+      "email": "saymonpla121212yan@gmail.com",
+      "passwordHash": "scrypt$76b9d366295830a8227aa9144f170adc$1256926f7148429a23570af3da682a6997a96885c0df5c5347ccf1744b8d6f58ef2594017567dc0796d25fa0490795253765cfa7242e30a75c3d8e7a246fa378",
+      "role": "user",
+      "createdAt": "2026-05-19T00:43:28.110Z",
+      "lastSeen": "2026-05-19T00:43:28.110Z",
+      "streak": 1,
+      "unlocked": [],
+      "achievements": [
+        {
+          "id": "welcome",
+          "icon": "🎁",
+          "name": "Welcome bonus",
+          "at": "2026-05-19T00:43:28.110Z"
+        }
+      ],
+      "avatar": null,
+      "emailVerified": false,
+      "verifyCodeHash": "d7c37d810835be9c03e12519e2a1e2b913c21d45c1178b6d0c81431601173505",
+      "verifyCodeExpiresAt": 1779152308175,
+      "verifyAttempts": 0
     }
   ]
 }

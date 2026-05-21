@@ -54,12 +54,90 @@
     },
     {
       "id": "windows",
-      "name": "Windows Cracks",
-      "name_az": "Windows Cracks",
+      "name": "Windows",
+      "name_az": "Windows",
       "icon": "🪟",
       "color": "#0078d4",
-      "description": "Активированные программы для Windows: Adobe, Office, IDM и другие",
-      "description_az": "Windows üçün aktivləşdirilmiş proqramlar: Adobe, Office, IDM və başqaları"
+      "description": "Хакерские инструменты, cracks и pen-test программы для Windows",
+      "description_az": "Windows üçün hacker alətləri, cracks və pen-test proqramları",
+      "subcategories": [
+        {
+          "id": "hacking",
+          "name": "Хакерские инструменты",
+          "name_az": "Hacker alətləri",
+          "icon": "💀"
+        },
+        {
+          "id": "cracks",
+          "name": "Cracks / Premium",
+          "name_az": "Cracks / Premium",
+          "icon": "🔓"
+        },
+        {
+          "id": "reverse",
+          "name": "Reverse Engineering",
+          "name_az": "Reverse Engineering",
+          "icon": "🧬"
+        },
+        {
+          "id": "utils",
+          "name": "Utilities",
+          "name_az": "Utilitlər",
+          "icon": "⚙"
+        }
+      ]
+    },
+    {
+      "id": "ios",
+      "name": "iOS",
+      "name_az": "iOS",
+      "icon": "📱",
+      "color": "#9ca3af",
+      "description": "Хакерские и dev-инструменты для iPhone / iPad (без jailbreak и с jailbreak)",
+      "description_az": "iPhone / iPad üçün hacker və dev alətləri (jailbreak ilə və olmadan)",
+      "subcategories": [
+        {
+          "id": "dev",
+          "name": "Терминал / Dev",
+          "name_az": "Terminal / Dev",
+          "icon": "⌨"
+        },
+        {
+          "id": "hacking",
+          "name": "Хакерские инструменты",
+          "name_az": "Hacker alətləri",
+          "icon": "💀"
+        },
+        {
+          "id": "mods",
+          "name": "Premium Моды",
+          "name_az": "Premium Modlar",
+          "icon": "⭐"
+        }
+      ]
+    },
+    {
+      "id": "linux",
+      "name": "Linux",
+      "name_az": "Linux",
+      "icon": "🐧",
+      "color": "#fbbf24",
+      "description": "Дистрибутивы (Kali, Parrot, BlackArch) и инструменты для пентеста",
+      "description_az": "Pen-test üçün distros (Kali, Parrot, BlackArch) və alətlər",
+      "subcategories": [
+        {
+          "id": "distros",
+          "name": "Дистрибутивы",
+          "name_az": "Distros",
+          "icon": "💿"
+        },
+        {
+          "id": "hacking",
+          "name": "Хакерские инструменты",
+          "name_az": "Hacker alətləri",
+          "icon": "💀"
+        }
+      ]
     },
     {
       "id": "scripts",

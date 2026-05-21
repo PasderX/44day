@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="hub.css?v=260515233615" />
+  <link rel="stylesheet" href="hub.css?v=260521040000" />
   <link rel="manifest" href="/manifest.json"/>
   <meta name="theme-color" content="#00ff88"/>
   <script src="boot.js?v=260509020715"></script>
@@ -20,6 +20,14 @@
   <!-- ============ TOPBAR ============ -->
   <header class="topbar">
     <div class="topbar-inner">
+      <button id="burger" class="burger" aria-label="меню" data-tip="меню">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path class="bg-l1" d="M4 7h16"/>
+          <path class="bg-l2" d="M4 12h16"/>
+          <path class="bg-l3" d="M4 17h16"/>
+        </svg>
+      </button>
+
       <a href="/" class="brand" data-tip="home">
         <span class="b-prompt">44day</span><span class="b-cursor">_</span>
       </a>
@@ -55,30 +63,8 @@
   <main class="main">
     <div class="home-grid">
 
-      <!-- LEFT RAIL · quick icons -->
-      <aside class="home-side-left" aria-label="quick nav">
-        <a class="rail-btn" href="/sni" data-tip="SNI хосты" data-tip-pos="right"><i data-lucide="satellite-dish"></i></a>
-        <a class="rail-btn" href="/section/configs" data-tip="конфиги для инжекторов" data-tip-pos="right"><i data-lucide="folder-cog"></i></a>
-        <a class="rail-btn" href="/section/android" data-tip="Android приложения" data-tip-pos="right"><i data-lucide="smartphone"></i></a>
-        <a class="rail-btn" href="/section/windows" data-tip="Windows cracks" data-tip-pos="right"><i data-lucide="app-window"></i></a>
-        <a class="rail-btn" href="/section/scripts" data-tip="скрипты" data-tip-pos="right"><i data-lucide="file-code-2"></i></a>
-        <a class="rail-btn" href="/section/security" data-tip="статьи / гайды" data-tip-pos="right"><i data-lucide="shield-check"></i></a>
-        <div class="rail-divider"></div>
-        <a class="rail-btn rail-btn-tg" href="https://t.me/baku_root" target="_blank" rel="noopener" data-tip="@baku_root" data-tip-pos="right">
-          <svg viewBox="0 0 240 240" aria-hidden="true">
-            <defs>
-              <linearGradient id="tgGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#37bbfe"/>
-                <stop offset="1" stop-color="#007dbb"/>
-              </linearGradient>
-            </defs>
-            <circle cx="120" cy="120" r="120" fill="url(#tgGrad)"/>
-            <path fill="#ffffff" d="M81 128.5l-27.5-8.6c-6-1.9-6-6 1.3-9l128.4-49.5c5-1.9 7.7 1.1 6 8.5L168.8 168c-1.5 6.6-5.4 8.2-11 5.1l-30.6-22.6-14.7 14.2c-1.6 1.6-3 3-6.1 3l2.2-31z"/>
-            <path fill="#c8daea" d="M108.6 162.1l-2.2 23.8c0 0-.9 7.4 6.5 0l17.6-16.4-22-7.4z"/>
-          </svg>
-          <span class="rail-tg-pulse"></span>
-        </a>
-      </aside>
+      <!-- LEFT SIDEBAR · grouped navigation (filled by sidenav.js) -->
+      <aside class="sidenav" id="sidenav" aria-label="навигация"></aside>
 
       <!-- CENTER · content -->
       <section class="home-content">
@@ -149,11 +135,10 @@
 
   <!-- ============ SCRIPTS ============ -->
   <script src="hub-i18n.js?v=260509020715"></script>
-  <script src="user-auth.js?v=260515233615"></script>
+  <script src="user-auth.js?v=260518000732"></script>
   <script src="tooltip.js?v=260509020715"></script>
   <script src="sounds.js?v=260515034624"></script>
   <script src="pwa.js?v=260509020715"></script>
-  <script src="my-setup.js?v=260509020715"></script>
   <script src="icons.js?v=260509020715"></script>
   <script src="favs.js?v=260509020715"></script>
   <script src="cmd.js?v=260509020715"></script>
@@ -164,6 +149,7 @@
   <script src="online.js?v=260515034624"></script>
   <script src="whoami-widget.js?v=260509020715"></script>
   <script src="ui.js?v=260509020715"></script>
+  <script src="sidenav.js?v=260521000000"></script>
   <script src="shop-cta.js?v=260515034624"></script>
 </body>
 </html>
