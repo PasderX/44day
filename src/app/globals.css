@@ -12,7 +12,8 @@
   }
   
   body {
-    @apply bg-[#0a0a0f] text-foreground;
+    background-color: #0a0a0f;
+    color: #f8f8f8;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
@@ -27,15 +28,26 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-magenta bg-clip-text text-transparent;
+    background: linear-gradient(to right, #00fff9, #bf00ff, #ff00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-gradient-green {
-    @apply bg-gradient-to-r from-emerald-400 to-neon-green bg-clip-text text-transparent;
+    background: linear-gradient(to right, #34d399, #00ff41);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .cyber-border {
-    @apply border border-neon-cyan/30 hover:border-neon-cyan/60 transition-colors;
+    border: 1px solid rgba(0, 255, 249, 0.3);
+    transition: border-color 0.3s;
+  }
+  
+  .cyber-border:hover {
+    border-color: rgba(0, 255, 249, 0.6);
   }
 
   .cyber-glow {
@@ -45,7 +57,10 @@
   }
 
   .glass-effect {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .cyber-grid-bg {
