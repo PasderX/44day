@@ -10,10 +10,6 @@
     --cyber-magenta: 300 100% 50%;
     --cyber-purple: 270 100% 50%;
   }
-
-  * {
-    @apply border-border;
-  }
   
   body {
     @apply bg-[#0a0a0f] text-foreground;
