@@ -2,13 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/language-context';
-import { Telegram, Instagram, Mail, Phone } from 'lucide-react';
+import { Send, Instagram, Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useLanguage();
 
   const socialLinks = [
-    { icon: Telegram, href: '#', label: 'Telegram' },
+    { icon: Send, href: '#', label: 'Telegram' },
     { icon: Instagram, href: '#', label: 'Instagram' },
     { icon: Mail, href: '#', label: 'Email' },
     { icon: Phone, href: '#', label: 'Phone' },
